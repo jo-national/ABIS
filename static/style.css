@@ -266,7 +266,6 @@ main p { margin: 0.75rem 0; text-wrap: pretty; }
 }
 #resultater a:hover, #resultater a:focus-visible { background: var(--papir); }
 #resultater .isin { font-size: 0.875rem; color: var(--blaek-svag); white-space: nowrap; }
-#resultater .ticker { font-size: 0.875rem; color: var(--blaek-svag); white-space: nowrap; font-weight: 600; }
 #resultater .status-ja  { color: var(--ja); font-weight: 600; }
 #resultater .status-nej { color: var(--tvivl); font-weight: 600; }
 
