@@ -1,98 +1,576 @@
-/* Baseline-stil: klarhed over effekter. Endeligt design leveres via Claude Design. */
-:root{
-  --blaek:#1c2430; --papir:#fafbfc; --linje:#d8dee6;
-  --ja:#0c6b3d; --ja-bg:#e8f5ee; --advarsel:#8a5a00; --advarsel-bg:#fdf3e0;
-  --link:#0b5bd3; --maks:46rem;
-}
-*{box-sizing:border-box}
-body{margin:0;font:400 1rem/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--blaek);background:var(--papir)}
-main{max-width:var(--maks);margin:0 auto;padding:1rem 1.25rem 3rem}
-a{color:var(--link)}
-h1{font-size:1.75rem;line-height:1.25;margin:1.2rem 0 .6rem}
-h2{font-size:1.2rem;margin:1.8rem 0 .4rem}
-.top{display:flex;justify-content:space-between;align-items:center;max-width:var(--maks);margin:0 auto;padding:.9rem 1.25rem}
-.top .logo{font-weight:700;text-decoration:none;color:var(--blaek);font-size:1.1rem}
-.top .logo span{color:var(--ja)}
-.top nav a{margin-left:1rem;text-decoration:none;font-size:.95rem}
-.statuslinje{background:#eef2f7;border-block:1px solid var(--linje);font-size:.85rem;padding:.45rem 1.25rem;text-align:center}
-.hero .undertekst{font-size:1.05rem}
-.soegning input{width:100%;font-size:1.15rem;padding:.8rem 1rem;border:2px solid var(--blaek);border-radius:.5rem;background:#fff}
-#resultater{list-style:none;margin:.5rem 0;padding:0;border:1px solid var(--linje);border-radius:.5rem;background:#fff;display:none}
-#resultater.vis{display:block}
-#resultater li{border-bottom:1px solid var(--linje)}
-#resultater li:last-child{border-bottom:0}
-#resultater a{display:flex;justify-content:space-between;gap:1rem;padding:.55rem .9rem;text-decoration:none;color:inherit}
-#resultater a:hover,#resultater a:focus{background:#f0f4fa}
-#resultater .isin{color:#5a6472;font-size:.85rem;white-space:nowrap}
-#resultater .status-ja{color:var(--ja);font-weight:600}
-#ikke-fundet{border:1px solid var(--linje);border-left:4px solid var(--advarsel);background:var(--advarsel-bg);border-radius:.4rem;padding:.2rem 1rem;margin-top:.6rem}
-.svar{border-radius:.5rem;padding:1rem 1.25rem;margin:1rem 0}
-.svar-ja{background:var(--ja-bg);border:1px solid var(--ja)}
-.svar-historisk{background:var(--advarsel-bg);border:1px solid var(--advarsel)}
-.svar-kort{font-size:1.5rem;font-weight:800;margin:.1rem 0}
-.svar-ja .svar-kort{color:var(--ja)}
-.svar-historisk .svar-kort{color:var(--advarsel)}
-.aarstabel{border-collapse:collapse;width:100%;max-width:22rem}
-.aarstabel th,.aarstabel td{border:1px solid var(--linje);padding:.35rem .7rem;text-align:left}
-.stamdata{display:grid;grid-template-columns:auto 1fr;gap:.25rem 1rem}
-.stamdata dt{font-weight:600}
-.stamdata dd{margin:0;overflow-wrap:anywhere}
-.fondsliste{list-style:none;padding:0}
-.fondsliste li{padding:.3rem 0;border-bottom:1px solid var(--linje);display:flex;justify-content:space-between;gap:1rem}
-.fondsliste .isin{color:#5a6472;font-size:.85rem;white-space:nowrap}
-.bogstaver a{margin-right:.4rem}
-.brødkrumme{font-size:.85rem;margin-top:1rem}
-.kilde{font-size:.9rem;color:#3c4654}
-footer{border-top:1px solid var(--linje);background:#eef2f7}
-footer p{max-width:var(--maks);margin:0 auto;padding:.7rem 1.25rem;font-size:.85rem}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-:focus-visible{outline:3px solid var(--link);outline-offset:2px}
-@media (prefers-reduced-motion:no-preference){#resultater a{transition:background .1s}}
+/* ============================================================
+   Positivlisten? - ét stylesheet
+   Dansk teknisk editorial: typografien er fotografiet.
+   Monokrom: hvid bund, blæksort tekst, interaktion som inversion.
+   Fire reserverede semantiske farver - de eneste farver på sitet.
+   ------------------------------------------------------------
+   Regler der aldrig brydes:
+   1) Accent er aldrig grøn og aldrig semantisk.
+   2) Grøn = "det du leder efter", aldrig "står på listen".
+   3) Semantik aflæses også uden farve (fed dom-tekst + kant).
+   ============================================================ */
 
-.note{border-left:4px solid var(--advarsel);background:var(--advarsel-bg);padding:.6rem .9rem;border-radius:.3rem;font-size:.92rem}
-
-.kontekst{border:1px solid var(--linje);border-radius:.6rem;padding:.2rem 1rem 1rem;margin:1.5rem 0;background:#fff}
-.kontekst-intro{font-size:.95rem;color:#3c4654}
-.kontekst-knapper{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
-.kontekst-knapper button{font:inherit;font-size:.9rem;padding:.45rem .8rem;border:1px solid var(--linje);
-  background:#f4f7fa;border-radius:2rem;cursor:pointer;color:var(--blaek)}
-.kontekst-knapper button[aria-selected="true"]{background:var(--blaek);color:#fff;border-color:var(--blaek)}
-.kontekst-panel{border-top:1px solid var(--linje);padding-top:.7rem}
-.kontekst-panel p{margin:.35rem 0}
-.dom{font-weight:700;font-size:1.05rem}
-.dom-ja{color:var(--ja)}
-.dom-nej{color:#a3282d}
-.dom-tvivl{color:var(--advarsel)}
-.dom-neutral{color:var(--blaek)}
-.kontekst-forbehold{font-size:.85rem;color:#5a6472;border-top:1px solid var(--linje);margin-top:.9rem;padding-top:.6rem}
-.isin-kode{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.95rem}
-.kopier{font:inherit;font-size:.75rem;margin-left:.5rem;padding:.15rem .5rem;border:1px solid var(--linje);
-  background:#f4f7fa;border-radius:.3rem;cursor:pointer;color:#3c4654}
-.kopier:hover{background:#e7edf4}
-.forside-kontekst .dom{font-size:1rem}
-.hero h1 .accent{color:var(--ja)}
-
-/* Faner må ALDRIG flytte sig. To sikringer:
-   1) Knapraden har fast wrap-adfærd, og knapperne reserverer plads til fed tekst,
-      så aktiv/inaktiv-skift ikke ændrer bredde.
-   2) Panelerne stables oven på hinanden i ét grid-felt, så området har samme
-      højde uanset hvilket panel der vises - intet under fanerne rykker sig. */
-.kontekst-knapper button{
-  /* reservér bredden til den fede (aktive) udgave, så teksten ikke "vokser" */
-  font-weight:600;
+/* ---------- Én font i hele huset: General Sans (self-hostet) ---------- */
+@font-face {
+  font-family: "Satoshi";
+  /* Fontfil mangler - bruger system-font-stack indtil Satoshi self-hostes */
+  src: local("Satoshi");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
-.kontekst-knapper button[aria-selected="false"]{
-  font-weight:600; /* samme vægt aktiv/inaktiv => ingen breddeændring */
+
+:root {
+  --papir: #F7EDE2;          /* varm linned-creme - pastellernes fælles base */
+  --pastel-fersken: #F6D7BB;  /* bærende varm pastel: banner + footer */
+  --pastel-smoer: #F6E7C4;    /* nabo på farvehjulet - knapper */
+  --pastel-blush: #F3D2CB;    /* varm rosa - hover + nej-domme */
+  --pastel-salvie: #DBE5CB;   /* den ene kølige modvægt (ja-domme) */
+  --pastel-abrikos: #F8DFC4;  /* tvivl-flader */
+  --pastel-eukalyptus: #D8E3DB; /* chips og neutrale domme */
+  --radius-kort: 24px;
+  --radius-felt: 18px;
+  --radius-pille: 999px;
+  --blaek: #1D1B26;         /* dyb, let violet blæk - blødere end ren sort */
+  --accent: var(--blaek);     /* accent = blæk; flader og hover taler pastel */
+  --accent-lys: #FFFFFF;      /* accent på mørk flade */
+  --ja: #0E7C4A;
+  --nej: #B3261E;
+  --tvivl: #9A6700;
+  --linje: #E8DCCC;
+  --blaek-svag: #55534E;      /* sekundær tekst på papir (AA) */
+  --papir-svag: #C9C6BE;      /* sekundær tekst på blæk (AA) */
+  --flade-ja: var(--pastel-salvie);
+  --flade-tvivl: var(--pastel-abrikos);
+  --hvid: #FEFAF3;
+  --grotesk: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --spalte: 46rem;
+  --kant: clamp(1.25rem, 5vw, 3rem);
+  --afsnit: clamp(2rem, 4.5vw, 2.75rem); /* fælles lodret rytme mellem alle blokke */
 }
-/* Panelerne lægges i samme grid-celle. Det skjulte panel fylder stadig plads,
-   så containerhøjden = det højeste panel. Ingen layout shift ved fanaskift. */
+
+/* ---------- Grund ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papir);
+  color: var(--blaek);
+  font-family: var(--grotesk);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-weight: 400;
+  font-variant-numeric: lining-nums;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--accent); color: var(--papir); }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { color: var(--blaek); text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+code, .isin, .isin-kode { font-family: var(--grotesk); } /* også <code>: aldrig browserens monospace */
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   Bevægelse ejes af motion.js (Web Animations API).
+   CSS holder kun: display-forbehold for bogstav-splittet,
+   hover-mikrointeraktioner og reduced-motion-garantien.
+   Uden JS er siden øjeblikkeligt synlig - ingen afhængighed.
+   ============================================================ */
+
+.brand-titel .g, .brand-titel .accent {
+  display: inline-block;
+  white-space: pre; /* mellemrummet i "På positivlisten" må ikke kollapse */
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* ---------- Masthead (kun forsiden) ---------- */
+.brand-titel {
+  margin: 0;
+  padding: clamp(2.75rem, 8vw, 5.5rem) var(--kant) clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+.brand-titel .accent, .hero h1 .accent { color: var(--accent); }
+
+/* ---------- Topnavigation ---------- */
+.top {
+  border-bottom: 1px solid var(--linje);
+}
+.top nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.25rem, 2vw, 2rem);
+  padding: 0 var(--kant);
+}
+.top nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0.25rem 0.625rem;
+  color: var(--blaek);
+  text-decoration: none;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 160ms ease;
+}
+.top nav a::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 8px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 260ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+.top nav a:hover { color: var(--accent); }
+.top nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- Statuslinjen - maskinens log-udtræk ---------- */
+.statuslinje {
+  background: var(--pastel-fersken); /* identisk med footerens bånd */
+  color: var(--blaek);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  max-width: fit-content;
+  margin: 1.25rem auto 0;
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-pille);
+}
+
+/* ---------- Hovedspalte ---------- */
+main {
+  max-width: var(--spalte);
+  margin-inline: auto;
+  padding: var(--afsnit) var(--kant) var(--afsnit);
+}
+
+main h2 {
+  font-size: clamp(1.375rem, 3.5vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: var(--afsnit) 0 0.75rem;
+}
+
+main p { margin: 0.75rem 0; text-wrap: pretty; }
+
+/* ---------- Forside: hero + søgning ---------- */
+.hero { padding-top: 0; }
+.hero .undertekst { margin-top: 0; } /* rytmen ejes af main-paddingen alene */
+
+.undertekst {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  line-height: 1.6;
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.soegning { margin-top: var(--afsnit); }
+
+#q {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 1.1rem 1.75rem;
+  font: inherit;
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  font-weight: 500;
+  color: var(--blaek);
+  background: var(--hvid);
+  border: 2px solid var(--blaek);
+  border-radius: var(--radius-pille);
+  appearance: none;
+  transition: box-shadow 200ms ease;
+}
+#q::placeholder { color: var(--blaek-svag); opacity: 1; font-weight: 400; }
+#q:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px var(--pastel-fersken);
+}
+#q::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+/* Resultatliste */
+#resultater {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+#resultater.vis {
+  display: block;
+  background: var(--hvid);
+  border: 1px solid var(--linje);
+  border-radius: var(--radius-felt);
+  margin-top: 0.625rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -18px rgba(29, 27, 38, 0.25);
+}
+#resultater li { border-top: 1px solid var(--linje); }
+#resultater li:first-child { border-top: 0; }
+#resultater a, #resultater li > * {
+  text-decoration: none;
+  color: var(--blaek);
+}
+#resultater a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  min-height: 44px;
+  padding: 0.75rem 1.25rem;
+  transition: background-color 120ms ease;
+}
+#resultater a:hover, #resultater a:focus-visible { background: var(--papir); }
+#resultater .isin { font-size: 0.875rem; color: var(--blaek-svag); white-space: nowrap; }
+
+/* Ikke fundet - ligeværdig tredje svartilstand, ikke en fejl */
+#ikke-fundet {
+  margin-top: 1.25rem;
+  background: var(--flade-tvivl);
+  border-radius: var(--radius-kort);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+#ikke-fundet h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tvivl);
+}
+#ikke-fundet p { margin: 0.85rem 0; font-size: 0.9375rem; }
+#ikke-fundet p:last-child { margin-bottom: 0; }
+
+/* ---------- Brødkrumme ---------- */
+.brødkrumme {
+  font-size: 0.8125rem;
+  color: var(--blaek-svag);
+  margin-bottom: 1.75rem;
+  overflow-wrap: anywhere;
+}
+.brødkrumme a { color: var(--blaek-svag); }
+.brødkrumme a:hover { color: var(--accent); }
+
+/* ---------- Fondsside: H1 + svar ---------- */
+article h1 {
+  font-size: clamp(1.875rem, 6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 0 0 1.5rem;
+  text-wrap: balance;
+}
+
+.svar {
+  background: var(--hvid);
+  border-radius: var(--radius-kort);
+  padding: clamp(1.75rem, 4.5vw, 2.5rem);
+  margin: 1.75rem 0;
+}
+.svar p { margin: 0.85rem 0 0; }
+.svar p:first-child { margin-top: 0; }
+
+.svar-kort {
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.svar-ja { background: var(--flade-ja); }
+.svar-ja .svar-kort { color: var(--ja); }
+
+.svar-historisk { background: var(--flade-tvivl); }
+.svar-historisk .svar-kort {
+  color: var(--tvivl);
+  font-size: clamp(1.75rem, 5.5vw, 3rem);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+/* ---------- Note - lettere end ikke-fundet ---------- */
+.note {
+  background: var(--flade-tvivl);
+  border-radius: var(--radius-felt);
+  padding: 0.875rem 1.25rem;
+  font-size: 0.9375rem;
+  margin: 1.25rem 0;
+}
+
+/* ---------- Kontekstfaner ---------- */
+.kontekst { margin-top: var(--afsnit); }
+.forside-kontekst h2, .kontekst > h2, .forklaring h2 { margin-top: 0; }
+
+.kontekst-intro { color: var(--blaek-svag); max-width: 38rem; }
+
+.kontekst-knapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 1.25rem 0 0;
+}
+.kontekst-knapper button {
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  background: var(--pastel-smoer);
+  color: var(--blaek);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pille);
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+.kontekst-knapper button:hover {
+  background: var(--pastel-blush);
+}
+.kontekst-knapper button[aria-selected="true"] {
+  background: var(--pastel-fersken);
+  border-color: var(--blaek);
+}
+
+.kontekst-panel-wrap {
+  background: var(--hvid);
+  border-radius: var(--radius-kort);
+  margin-top: 1rem;
+}
+.kontekst-panel { padding: clamp(1.25rem, 3.5vw, 1.75rem); }
+.kontekst-panel p { margin: 0.75rem 0 0; }
+.kontekst-panel p:first-child { margin-top: 0; }
+
+/* Dom-linjer - her lever de semantiske farver */
+.dom {
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-felt);
+  margin-bottom: 1rem !important;
+}
+.dom-ja      { color: var(--ja);    background: var(--pastel-salvie); }
+.dom-nej     { color: var(--nej);   background: var(--pastel-blush); }
+.dom-tvivl   { color: var(--tvivl); background: var(--pastel-abrikos); }
+.dom-neutral { color: var(--blaek); background: var(--pastel-eukalyptus); }
+
+.kontekst-forbehold {
+  font-size: 0.875rem;
+  color: var(--blaek-svag);
+  border-top: 1px solid var(--linje);
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+  max-width: 40rem;
+}
+
+/* ---------- Årstabel ---------- */
+.aarstabel {
+  width: 100%;
+  max-width: 28rem;
+  border-collapse: collapse;
+  margin: 1rem 0 0;
+}
+.aarstabel th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blaek-svag);
+  padding: 0.5rem 0.875rem;
+  border-bottom: 2px solid var(--blaek);
+}
+.aarstabel td {
+  padding: 0.55rem 0.875rem;
+  border-bottom: 1px solid var(--linje);
+}
+.aarstabel td:first-child { font-size: 0.9375rem; font-weight: 500; }
+.aarstabel tbody tr:nth-child(odd) { background: var(--hvid); }
+.aarstabel { border-radius: var(--radius-felt); }
+
+/* ---------- Stamdata ---------- */
+.stamdata {
+  margin: 1rem 0 0;
+  border-top: 2px solid var(--blaek);
+}
+.stamdata dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blaek-svag);
+  padding-top: 0.75rem;
+}
+.stamdata dd {
+  margin: 0.125rem 0 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--linje);
+  overflow-wrap: anywhere;
+}
+@media (min-width: 560px) {
+  .stamdata {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+  }
+  .stamdata dt {
+    padding: 0.75rem 1rem 0.75rem 0;
+    border-bottom: 1px solid var(--linje);
+  }
+  .stamdata dd {
+    margin: 0;
+    padding: 0.7rem 0;
+  }
+}
+
+.isin-kode {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--pastel-eukalyptus);
+  padding: 0.15em 0.7em;
+  border-radius: var(--radius-pille);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.kopier {
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  min-height: 32px;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.875rem;
+  background: var(--hvid);
+  color: var(--blaek);
+  border: 1px solid var(--linje);
+  border-radius: var(--radius-pille);
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+.kopier:hover { background: var(--pastel-fersken); border-color: var(--pastel-fersken); }
+.kopier { background: var(--pastel-smoer); border-color: transparent; }
+
+/* ---------- Kilde og forklaring ---------- */
+.kilde {
+  font-size: 0.875rem;
+  color: var(--blaek-svag);
+  border-top: 1px solid var(--linje);
+  padding-top: 1.25rem;
+  margin-top: var(--afsnit);
+}
+
+.forklaring { margin-top: var(--afsnit); }
+
+/* ---------- Indekssider ---------- */
+.bogstaver {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  background: var(--papir);
+  border-bottom: 1px solid var(--linje);
+  padding: 0.5rem 0;
+}
+.bogstaver a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  color: var(--blaek);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+.bogstaver a:hover { color: var(--accent); }
+.bogstaver a { border-radius: var(--radius-pille); }
+.bogstaver a[aria-current="page"] {
+  background: var(--blaek);
+  color: #FFFFFF;
+}
+
+.fondsliste { list-style: none; margin: 1rem 0 0; padding: 0; }
+.fondsliste li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--linje);
+}
+.fondsliste a { color: var(--blaek); text-decoration: none; }
+.fondsliste a:hover { color: var(--accent); text-decoration: underline; }
+.isin {
+  font-size: 0.875rem;
+  color: var(--blaek-svag);
+  white-space: nowrap;
+}
+
+/* ---------- Footer - mørkt bånd ---------- */
+footer {
+  background: var(--pastel-fersken);
+  color: var(--blaek);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--kant);
+  border-radius: var(--radius-kort) var(--radius-kort) 0 0;
+}
+footer p {
+  max-width: var(--spalte);
+  margin: 0 auto 1.25rem;
+}
+footer p:last-child { margin-bottom: 0; }
+footer a { color: var(--blaek); }
+footer a:hover { color: var(--blaek-svag); }
+
+.disclaimer { font-size: 0.9375rem; }
+.disclaimer strong { color: var(--blaek); }
+
+.kolofon {
+  font-size: 0.8125rem;
+  color: var(--blaek-svag);
+  line-height: 1.7;
+}
+
+/* Faner ma ALDRIG flytte sig. Panelerne stables i samme grid-felt. */
 .kontekst{display:flex;flex-direction:column}
-.kontekst .kontekst-panel-wrap{display:grid}
-.kontekst-panel{grid-area:1 / 1; }
-.kontekst-panel[hidden]{display:block !important;visibility:hidden;pointer-events:none}
-
-/* Brandtitlen står HELT øverst på forsiden, over nav og statuslinje. */
-.brand-titel{max-width:var(--maks);margin:1.4rem auto .2rem;padding:0 1.25rem;
-  font-size:2.4rem;line-height:1.05;font-weight:700;letter-spacing:-.02em}
-.brand-titel .accent{color:var(--link)}
-.undertekst-tal{font-size:.95rem;color:#5a6472;margin-top:-.3rem}
+.kontekst-panel-wrap{display:grid}
+.kontekst-panel{grid-area:1/1}
+.kontekst-panel[hidden]{display:block!important;visibility:hidden;pointer-events:none}
