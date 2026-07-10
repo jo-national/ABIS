@@ -71,3 +71,27 @@ footer p{max-width:var(--maks);margin:0 auto;padding:.7rem 1.25rem;font-size:.85
 .kopier:hover{background:#e7edf4}
 .forside-kontekst .dom{font-size:1rem}
 .hero h1 .accent{color:var(--ja)}
+
+/* Faner må ALDRIG flytte sig. To sikringer:
+   1) Knapraden har fast wrap-adfærd, og knapperne reserverer plads til fed tekst,
+      så aktiv/inaktiv-skift ikke ændrer bredde.
+   2) Panelerne stables oven på hinanden i ét grid-felt, så området har samme
+      højde uanset hvilket panel der vises - intet under fanerne rykker sig. */
+.kontekst-knapper button{
+  /* reservér bredden til den fede (aktive) udgave, så teksten ikke "vokser" */
+  font-weight:600;
+}
+.kontekst-knapper button[aria-selected="false"]{
+  font-weight:600; /* samme vægt aktiv/inaktiv => ingen breddeændring */
+}
+/* Panelerne lægges i samme grid-celle. Det skjulte panel fylder stadig plads,
+   så containerhøjden = det højeste panel. Ingen layout shift ved fanaskift. */
+.kontekst{display:flex;flex-direction:column}
+.kontekst .kontekst-panel-wrap{display:grid}
+.kontekst-panel{grid-area:1 / 1; }
+.kontekst-panel[hidden]{display:block !important;visibility:hidden;pointer-events:none}
+
+/* Brandtitlen står HELT øverst på forsiden, over nav og statuslinje. */
+.brand-titel{max-width:var(--maks);margin:1.4rem auto .2rem;padding:0 1.25rem;
+  font-size:2.4rem;line-height:1.05;font-weight:700;letter-spacing:-.02em}
+.brand-titel .accent{color:var(--link)}
