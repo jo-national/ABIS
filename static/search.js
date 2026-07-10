@@ -1,5 +1,6 @@
 // Klientsøgning i det kompakte indeks. Ingen server, ingen cookies, ingen tracking.
-(async function () {
+(function () {
+  const BASE = window.BASE_PATH || "";
   const input = document.getElementById("q");
   const list = document.getElementById("resultater");
   const notFound = document.getElementById("ikke-fundet");
@@ -8,8 +9,8 @@
   let indeks = null;
   async function hent() {
     if (!indeks) {
-      const r = await fetch("/sogeindeks.json");
-      indeks = await r.json(); // [[isin, navn, paaListenNu], …]
+      const r = await fetch(BASE + "/sogeindeks.json");
+      indeks = await r.json(); // [[id, navn, paaListenNu, [alias, ...]], …]
     }
     return indeks;
   }
@@ -25,26 +26,35 @@
 
     const data = await hent();
     const hits = [];
-    for (const [isin, navn, aktiv] of data) {
-      if (isin.toLowerCase().includes(q) || navn.toLowerCase().includes(q)) {
-        hits.push([isin, navn, aktiv]);
+    for (const [id, navn, aktiv, alias] of data) {
+      const match =
+        id.toLowerCase().includes(q) ||
+        navn.toLowerCase().includes(q) ||
+        (alias && alias.some((a) => a.toLowerCase().includes(q)));
+      if (match) {
+        hits.push([id, navn, aktiv]);
         if (hits.length >= 25) break;
       }
     }
     if (hits.length === 0) {
-      // Vis kun det fulde "ikke fundet"-svar ved en komplet ISIN eller en længere søgning.
       if (isinForm.test(input.value.trim()) || q.length >= 6) notFound.hidden = false;
       return;
     }
-    for (const [isin, navn, aktiv] of hits) {
+    for (const [id, navn, aktiv] of hits) {
       const li = document.createElement("li");
       const a = document.createElement("a");
-      a.href = "/fond/" + isin + "/";
+      a.href = BASE + "/fond/" + id + "/";
       const n = document.createElement("span");
-      n.textContent = navn || isin;
+      n.textContent = navn || id;
       const meta = document.createElement("span");
       meta.className = "isin";
-      meta.innerHTML = isin + (aktiv ? ' · <span class="status-ja">på listen</span>' : "");
+      meta.textContent = id;
+      if (aktiv) {
+        const tag = document.createElement("span");
+        tag.className = "status-ja";
+        tag.textContent = " · på listen";
+        meta.append(tag);
+      }
       a.append(n, meta);
       li.append(a);
       list.append(li);

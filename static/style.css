@@ -51,3 +51,5 @@ footer p{max-width:var(--maks);margin:0 auto;padding:.7rem 1.25rem;font-size:.85
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 :focus-visible{outline:3px solid var(--link);outline-offset:2px}
 @media (prefers-reduced-motion:no-preference){#resultater a{transition:background .1s}}
+
+.note{border-left:4px solid var(--advarsel);background:var(--advarsel-bg);padding:.6rem .9rem;border-radius:.3rem;font-size:.92rem}
