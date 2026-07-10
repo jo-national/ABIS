@@ -7,9 +7,9 @@
 {% endblock %}
 {% block content %}
 <section class="hero">
- <p class="undertekst">Er din fond aktiebaseret? Søg på navn eller ISIN i Skattestyrelsens liste over aktiebaserede
- investeringsselskaber ("positivlisten") - afgørende for aktiesparekontoen og for beskatningen
- af ETF'er. {{ antal_pr_aar[aktuelt_aar|string] }} fonde er registreret for {{ aktuelt_aar }}.</p>
+ <p class="undertekst">Er dit værdipapir på positivlisten?
+ Søg på navnet eller ISIN-koden, så fortæller vi dig alt, du skal vide.</p>
+ <p class="undertekst-tal">{{ antal_pr_aar[aktuelt_aar|string]|tusind }} fonde er registreret for {{ aktuelt_aar }}.</p>
 
  <div class="soegning">
  <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
