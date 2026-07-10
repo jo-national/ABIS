@@ -49,12 +49,15 @@
       const meta = document.createElement("span");
       meta.className = "isin";
       meta.textContent = id;
+      const tag = document.createElement("span");
       if (aktiv) {
-        const tag = document.createElement("span");
         tag.className = "status-ja";
         tag.textContent = " · på listen";
-        meta.append(tag);
+      } else {
+        tag.className = "status-nej";
+        tag.textContent = " · ikke på listen";
       }
+      meta.append(tag);
       a.append(n, meta);
       li.append(a);
       list.append(li);

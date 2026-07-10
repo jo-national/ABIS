@@ -44,7 +44,7 @@
   --flade-tvivl: var(--pastel-abrikos);
   --hvid: #FEFAF3;
   --grotesk: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --spalte: 46rem;
+  --spalte: 56rem;
   --kant: clamp(1.25rem, 5vw, 3rem);
   --afsnit: clamp(2rem, 4.5vw, 2.75rem); /* fælles lodret rytme mellem alle blokke */
 }
@@ -79,7 +79,7 @@ a:hover { color: var(--blaek); text-decoration-thickness: 2px; }
 strong { font-weight: 700; }
 em { font-style: italic; }
 
-code, .isin, .isin-kode { font-family: var(--grotesk); } /* også <code>: aldrig browserens monospace */
+code, .isin, .isin-vaerdi { font-family: var(--grotesk); } /* også <code>: aldrig browserens monospace */
 
 .sr-only {
   position: absolute; width: 1px; height: 1px;
@@ -197,9 +197,16 @@ main p { margin: 0.75rem 0; text-wrap: pretty; }
 .undertekst {
   font-size: clamp(1.25rem, 3vw, 1.5rem);
   line-height: 1.6;
-  max-width: 40rem;
+  max-width: 48rem;
   margin-inline: auto;
   text-align: center;
+}
+
+.undertekst-tal {
+  font-size: 0.9375rem;
+  color: var(--blaek-svag);
+  text-align: center;
+  margin: 0.875rem 0 0;
 }
 
 .soegning { margin-top: var(--afsnit); }
@@ -259,6 +266,8 @@ main p { margin: 0.75rem 0; text-wrap: pretty; }
 }
 #resultater a:hover, #resultater a:focus-visible { background: var(--papir); }
 #resultater .isin { font-size: 0.875rem; color: var(--blaek-svag); white-space: nowrap; }
+#resultater .status-ja  { color: var(--ja); font-weight: 600; }
+#resultater .status-nej { color: var(--tvivl); font-weight: 600; }
 
 /* Ikke fundet - ligeværdig tredje svartilstand, ikke en fejl */
 #ikke-fundet {
@@ -460,12 +469,8 @@ article h1 {
   }
 }
 
-.isin-kode {
-  font-size: 0.9375rem;
+.isin-vaerdi {
   font-weight: 600;
-  background: var(--pastel-eukalyptus);
-  padding: 0.15em 0.7em;
-  border-radius: var(--radius-pille);
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
@@ -477,15 +482,14 @@ article h1 {
   min-height: 32px;
   margin-left: 0.5rem;
   padding: 0.25rem 0.875rem;
-  background: var(--hvid);
-  color: var(--blaek);
-  border: 1px solid var(--linje);
+  background: var(--blaek);
+  color: var(--hvid);
+  border: 1px solid var(--blaek);
   border-radius: var(--radius-pille);
   cursor: pointer;
-  transition: background-color 140ms ease, border-color 140ms ease;
+  transition: background-color 140ms ease, color 140ms ease;
 }
-.kopier:hover { background: var(--pastel-fersken); border-color: var(--pastel-fersken); }
-.kopier { background: var(--pastel-smoer); border-color: transparent; }
+.kopier:hover { background: var(--hvid); color: var(--blaek); }
 
 /* ---------- Kilde og forklaring ---------- */
 .kilde {
