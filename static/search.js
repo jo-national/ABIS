@@ -10,7 +10,7 @@
   async function hent() {
     if (!indeks) {
       const r = await fetch(BASE + "/sogeindeks.json");
-      indeks = await r.json(); // [[id, navn, paaListenNu, [alias, ...]], …]
+      indeks = await r.json(); // [[id, navn, paaListenNu, [alias, ...], [ticker, ...]], …]
     }
     return indeks;
   }
@@ -26,13 +26,14 @@
 
     const data = await hent();
     const hits = [];
-    for (const [id, navn, aktiv, alias] of data) {
+    for (const [id, navn, aktiv, alias, tickers] of data) {
       const match =
         id.toLowerCase().includes(q) ||
         navn.toLowerCase().includes(q) ||
-        (alias && alias.some((a) => a.toLowerCase().includes(q)));
+        (alias && alias.some((a) => a.toLowerCase().includes(q))) ||
+        (tickers && tickers.some((t) => t.toLowerCase().includes(q)));
       if (match) {
-        hits.push([id, navn, aktiv]);
+        hits.push([id, navn, aktiv, tickers]);
         if (hits.length >= 25) break;
       }
     }
@@ -40,7 +41,7 @@
       if (isinForm.test(input.value.trim()) || q.length >= 6) notFound.hidden = false;
       return;
     }
-    for (const [id, navn, aktiv] of hits) {
+    for (const [id, navn, aktiv, tickers] of hits) {
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = BASE + "/fond/" + id + "/";
@@ -49,6 +50,12 @@
       const meta = document.createElement("span");
       meta.className = "isin";
       meta.textContent = id;
+      if (tickers && tickers.length) {
+        const tk = document.createElement("span");
+        tk.className = "ticker";
+        tk.textContent = " · " + tickers[0];
+        meta.append(tk);
+      }
       const tag = document.createElement("span");
       if (aktiv) {
         tag.className = "status-ja";
