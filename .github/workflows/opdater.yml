@@ -1,0 +1,68 @@
+name: Opdater data og udgiv site
+
+on:
+  schedule:
+    - cron: "45 4 * * *"
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: opdater
+  cancel-in-progress: false
+
+jobs:
+  opdater-og-udgiv:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer afhængigheder
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Hent ABIS-listen (kun ved ændring)
+        id: fetch
+        run: |
+          python pipeline/fetch.py | tee fetch.log
+          if grep -q "changed=true" fetch.log; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Parse og validér (kun ved ændring)
+        if: steps.fetch.outputs.changed == 'true'
+        run: python pipeline/parse.py
+
+      - name: Commit nye data
+        if: steps.fetch.outputs.changed == 'true'
+        run: |
+          git config user.name "abis-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          git commit -m "Data: ny ABIS-listeversion $(date -u +%F)"
+          git push
+
+      - name: Byg site
+        run: python pipeline/build_site.py
+
+      - name: Klargør til GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Udgiv
+        id: deploy
+        uses: actions/deploy-pages@v4
