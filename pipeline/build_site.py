@@ -38,8 +38,8 @@ TEMPLATES = ROOT / "templates"
 STATIC = ROOT / "static"
 SITE = ROOT / "site"
 
-BASE_PATH = ""                              # tomt når eget domæne er sat op
-BASE_URL = "https://www.xn--ppositivlisten-lib.dk"  # dit domæne, når det findes
+BASE_PATH = "/ABIS"                              # tomt når eget domæne er sat op
+BASE_URL = "https://jo-national.github.io/ABIS"  # dit domæne, når det findes
 
 
 def bucket(navn: str, fid: str) -> str:
@@ -52,12 +52,20 @@ def main() -> None:
     fonde: dict = data["fonde"]
     aktuelt_aar: int = data["seneste_indkomstaar"]
 
+    def tusind(n):
+        """Dansk tusindtalsseparering: 5303 -> 5.303"""
+        try:
+            return f"{int(n):,}".replace(",", ".")
+        except (ValueError, TypeError):
+            return str(n)
+
     env = Environment(
         loader=FileSystemLoader(TEMPLATES),
         autoescape=select_autoescape(["html"]),
         trim_blocks=True,
         lstrip_blocks=True,
     )
+    env.filters["tusind"] = tusind
     kilde = data["kilde"]
 
     # Tidsstempler til statuslinje og metodeside.
