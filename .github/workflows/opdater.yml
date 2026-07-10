@@ -42,18 +42,20 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Parse og validér (kun ved ændring)
-        if: steps.fetch.outputs.changed == 'true'
+      - name: Parse og validér
         run: python pipeline/parse.py
 
       - name: Commit nye data
-        if: steps.fetch.outputs.changed == 'true'
         run: |
           git config user.name "abis-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/
-          git commit -m "Data: ny ABIS-listeversion $(date -u +%F)"
-          git push
+          if git diff --cached --quiet; then
+            echo "Ingen ændringer i data/ — intet at gemme."
+          else
+            git commit -m "Data opdateret $(date -u +%F)"
+            git push
+          fi
 
       - name: Byg site
         run: python pipeline/build_site.py
