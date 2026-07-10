@@ -1,15 +1,25 @@
 """
 parse.py — læser den arkiverede ABIS-Excel og bygger data/abis.json.
 
-Designprincip: parseren GÆTTER IKKE på filens struktur. Den:
-1. Finder selv ark, der repræsenterer indkomstår (arknavne der indeholder et årstal).
-2. Finder selv header-rækken i hvert ark (første række med en celle, der ligner "ISIN").
-3. Mapper kolonner tolerant på header-tekst — og rapporterer alt, den ikke genkender.
-4. Validerer hver ISIN mod det officielle format (2 bogstaver + 9 tegn + kontrolciffer)
-   og rapporterer alle rækker, der afvises.
-5. Skriver en fuld parse-rapport (data/parse_report.txt), så et menneske kan
-   efterprøve antal rækker, headers og eksempler — og fejler med exit 1,
-   hvis noget grundlæggende er galt (intet ISIN-kolonne, ingen års-ark, osv.).
+Version 2. Skrevet efter inspektion af den rigtige fil
+(juni-2026-abis-liste-2021-2026.xlsx). Ændringer i forhold til version 1:
+
+1. Kolonnerne kortlægges på deres FAKTISKE overskrifter, ikke på gæt.
+   Ændrer Skattestyrelsen overskrifterne, fejler parseren højlydt.
+2. Teksten "[tom]" i en celle betyder tom. Den behandles som tom.
+3. Indkomstår aflæses af kolonnen "Registrerede år/Registered" og ikke af,
+   hvilket faneblad rækken står på. Kolonnen dækker også 2020, som ikke har
+   sit eget faneblad. Bemærk: Skattestyrelsen skriver nogle steder "2025.2026"
+   med punktum i stedet for komma, så årstal udtrækkes med mønstergenkendelse.
+   Fanebladsmedlemskabet bruges som uafhængig kontrol, og enhver uenighed
+   rapporteres.
+4. Fonde uden ISIN ("Udstedt uden" i ISIN-feltet) medtages nu. De identificeres
+   på CVR-nummer i stedet. Tidligere blev de smidt væk — det gav forkerte svar.
+5. Fondsnavnet sammensættes af afdelingsnavn og eventuel andelsklasse, som er
+   det, en bruger søger efter.
+6. Samme ISIN kan optræde med flere navne. Alle navne bevares.
+7. ISIN'ets kontrolciffer efterprøves. Fejler det, beholdes fonden, men den
+   markeres — vi sletter ikke data, Skattestyrelsen har offentliggjort.
 
 Kør med --verify for kun at udskrive rapporten uden at skrive abis.json.
 """
@@ -31,39 +41,94 @@ STATE_FILE = DATA / "state.json"
 OUT_FILE = DATA / "abis.json"
 REPORT_FILE = DATA / "parse_report.txt"
 
-YEAR_RE = re.compile(r"(20\d{2})")
+SHEET_YEAR_RE = re.compile(r"^(20\d{2})$")
+YEAR_RE = re.compile(r"20\d{2}")
 ISIN_RE = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}[0-9]$")
+UDEN_ISIN_RE = re.compile(r"udstedt\s+uden", re.IGNORECASE)
 
-# Tolerant kolonnegenkendelse: nøgle -> liste af tekststumper vi leder efter i headeren.
-COLUMN_HINTS = {
-    "isin": ["isin"],
-    "navn": ["navn", "name"],
-    "lei": ["lei"],
-    "cvr_se": ["cvr", "se-n", "se n"],
-    "land": ["land", "country"],
+FORVENTEDE = {
+    "hjemsted": "skattemæssigt hjemsted/tax residence",
+    "isin": "isin-kode/-code",
+    "andelsklasse": "navn andelsklasse/name shareclass",
+    "lei": "lei-kode/-code",
+    "cvr": "cvr/se/tin",
+    "afdeling": "navn afdeling/name sub-fund",
+    "tin": "tin",
+    "navn": "navn/name",
+    "registreret": "registrerede år/registered",
+    "afregistreret": "ikke registrerede år/deregistered",
 }
 
 
-def find_header(rows: list[tuple]) -> tuple[int, dict[str, int], list[str]] | None:
-    """Find header-rækken og map kolonner. Returnerer (rækkeindex, mapping, ukendte)."""
-    for idx, row in enumerate(rows[:20]):
-        cells = [str(c).strip() if c is not None else "" for c in row]
-        lowered = [c.lower() for c in cells]
-        if not any("isin" in c for c in lowered):
-            continue
-        mapping: dict[str, int] = {}
-        unknown: list[str] = []
-        for col_idx, text in enumerate(lowered):
-            if not text:
-                continue
-            for key, hints in COLUMN_HINTS.items():
-                if key not in mapping and any(h in text for h in hints):
-                    mapping[key] = col_idx
-                    break
-            else:
-                unknown.append(cells[col_idx])
-        return idx, mapping, unknown
-    return None
+def tekst(v) -> str | None:
+    if v is None:
+        return None
+    s = str(v).strip()
+    return None if s in ("", "[tom]") else s
+
+
+def isin_kontrolciffer_ok(isin: str) -> bool:
+    """Efterprøver ISIN'ets sidste ciffer (Luhn-algoritmen, ISO 6166)."""
+    cifre = "".join(str(int(c, 36)) if c.isalpha() else c for c in isin)
+    total = 0
+    for i, c in enumerate(reversed(cifre)):
+        d = int(c)
+        if i % 2 == 1:
+            d *= 2
+            if d > 9:
+                d -= 9
+        total += d
+    return total % 10 == 0
+
+
+def kortlæg_kolonner(header: tuple) -> dict[str, int]:
+    normaliseret = {
+        (str(c).strip().lower() if c is not None else ""): i
+        for i, c in enumerate(header)
+    }
+    mapping: dict[str, int] = {}
+    mangler: list[str] = []
+    for nøgle, overskrift in FORVENTEDE.items():
+        if overskrift in normaliseret:
+            mapping[nøgle] = normaliseret[overskrift]
+        else:
+            mangler.append(overskrift)
+    if mangler:
+        raise KeyError(
+            "Overskrifter mangler eller er ændret hos Skattestyrelsen: "
+            + ", ".join(repr(m) for m in mangler)
+        )
+    return mapping
+
+
+ORD_RE = re.compile(r"[a-zæøå0-9]+")
+
+
+def _ord(s: str) -> set[str]:
+    return set(ORD_RE.findall(s.lower()))
+
+
+def visningsnavn(afdeling, andelsklasse, navn):
+    """ISIN identificerer en andelsklasse, men andelsklassenavnet er nogle gange
+    kun et suffiks ('Global Quant, EUR W') og andre gange det fulde navn.
+    Vi vælger det navn, der indeholder det andet — og sammensætter, hvis ingen
+    af dem gør. Så bevares både udsteder og klasse, uden dobbeltskrivning."""
+    afd, kls = afdeling, andelsklasse
+    if afd and kls:
+        oa, ok = _ord(afd), _ord(kls)
+        if oa <= ok:
+            return kls          # andelsklassen er den fulde tekst
+        if ok <= oa:
+            return afd          # afdelingsnavnet er den fulde tekst
+        return f"{afd} — {kls}"  # de supplerer hinanden
+    return afd or kls or navn
+
+
+def slug(s: str) -> str:
+    s = s.lower()
+    for a, b in [("æ", "ae"), ("ø", "oe"), ("å", "aa"), ("á", "a"), ("é", "e"), ("ü", "u")]:
+        s = s.replace(a, b)
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", s)).strip("-")[:60]
 
 
 def main(verify_only: bool = False) -> None:
@@ -74,7 +139,7 @@ def main(verify_only: bool = False) -> None:
     if not xlsx_path.exists():
         sys.exit(f"FEJL: arkiveret fil mangler: {xlsx_path}")
 
-    report: list[str] = [
+    rap: list[str] = [
         f"Parse-rapport — genereret {datetime.now(timezone.utc).isoformat(timespec='seconds')}",
         f"Kildefil: {state['original_filename']} (SHA-256 {state['sha256'][:16]}…)",
         f"Hentet fra: {state['file_url']}",
@@ -82,89 +147,149 @@ def main(verify_only: bool = False) -> None:
     ]
 
     wb = load_workbook(xlsx_path, read_only=True, data_only=True)
-    funds: dict[str, dict] = {}
-    years_found: dict[int, int] = {}
-    rejected: list[str] = []
-    problems: list[str] = []
+
+    fonde: dict[str, dict] = {}
+    ark_år: dict[int, set[str]] = {}
+    tomme_rækker = 0
+    ugyldige_isin: set[str] = set()
+    uden_cvr: list[str] = []
+    problemer: list[str] = []
 
     for sheet in wb.worksheets:
-        m = YEAR_RE.search(sheet.title)
+        m = SHEET_YEAR_RE.match(sheet.title.strip())
         if not m:
-            report.append(f"Ark '{sheet.title}': intet årstal i navnet — SPRINGES OVER.")
+            rap.append(f"Ark '{sheet.title}': ikke et årstal — springes over (forventet).")
             continue
-        year = int(m.group(1))
-        rows = [tuple(r) for r in sheet.iter_rows(values_only=True)]
-        header = find_header(rows)
-        if header is None:
-            problems.append(f"Ark '{sheet.title}': ingen header-række med 'ISIN' fundet.")
-            continue
-        header_idx, mapping, unknown = header
-        if "isin" not in mapping:
-            problems.append(f"Ark '{sheet.title}': ISIN-kolonne kunne ikke identificeres.")
+        ark_årstal = int(m.group(1))
+        rows = sheet.iter_rows(values_only=True)
+        try:
+            kol = kortlæg_kolonner(next(rows))
+        except (StopIteration, KeyError) as e:
+            problemer.append(f"Ark '{sheet.title}': {e}")
             continue
 
-        count = 0
-        for row in rows[header_idx + 1 :]:
-            raw_isin = row[mapping["isin"]] if mapping["isin"] < len(row) else None
-            if raw_isin is None:
-                continue
-            isin = str(raw_isin).strip().upper().replace(" ", "")
-            if not isin:
-                continue
-            if not ISIN_RE.match(isin):
-                rejected.append(f"{sheet.title}: '{raw_isin}'")
+        antal = 0
+        for row in rows:
+            if all(v is None for v in row):
+                tomme_rækker += 1
                 continue
 
-            def cell(key: str) -> str | None:
-                i = mapping.get(key)
-                if i is None or i >= len(row) or row[i] is None:
-                    return None
-                v = str(row[i]).strip()
-                return v or None
+            def c(nøgle: str):
+                i = kol[nøgle]
+                return tekst(row[i]) if i < len(row) else None
 
-            entry = funds.setdefault(isin, {"navn": None, "lei": None, "cvr_se": None, "land": None, "aar": []})
-            if year not in entry["aar"]:
-                entry["aar"].append(year)
-                count += 1
-            # Navn m.m. opdateres, så det nyeste år vinder.
-            if year == max(entry["aar"]):
-                for key in ("navn", "lei", "cvr_se", "land"):
-                    v = cell(key)
-                    if v:
-                        entry[key] = v
+            rå_isin = c("isin")
+            afdeling, andelsklasse, navn = c("afdeling"), c("andelsklasse"), c("navn")
+            cvr = c("cvr")
+            år = {int(y) for y in YEAR_RE.findall(c("registreret") or "")}
 
-        years_found[year] = years_found.get(year, 0) + count
-        genkendt = ", ".join(f"{k}→kolonne {v+1}" for k, v in sorted(mapping.items()))
-        report.append(
-            f"Ark '{sheet.title}' → indkomstår {year}: {count} gyldige rækker. "
-            f"Header i række {header_idx + 1}. Genkendte kolonner: {genkendt}."
-        )
-        if unknown:
-            report.append(f"  Ikke-genkendte kolonneoverskrifter (medtages ikke): {unknown}")
+            if rå_isin and ISIN_RE.match(rå_isin.upper()):
+                fond_id = rå_isin.upper()
+                type_ = "isin"
+                if not isin_kontrolciffer_ok(fond_id):
+                    ugyldige_isin.add(fond_id)
+            elif rå_isin and UDEN_ISIN_RE.search(rå_isin):
+                type_ = "uden_isin"
+                if cvr:
+                    fond_id = f"CVR-{cvr}"
+                else:
+                    # Udenlandske selskaber har intet CVR. De identificeres på navn,
+                    # så de ikke forsvinder fra sitet — de står jo på listen.
+                    n = visningsnavn(afdeling, andelsklasse, navn)
+                    if not n:
+                        uden_cvr.append(f"ark {ark_årstal}: række uden både CVR og navn")
+                        continue
+                    fond_id = f"NAVN-{slug(n)}"
+            elif rå_isin:
+                problemer.append(f"Ark '{sheet.title}': ulæselig ISIN-værdi {rå_isin!r}")
+                continue
+            else:
+                tomme_rækker += 1
+                continue
 
-    report.append("")
-    report.append(f"Unikke ISIN i alt: {len(funds)}")
-    for y in sorted(years_found):
-        report.append(f"  Indkomstår {y}: {years_found[y]} papirer")
-    if rejected:
-        report.append(f"Afviste rækker (ugyldigt ISIN-format): {len(rejected)}")
-        for r in rejected[:10]:
-            report.append(f"  - {r}")
-    eksempler = list(funds.items())[:3]
-    report.append("Eksempler til efterprøvning:")
-    for isin, e in eksempler:
-        report.append(f"  {isin}: {e['navn']} — år: {sorted(e['aar'])}")
+            e = fonde.setdefault(
+                fond_id,
+                {"type": type_, "navne": [], "aar": set(), "lei": None,
+                 "cvr": None, "hjemsted": None, "kontrolciffer_fejl": False},
+            )
+            vn = visningsnavn(afdeling, andelsklasse, navn)
+            if vn and vn not in e["navne"]:
+                e["navne"].append(vn)
+            e["aar"] |= år
+            e["lei"] = e["lei"] or c("lei")
+            e["cvr"] = e["cvr"] or cvr
+            e["hjemsted"] = e["hjemsted"] or c("hjemsted")
+            if type_ == "isin" and fond_id in ugyldige_isin:
+                e["kontrolciffer_fejl"] = True
 
-    if problems:
-        report.append("")
-        report.append("KRITISKE PROBLEMER:")
-        report.extend(f"  - {p}" for p in problems)
+            ark_år.setdefault(ark_årstal, set()).add(fond_id)
+            antal += 1
 
-    REPORT_FILE.write_text("\n".join(report), encoding="utf-8")
-    print("\n".join(report))
+        rap.append(f"Ark '{sheet.title}': {antal} datarækker læst.")
 
-    if problems or not funds or not years_found:
-        sys.exit("FEJL: parsning ufuldstændig — se rapporten ovenfor. Intet output skrevet.")
+    if problemer and not fonde:
+        rap.append("")
+        rap.append("KRITISKE PROBLEMER:")
+        rap.extend(f"  - {p}" for p in problemer)
+        REPORT_FILE.write_text("\n".join(rap), encoding="utf-8")
+        print("\n".join(rap))
+        sys.exit("FEJL: parsning ufuldstændig — intet output skrevet.")
+    if not fonde:
+        sys.exit("FEJL: ingen fonde fundet — intet output skrevet.")
+
+    uenige = sum(
+        1 for årstal, ids in ark_år.items() for fid in ids if årstal not in fonde[fid]["aar"]
+    )
+    kun_2020 = sum(1 for e in fonde.values() if 2020 in e["aar"]) if 2020 not in ark_år else 0
+
+    alle_år = sorted({y for e in fonde.values() for y in e["aar"]})
+    aktuelt = max(ark_år)
+    antal_pr_år = {y: sum(1 for e in fonde.values() if y in e["aar"]) for y in alle_år}
+    med_isin = sum(1 for e in fonde.values() if e["type"] == "isin")
+    uden_isin = len(fonde) - med_isin
+
+    rap += [
+        "",
+        f"Fonde i alt: {len(fonde)}  (med ISIN: {med_isin}, uden ISIN: {uden_isin})",
+        f"Aktuelt indkomstår (nyeste faneblad): {aktuelt}",
+        "",
+        "Registrerede fonde pr. indkomstår (kilde: kolonnen 'Registrerede år'):",
+    ]
+    for y in alle_år:
+        note = "   [intet faneblad — kun fra årskolonnen]" if y not in ark_år else ""
+        rap.append(f"  {y}: {antal_pr_år[y]}{note}")
+
+    rap += [
+        "",
+        "Kontroller:",
+        f"  Tomme rækker sprunget over: {tomme_rækker}",
+        f"  Fonde hvor fanebladets år ikke stod i 'Registrerede år': {uenige}",
+        f"  Fonde med 2020 i årskolonnen (2020 har intet faneblad): {kun_2020}",
+        f"  ISIN med forkert kontrolciffer (beholdt, markeret): {len(ugyldige_isin)}"
+        + (f" — {sorted(ugyldige_isin)}" if ugyldige_isin else ""),
+        f"  ISIN-løse fonde uden både CVR og navn (udeladt): {len(uden_cvr)}"
+        + (f" — {uden_cvr}" if uden_cvr else ""),
+    ]
+    if problemer:
+        rap.append("  Advarsler (rækker sprunget over):")
+        rap.extend(f"    - {p}" for p in problemer)
+
+    flere_navne = [(k, v["navne"]) for k, v in fonde.items() if len(v["navne"]) > 1]
+    rap.append(f"  Fonde registreret under flere navne: {len(flere_navne)}")
+    for k, n in flere_navne[:3]:
+        rap.append(f"    {k}: {n}")
+
+    rap.append("")
+    rap.append("Eksempler til efterprøvning:")
+    for fid, e in list(fonde.items())[:3]:
+        rap.append(f"  {fid}: {e['navne'][0] if e['navne'] else '(uden navn)'} — år: {sorted(e['aar'])}")
+    for fid, e in fonde.items():
+        if e["type"] == "uden_isin":
+            rap.append(f"  {fid} (uden ISIN): {e['navne'][0]} — år: {sorted(e['aar'])}")
+            break
+
+    REPORT_FILE.write_text("\n".join(rap), encoding="utf-8")
+    print("\n".join(rap))
 
     if verify_only:
         print("\n--verify: abis.json IKKE skrevet.")
@@ -180,14 +305,17 @@ def main(verify_only: bool = False) -> None:
             "offentliggjort_tekst": state.get("published_text"),
             "hentet_utc": state["fetched_at_utc"],
         },
-        "seneste_indkomstaar": max(years_found),
-        "antal_pr_aar": {str(y): n for y, n in sorted(years_found.items())},
+        "seneste_indkomstaar": aktuelt,
+        "alle_aar": alle_år,
+        "antal_pr_aar": {str(y): n for y, n in antal_pr_år.items()},
+        "antal_uden_isin": uden_isin,
         "fonde": {
-            isin: {**e, "aar": sorted(e["aar"])} for isin, e in sorted(funds.items())
+            fid: {**e, "aar": sorted(e["aar"])}
+            for fid, e in sorted(fonde.items())
         },
     }
     OUT_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"\nSkrev {OUT_FILE} med {len(funds)} fonde.")
+    print(f"\nSkrev {OUT_FILE} med {len(fonde)} fonde.")
 
 
 if __name__ == "__main__":
