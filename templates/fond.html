@@ -143,6 +143,9 @@
  {% if fond.type == "isin" %}<dt>ISIN</dt>
  <dd><span class="isin-vaerdi">{{ fid }}</span>
  <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button></dd>{% endif %}
+ {% if tickers %}<dt>Ticker</dt>
+ <dd><span class="isin-vaerdi">{{ tickers | join(", ") }}</span>
+ <button type="button" class="kopier" data-kopier="{{ tickers[0] }}">Kopiér</button></dd>{% endif %}
  <dt>Navn</dt><dd>{{ navn }}</dd>
  {% if fond.navne|length > 1 %}
  <dt>Også registreret som</dt><dd>{{ fond.navne[1:] | join("; ") }}</dd>
