@@ -68,6 +68,16 @@ def main() -> None:
     env.filters["tusind"] = tusind
     kilde = data["kilde"]
 
+    # Håndverificeret ISIN->ticker-liste (data/tickers.json). Bevidst IKKE
+    # automatisk genereret: hvert ticker verificeres mod Nordnet, så
+    # søgningen matcher det, danske brugere faktisk taster. Første ticker i
+    # listen er det primære (Nordnet-)ticker. Filen er valgfri.
+    tickers_fil = ROOT / "data" / "tickers.json"
+    if tickers_fil.exists():
+        tickers_map = json.loads(tickers_fil.read_text(encoding="utf-8"))
+    else:
+        tickers_map = {}
+
     # Tidsstempler til statuslinje og metodeside.
     hentet_dt = datetime.fromisoformat(kilde["hentet_utc"])
     lc_fil = ROOT / "data" / "last_checked.json"
@@ -118,6 +128,7 @@ def main() -> None:
         d.mkdir(parents=True, exist_ok=True)
         d.joinpath("index.html").write_text(
             tpl_fond.render(fid=fid, fond=e, navn=navn,
+                            tickers=tickers_map.get(fid, []),
                             paa_listen_nu=aktuelt_aar in e["aar"], **ctx),
             encoding="utf-8",
         )
@@ -140,10 +151,11 @@ def main() -> None:
         )
         urls.append(f"/{page}.html")
 
-    # Søgeindeks: [id, primærnavn, på-listen-nu, [øvrige navne]]
+    # Søgeindeks: [id, primærnavn, på-listen-nu, [øvrige navne], [tickers]]
     indeks = [
         [fid, (e["navne"][0] if e["navne"] else fid),
-         1 if aktuelt_aar in e["aar"] else 0, e["navne"][1:]]
+         1 if aktuelt_aar in e["aar"] else 0, e["navne"][1:],
+         tickers_map.get(fid, [])]
         for fid, e in fonde.items()
     ]
     (SITE / "sogeindeks.json").write_text(
