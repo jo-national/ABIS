@@ -41,9 +41,6 @@ h2{font-size:1.2rem;margin:1.8rem 0 .4rem}
 .fondsliste li{padding:.3rem 0;border-bottom:1px solid var(--linje);display:flex;justify-content:space-between;gap:1rem}
 .fondsliste .isin{color:#5a6472;font-size:.85rem;white-space:nowrap}
 .bogstaver a{margin-right:.4rem}
-.annonce{min-height:0;margin:1.5rem 0}
-.annonce[data-aktiv]{min-height:90px;border:1px dashed var(--linje);border-radius:.4rem}
-.annonce[data-aktiv]::before{content:"Annonce";font-size:.7rem;color:#5a6472;display:block;padding:.2rem .4rem}
 .brødkrumme{font-size:.85rem;margin-top:1rem}
 .kilde{font-size:.9rem;color:#3c4654}
 footer{border-top:1px solid var(--linje);background:#eef2f7}
@@ -53,3 +50,18 @@ footer p{max-width:var(--maks);margin:0 auto;padding:.7rem 1.25rem;font-size:.85
 @media (prefers-reduced-motion:no-preference){#resultater a{transition:background .1s}}
 
 .note{border-left:4px solid var(--advarsel);background:var(--advarsel-bg);padding:.6rem .9rem;border-radius:.3rem;font-size:.92rem}
+
+.kontekst{border:1px solid var(--linje);border-radius:.6rem;padding:.2rem 1rem 1rem;margin:1.5rem 0;background:#fff}
+.kontekst-intro{font-size:.95rem;color:#3c4654}
+.kontekst-knapper{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.kontekst-knapper button{font:inherit;font-size:.9rem;padding:.45rem .8rem;border:1px solid var(--linje);
+  background:#f4f7fa;border-radius:2rem;cursor:pointer;color:var(--blaek)}
+.kontekst-knapper button[aria-selected="true"]{background:var(--blaek);color:#fff;border-color:var(--blaek)}
+.kontekst-panel{border-top:1px solid var(--linje);padding-top:.7rem}
+.kontekst-panel p{margin:.35rem 0}
+.dom{font-weight:700;font-size:1.05rem}
+.dom-ja{color:var(--ja)}
+.dom-nej{color:#a3282d}
+.dom-tvivl{color:var(--advarsel)}
+.dom-neutral{color:var(--blaek)}
+.kontekst-forbehold{font-size:.85rem;color:#5a6472;border-top:1px solid var(--linje);margin-top:.9rem;padding-top:.6rem}
