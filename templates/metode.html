@@ -17,8 +17,14 @@ indgå på aktiesparekontoen.</p>
 indeksforeninger) skal ikke stå på ABIS-listen. Deres skattestatus følger af andre regler
 (aktieavancebeskatningslovens §§ 21-22): er mindst halvdelen af formuen placeret i aktier, beskattes
 de som aktieindkomst efter realisationsprincippet — uden at optræde her. At en fond ikke findes på
-dette site, betyder derfor <em>ikke</em>, at den ikke er aktiebaseret. Vi kan ikke ud fra en ISIN alene
-afgøre, om et ukendt papir er et investeringsselskab eller en minimumsbeskattet forening.</p>
+denne hjemmeside, betyder derfor <em>ikke</em>, at den ikke er aktiebaseret.</p>
+<p>Et konkret eksempel på forskellen: ETF'en <a href="{{ base_path }}/fond/IE00B4L5Y983/">iShares Core
+MSCI World UCITS ETF</a> er et irsk investeringsselskab — den står på listen og får svaret JA her.
+En typisk dansk, udbyttebetalende global indeksforening købt gennem banken investerer i stort set de
+samme aktier, men står <em>ikke</em> på listen, fordi den er minimumsbeskattet — og dens afkast
+beskattes alligevel som aktieindkomst. Søger du sådan en forening her og får svaret "ikke fundet",
+er det altså ikke et svar på, om den er aktiebaseret. Vi kan ikke ud fra en ISIN alene afgøre, om et
+ukendt papir er et investeringsselskab eller en minimumsbeskattet forening.</p>
 
 <h2>Sådan læser vi Skattestyrelsens fil</h2>
 <p>Filen har et faneblad pr. indkomstår og en kolonne, "Registrerede år", der for hvert selskab angiver
@@ -33,13 +39,16 @@ som de står, og markerer dem på den pågældende fondsside.</p>
 
 <h2>Sådan opdateres data</h2>
 <p>Et automatisk job kontrollerer hver nat, om Skattestyrelsens Excel-fil er ændret. Ændres filen,
-hentes og behandles den, og hele sitet genbygges. Filens digitale fingeraftryk (SHA-256), filnavn og
+hentes og behandles den, og hele hjemmesiden genbygges. Filens digitale fingeraftryk (SHA-256), filnavn og
 kontroldato vises i bunden af hver side. Alle historiske filversioner arkiveres uændret.
-Fejler kontrollen, opdateres sitet ikke, og datoen i statuslinjen står stille — vi viser aldrig
+Fejler kontrollen, opdateres hjemmesiden ikke, og kontroltidspunktet i toppen opdateres ikke — vi viser aldrig
 gamle data som friske.</p>
 
 <h2>Kilde</h2>
-<p><a href="{{ kilde.side }}" rel="noopener">Skattestyrelsen: Beviser og aktier i
+<p>Hjemmesiden benytter lige nu filen: <strong>{{ kilde.filnavn }}</strong>.</p>
+<p>Filen blev hentet fra Skattestyrelsens hjemmeside den {{ hentet_dansk }}.</p>
+<p>Filen er senest opdateret på Skattestyrelsens hjemmeside {{ senest_opdateret }}.</p>
+<p>Kilden er <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsen: Beviser og aktier i
 investeringsforeninger og selskaber (IFPA)</a> — afsnittet "Liste over aktiebaserede
-investeringsselskaber". Aktuel kildefil: {{ kilde.filnavn }}.</p>
+investeringsselskaber".</p>
 {% endblock %}

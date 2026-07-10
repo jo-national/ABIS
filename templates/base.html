@@ -11,17 +11,17 @@
 </head>
 <body>
 <header class="top">
-  <a class="logo" href="{{ base_path }}/">Aktiebaseret<span>?</span></a>
   <nav>
+    <a href="{{ base_path }}/">Forside</a>
     <a href="{{ base_path }}/fonde/a.html">Alle fonde</a>
     <a href="{{ base_path }}/metode.html">Datagrundlag</a>
-    <a href="{{ base_path }}/om.html">Om</a>
+    <a href="{{ base_path }}/om.html">Om hjemmesiden</a>
   </nav>
 </header>
 
 <div class="statuslinje" role="note">
-  Datagrundlag: Skattestyrelsens ABIS-liste{% if kilde.offentliggjort_tekst %}, offentliggjort den {{ kilde.offentliggjort_tekst }}{% endif %},
-  gældende for indkomståret {{ aktuelt_aar }}. Senest kontrolleret mod skat.dk: {{ kilde.hentet_utc[:10] }}.
+  Skattestyrelsens ABIS-liste er senest opdateret den {{ opdateret_dato }} og gælder for indkomståret {{ aktuelt_aar }}.
+  Hjemmesiden har senest tjekket skat.dk for opdateringer af listen den {{ sidst_tjekket }}.
 </div>
 
 <main>
@@ -29,12 +29,12 @@
 </main>
 
 <footer>
-  <p class="disclaimer"><strong>Dette er et informativt værktøj — ikke skatterådgivning.</strong>
-  Optagelse på ABIS-listen er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status.
+  <p class="disclaimer"><strong>Denne hjemmeside er ren oplysning — ikke skatterådgivning.</strong>
   Verificér altid hos Skattestyrelsen, før du træffer beslutninger:
   <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens officielle liste (skat.dk)</a>.</p>
-  <p class="kolofon">Bygger udelukkende på Skattestyrelsens offentliggjorte lister.
-  Kildefil: {{ kilde.filnavn }} · <a href="{{ base_path }}/metode.html">Sådan behandler vi data</a></p>
+  <p class="kolofon">Hjemmesiden bygger udelukkende på Skattestyrelsens offentliggjorte lister.
+  Lige nu benytter hjemmesiden filen: {{ kilde.filnavn }} ·
+  <a href="{{ base_path }}/metode.html">Sådan behandler vi data</a></p>
 </footer>
 </body>
 </html>

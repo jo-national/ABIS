@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Er din ETF eller fond aktiebaseret? Søg i Skats positivliste (ABIS){% endblock %}
+{% block title %}Positivlisten? — er din ETF eller fond aktiebaseret? (Skats ABIS-liste){% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/">{% endblock %}
 
 {% block content %}
 <section class="hero">
-  <h1>Er din fond aktiebaseret?</h1>
-  <p class="undertekst">Søg på navn eller ISIN i Skattestyrelsens liste over aktiebaserede
+  <h1>Positivlisten<span class="accent">?</span></h1>
+  <p class="undertekst">Er din fond aktiebaseret? Søg på navn eller ISIN i Skattestyrelsens liste over aktiebaserede
   investeringsselskaber ("positivlisten") — afgørende for aktiesparekontoen og for beskatningen
   af ETF'er. {{ antal_pr_aar[aktuelt_aar|string] }} fonde er registreret for {{ aktuelt_aar }}.</p>
 
@@ -36,10 +36,17 @@
   Vælg din situation og se, hvad du skal lede efter — inden du søger.</p>
 
   <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
-    <button type="button" role="tab" aria-selected="true"  aria-controls="f-ask"   id="ft-ask">Aktiesparekonto</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="f-frit"  id="ft-frit">Frit depot (mig selv)</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="f-barn"  id="ft-barn">Frit depot (mit barn)</button>
+    <button type="button" role="tab" aria-selected="true"  aria-controls="f-frit"  id="ft-frit">Aktiedepot – voksen</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="f-ask"   id="ft-ask">Aktiesparekonto</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="f-barn"  id="ft-barn">Depot for mindreårige</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="f-boern" id="ft-boern">Børneopsparing</button>
+  </div>
+
+  <div class="kontekst-panel" id="f-frit" role="tabpanel" aria-labelledby="ft-frit">
+    <p class="dom dom-neutral">Listen afgør indkomsttypen — ingen af delene er entydigt bedst</p>
+    <p>Står investeringsselskabet på listen, beskattes afkastet som aktieindkomst (§ 19 B).
+    Står det ikke på listen, beskattes det som kapitalindkomst (§ 19 C). Begge dele opgøres efter
+    lagerprincippet. Hvad der er mest fordelagtigt afhænger af din øvrige indkomst.</p>
   </div>
 
   <div class="kontekst-panel" id="f-ask" role="tabpanel" aria-labelledby="ft-ask">
@@ -50,12 +57,6 @@
     er det omfattet af § 19 C og kan ikke ligge på en aktiesparekonto.</p>
   </div>
 
-  <div class="kontekst-panel" id="f-frit" role="tabpanel" aria-labelledby="ft-frit">
-    <p class="dom dom-neutral">Listen afgør indkomsttypen — ingen af delene er entydigt bedst</p>
-    <p>Står investeringsselskabet på listen, beskattes afkastet som aktieindkomst (§ 19 B).
-    Står det ikke på listen, beskattes det som kapitalindkomst (§ 19 C). Begge dele opgøres efter
-    lagerprincippet. Hvad der er mest fordelagtigt afhænger af din øvrige indkomst.</p>
-  </div>
 
   <div class="kontekst-panel" id="f-barn" role="tabpanel" aria-labelledby="ft-barn">
     <p class="dom dom-tvivl">Du leder typisk efter fonde, der IKKE står på listen</p>
@@ -71,8 +72,7 @@
     der må ligge i et børneopsparingsdepot.</p>
   </div>
 
-  <p class="kontekst-forbehold">Dette er en gengivelse af, hvad reglerne siger — ikke rådgivning om din konkrete
-  situation. Der findes undtagelser, som dette site ikke kender. Spørg Skattestyrelsen eller en skatterådgiver.</p>
+  <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger — ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
 </section>
 
 <section class="forklaring">

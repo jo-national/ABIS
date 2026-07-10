@@ -56,10 +56,22 @@
     Vælg din situation.</p>
 
     <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
-      <button type="button" role="tab" aria-selected="true"  aria-controls="k-ask"   id="t-ask">Aktiesparekonto</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="k-frit"  id="t-frit">Frit depot (mig selv)</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="k-barn"  id="t-barn">Frit depot (mit barn)</button>
+      <button type="button" role="tab" aria-selected="true"  aria-controls="k-frit"  id="t-frit">Aktiedepot – voksen</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="k-ask"   id="t-ask">Aktiesparekonto</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="k-barn"  id="t-barn">Depot for mindreårige</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="k-boern" id="t-boern">Børneopsparing</button>
+    </div>
+
+    <div class="kontekst-panel" id="k-frit" role="tabpanel" aria-labelledby="t-frit">
+      {% if paa_listen_nu %}
+      <p class="dom dom-neutral">Aktieindkomst, lagerbeskattet</p>
+      <p>Gevinst og tab opgøres efter lagerprincippet — du beskattes af årets værdistigning, også uden at sælge —
+      og beskattes som aktieindkomst (§ 19 B).</p>
+      {% else %}
+      <p class="dom dom-neutral">Kapitalindkomst, lagerbeskattet</p>
+      <p>Fonden er ikke registreret som aktiebaseret for {{ aktuelt_aar }}. Afkastet beskattes som
+      kapitalindkomst (§ 19 C) efter lagerprincippet.</p>
+      {% endif %}
     </div>
 
     <div class="kontekst-panel" id="k-ask" role="tabpanel" aria-labelledby="t-ask">
@@ -84,17 +96,6 @@
       {% endif %}
     </div>
 
-    <div class="kontekst-panel" id="k-frit" role="tabpanel" aria-labelledby="t-frit">
-      {% if paa_listen_nu %}
-      <p class="dom dom-neutral">Aktieindkomst, lagerbeskattet</p>
-      <p>Gevinst og tab opgøres efter lagerprincippet — du beskattes af årets værdistigning, også uden at sælge —
-      og beskattes som aktieindkomst (§ 19 B).</p>
-      {% else %}
-      <p class="dom dom-neutral">Kapitalindkomst, lagerbeskattet</p>
-      <p>Fonden er ikke registreret som aktiebaseret for {{ aktuelt_aar }}. Afkastet beskattes som
-      kapitalindkomst (§ 19 C) efter lagerprincippet.</p>
-      {% endif %}
-    </div>
 
     <div class="kontekst-panel" id="k-barn" role="tabpanel" aria-labelledby="t-barn">
       {% if paa_listen_nu %}
@@ -119,9 +120,7 @@
       børneopsparingsdepot.</p>
     </div>
 
-    <p class="kontekst-forbehold">Ovenstående er en gengivelse af, hvad reglerne siger for de nævnte situationer —
-    ikke rådgivning om din konkrete situation. Der findes undtagelser, som dette site ikke kender.
-    Spørg Skattestyrelsen eller en skatterådgiver, før du disponerer.</p>
+    <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger — ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
   </section>
 
   <h2>Status pr. indkomstår</h2>
@@ -150,7 +149,7 @@
 
   <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
   aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
-  Optagelse på listen er ikke en forvaltningsretlig afgørelse om selskabets skattemæssige status.</p>
+  Optagelse på listen er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status.</p>
 </article>
 <script src="{{ base_path }}/static/kontekst.js" defer></script>
 {% endblock %}
