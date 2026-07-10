@@ -1,40 +1,42 @@
-Parse-rapport — genereret 2026-07-10T13:30:35+00:00
+Parse-rapport — genereret 2026-07-10T14:48:52+00:00
 Kildefil: juni-2026-abis-liste-2021-2026.xlsx (SHA-256 9dff0344742293d1…)
 Hentet fra: https://skat.dk/media/5bdgifbu/juni-2026-abis-liste-2021-2026.xlsx
 
-Ark 'Forside': intet årstal i navnet — SPRINGES OVER.
-Ark '2026' → indkomstår 2026: 5277 gyldige rækker. Header i række 1. Genkendte kolonner: cvr_se→kolonne 5, isin→kolonne 2, lei→kolonne 4, navn→kolonne 3.
-  Ikke-genkendte kolonneoverskrifter (medtages ikke): ['Skattemæssigt hjemsted/Tax residence', 'Navn afdeling/Name Sub-fund', 'TIN', 'Navn/Name', 'Registrerede år/Registered', 'Ikke registrerede år/Deregistered']
-Ark '2025' → indkomstår 2025: 4812 gyldige rækker. Header i række 1. Genkendte kolonner: cvr_se→kolonne 5, isin→kolonne 2, lei→kolonne 4, navn→kolonne 3.
-  Ikke-genkendte kolonneoverskrifter (medtages ikke): ['Skattemæssigt hjemsted/Tax residence', 'Navn afdeling/Name Sub-fund', 'TIN', 'Navn/Name', 'Registrerede år/Registered', 'Ikke registrerede år/Deregistered']
-Ark '2024' → indkomstår 2024: 4446 gyldige rækker. Header i række 1. Genkendte kolonner: cvr_se→kolonne 5, isin→kolonne 2, lei→kolonne 4, navn→kolonne 3.
-  Ikke-genkendte kolonneoverskrifter (medtages ikke): ['Skattemæssigt hjemsted/Tax residence', 'Navn afdeling/Name Sub-fund', 'TIN', 'Navn/Name', 'Registrerede år/Registered', 'Ikke registrerede år/Deregistered']
-Ark '2023' → indkomstår 2023: 3286 gyldige rækker. Header i række 1. Genkendte kolonner: cvr_se→kolonne 5, isin→kolonne 2, lei→kolonne 4, navn→kolonne 3.
-  Ikke-genkendte kolonneoverskrifter (medtages ikke): ['Skattemæssigt hjemsted/Tax residence', 'Navn afdeling/Name Sub-fund', 'TIN', 'Navn/Name', 'Registrerede år/Registered', 'Ikke registrerede år/Deregistered']
-Ark '2022' → indkomstår 2022: 2600 gyldige rækker. Header i række 1. Genkendte kolonner: cvr_se→kolonne 5, isin→kolonne 2, lei→kolonne 4, navn→kolonne 3.
-  Ikke-genkendte kolonneoverskrifter (medtages ikke): ['Skattemæssigt hjemsted/Tax residence', 'Navn afdeling/Name Sub-fund', 'TIN', 'Navn/Name', 'Registrerede år/Registered', 'Ikke registrerede år/Deregistered']
-Ark '2021' → indkomstår 2021: 2083 gyldige rækker. Header i række 1. Genkendte kolonner: cvr_se→kolonne 5, isin→kolonne 2, lei→kolonne 4, navn→kolonne 3.
-  Ikke-genkendte kolonneoverskrifter (medtages ikke): ['Skattemæssigt hjemsted/Tax residence', 'Navn afdeling/Name Sub-fund', 'TIN', 'Navn/Name', 'Registrerede år/Registered', 'Ikke registrerede år/Deregistered']
+Ark 'Forside': ikke et årstal — springes over (forventet).
+Ark '2026': 5368 datarækker læst.
+Ark '2025': 4874 datarækker læst.
+Ark '2024': 4477 datarækker læst.
+Ark '2023': 3312 datarækker læst.
+Ark '2022': 2615 datarækker læst.
+Ark '2021': 2096 datarækker læst.
 
-Unikke ISIN i alt: 6053
-  Indkomstår 2021: 2083 papirer
-  Indkomstår 2022: 2600 papirer
-  Indkomstår 2023: 3286 papirer
-  Indkomstår 2024: 4446 papirer
-  Indkomstår 2025: 4812 papirer
-  Indkomstår 2026: 5277 papirer
-Afviste rækker (ugyldigt ISIN-format): 153
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
-  - 2026: 'Udstedt uden'
+Fonde i alt: 6094  (med ISIN: 6053, uden ISIN: 41)
+Aktuelt indkomstår (nyeste faneblad): 2026
+
+Registrerede fonde pr. indkomstår (kilde: kolonnen 'Registrerede år'):
+  2020: 1316   [intet faneblad — kun fra årskolonnen]
+  2021: 2097
+  2022: 2618
+  2023: 3313
+  2024: 4474
+  2025: 4837
+  2026: 5303
+
+Kontroller:
+  Tomme rækker sprunget over: 410
+  Fonde hvor fanebladets år ikke stod i 'Registrerede år': 1
+  Fonde med 2020 i årskolonnen (2020 har intet faneblad): 1316
+  ISIN med forkert kontrolciffer (beholdt, markeret): 1 — ['DK0092841672']
+  ISIN-løse fonde uden både CVR og navn (udeladt): 0
+  Advarsler (rækker sprunget over):
+    - Ark '2024': ulæselig ISIN-værdi 'LU26632025,202667'
+  Fonde registreret under flere navne: 943
+    DK0010273796: ['INVESTERINGSFORENINGEN SEBINVEST AKL Balance Vækst P', 'Investeringsforeningen SEB Invest AKL Balance Vækst P']
+    DK0010301167: ['INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 80', 'KAPITALFORENINGEN LÅN & SPAR MIXINVEST Afd. Balance 80', 'Afdeling Balance 80']
+    DK0016102361: ['INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 60', 'KAPITALFORENINGEN LÅN & SPAR MIXINVEST Afd Balance 60', 'Afdeling Balance 60']
+
 Eksempler til efterprøvning:
-  DK0010273796: INVESTERINGSFORENINGEN SEBINVEST AKL Balance Vækst P — år: [2021, 2023, 2024, 2025, 2026]
-  DK0010301167: Balance 80 — år: [2022, 2023, 2024, 2025, 2026]
-  DK0016102361: Balance 60 — år: [2022, 2023, 2024, 2025, 2026]
+  CVR-42490229: Grünbaum Value Invest A/S — år: [2023, 2024, 2025, 2026]
+  DK0010273796: INVESTERINGSFORENINGEN SEBINVEST AKL Balance Vækst P — år: [2020, 2021, 2023, 2024, 2025, 2026]
+  DK0010301167: INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 80 — år: [2022, 2023, 2024, 2025, 2026]
+  CVR-42490229 (uden ISIN): Grünbaum Value Invest A/S — år: [2023, 2024, 2025, 2026]
