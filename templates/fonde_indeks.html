@@ -8,7 +8,13 @@
 </nav>
 <ul class="fondsliste">
 {% for fid, e, navn in fonde %}
-  <li><a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a> <span class="isin">{{ fid }}</span></li>
+  <li>
+    <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
+    <span class="fondsliste-meta">
+      {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
+      {% if aktuelt_aar in e.aar %}<span class="status-ja">på listen</span>{% else %}<span class="status-nej">ikke på listen</span>{% endif %}
+    </span>
+  </li>
 {% endfor %}
 </ul>
 {% endblock %}
