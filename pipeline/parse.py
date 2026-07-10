@@ -64,7 +64,14 @@ def tekst(v) -> str | None:
     if v is None:
         return None
     s = str(v).strip()
-    return None if s in ("", "[tom]") else s
+    if s in ("", "[tom]"):
+        return None
+    # Normalisering: erstat alle former for tankestreg med almindelig bindestreg.
+    # Skattestyrelsens fondsnavne indeholder undertiden en-dash (–) og em-dash (—);
+    # hjemmesiden bruger konsekvent kun bindestreg (-).
+    for streg in ("\u2014", "\u2013", "\u2012", "\u2015"):
+        s = s.replace(streg, "-")
+    return s
 
 
 def isin_kontrolciffer_ok(isin: str) -> bool:
@@ -120,7 +127,7 @@ def visningsnavn(afdeling, andelsklasse, navn):
             return kls          # andelsklassen er den fulde tekst
         if ok <= oa:
             return afd          # afdelingsnavnet er den fulde tekst
-        return f"{afd} — {kls}"  # de supplerer hinanden
+        return f"{afd} - {kls}"  # de supplerer hinanden
     return afd or kls or navn
 
 
