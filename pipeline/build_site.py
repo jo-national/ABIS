@@ -38,8 +38,8 @@ TEMPLATES = ROOT / "templates"
 STATIC = ROOT / "static"
 SITE = ROOT / "site"
 
-BASE_PATH = "/ABIS"                              # tomt når eget domæne er sat op
-BASE_URL = "https://jo-national.github.io/ABIS"  # dit domæne, når det findes
+BASE_PATH = ""                              # tomt når eget domæne er sat op
+BASE_URL = "https://www.xn--ppositivlisten-lib.dk"  # dit domæne, når det findes
 
 
 def bucket(navn: str, fid: str) -> str:
