@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Er {{ navn }} aktiebaseret? ({{ fid }}){% endblock %}
-{% block description %}{{ navn }} ({{ fid }}) {% if paa_listen_nu %}står på{% else %}står ikke på{% endif %} Skattestyrelsens liste over aktiebaserede investeringsselskaber for {{ aktuelt_aar }}. Se betydningen for skat og aktiesparekonto.{% endblock %}
+{% block description %}{{ navn }} ({{ fid }}) {% if paa_listen_nu %}står på{% else %}står ikke på{% endif %} Skattestyrelsens liste over aktiebaserede investeringsselskaber for {{ aktuelt_aar }}. Se hvad det betyder for aktiesparekonto, børnedepot og frit depot.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fond/{{ fid }}/">{% endblock %}
 {% block head %}
 <script type="application/ld+json">
@@ -27,13 +27,14 @@
     <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
     Skattestyrelsens liste over aktiebaserede investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
     {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.
-    Gevinst og tab lagerbeskattes som aktieindkomst, og beviset kan som udgangspunkt indgå på en aktiesparekonto.</p>
+    Gevinst og tab lagerbeskattes som aktieindkomst (aktieavancebeskatningslovens § 19 B).</p>
   </div>
   {% else %}
   <div class="svar svar-historisk">
     <p class="svar-kort">IKKE PÅ LISTEN FOR {{ aktuelt_aar }}</p>
     <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
-    {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}.
+    {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}. Et investeringsselskab,
+    der ikke er aktiebaseret, beskattes som kapitalindkomst (§ 19 C).
     Status kan være ændret — verificér hos Skattestyrelsen, før du disponerer.</p>
   </div>
   {% endif %}
@@ -47,6 +48,77 @@
   <p class="note"><strong>Bemærk:</strong> ISIN-koden {{ fid }} har et kontrolciffer, der ikke stemmer.
   Koden er gengivet præcis som i Skattestyrelsens fil. Kontrollér den hos din bank eller Skattestyrelsen.</p>
   {% endif %}
+
+  <section class="kontekst" id="hvad-betyder-det">
+    <h2>Hvad betyder det for mig?</h2>
+    <p class="kontekst-intro">Den samme listestatus betyder noget forskelligt afhængigt af, hvordan du investerer.
+    Vælg din situation.</p>
+
+    <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
+      <button type="button" role="tab" aria-selected="true"  aria-controls="k-ask"   id="t-ask">Aktiesparekonto</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="k-frit"  id="t-frit">Frit depot (mig selv)</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="k-barn"  id="t-barn">Frit depot (mit barn)</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="k-boern" id="t-boern">Børneopsparing</button>
+    </div>
+
+    <div class="kontekst-panel" id="k-ask" role="tabpanel" aria-labelledby="t-ask">
+      {% if paa_listen_nu and fond.type == "isin" %}
+      <p class="dom dom-ja">Kan som udgangspunkt indgå på en aktiesparekonto</p>
+      <p>Aktiesparekontoloven § 5 tillader blandt andet omsættelige investeringsbeviser omfattet af
+      aktieavancebeskatningslovens § 19 B. Denne fond er registreret som aktiebaseret for {{ aktuelt_aar }}.
+      Er beviset ikke omsætteligt, gælder det ikke — kontrollér hos din bank.</p>
+      {% elif paa_listen_nu and fond.type == "uden_isin" %}
+      <p class="dom dom-tvivl">Sandsynligvis ikke — kontrollér</p>
+      <p>Selskabet er registreret som aktiebaseret for {{ aktuelt_aar }}, men Skattestyrelsen oplyser ingen
+      ISIN-kode, hvilket typisk indikerer et unoteret selskab. Aktiesparekontoloven § 5 omfatter noterede aktier
+      og <em>omsættelige</em> investeringsbeviser. Vi kan ikke afgøre ud fra listen alene, om dette selskabs
+      andele opfylder betingelsen. Spørg din bank eller Skattestyrelsen.</p>
+      {% else %}
+      <p class="dom dom-nej">Kan ikke indgå på en aktiesparekonto</p>
+      <p>Fonden er ikke registreret som aktiebaseret for {{ aktuelt_aar }}. Et investeringsselskab omfattet af
+      § 19 C er ikke blandt de værdipapirer, aktiesparekontoloven § 5 tillader.</p>
+      {% endif %}
+    </div>
+
+    <div class="kontekst-panel" id="k-frit" role="tabpanel" aria-labelledby="t-frit">
+      {% if paa_listen_nu %}
+      <p class="dom dom-neutral">Aktieindkomst, lagerbeskattet</p>
+      <p>Gevinst og tab opgøres efter lagerprincippet — du beskattes af årets værdistigning, også uden at sælge —
+      og beskattes som aktieindkomst (§ 19 B).</p>
+      {% else %}
+      <p class="dom dom-neutral">Kapitalindkomst, lagerbeskattet</p>
+      <p>Fonden er ikke registreret som aktiebaseret for {{ aktuelt_aar }}. Afkastet beskattes som
+      kapitalindkomst (§ 19 C) efter lagerprincippet.</p>
+      {% endif %}
+    </div>
+
+    <div class="kontekst-panel" id="k-barn" role="tabpanel" aria-labelledby="t-barn">
+      {% if paa_listen_nu %}
+      <p class="dom dom-nej">Barnets personfradrag kan ikke udnyttes</p>
+      <p>Fonden beskattes som aktieindkomst. Personfradraget kan modregnes i kapitalindkomst, ikke i aktieindkomst.
+      Investerer du barnets frie midler med det formål at udnytte personfradraget, er en fond, der
+      <em>ikke</em> står på listen, typisk mere velegnet. Bemærk desuden, at løbende afkast af pengegaver fra
+      forældre beskattes hos giveren.</p>
+      {% else %}
+      <p class="dom dom-ja">Barnets personfradrag kan udnyttes</p>
+      <p>Fonden er ikke registreret som aktiebaseret og beskattes som kapitalindkomst, som kan modregnes i barnets
+      personfradrag. Lagerbeskatningen betyder, at fradraget udnyttes løbende år for år. Bemærk, at løbende afkast
+      af pengegaver fra forældre beskattes hos giveren, og at barnets øvrige indkomst også bruger af fradraget.</p>
+      {% endif %}
+    </div>
+
+    <div class="kontekst-panel" id="k-boern" role="tabpanel" aria-labelledby="t-boern">
+      <p class="dom dom-neutral">Uden betydning</p>
+      <p>Afkast på en børneopsparingskonto beskattes ikke i bindingsperioden — hverken renter, udbytter eller
+      kursgevinster (pensionsbeskatningslovens § 51, stk. 4). Om fonden er aktiebaseret eller ej, har derfor ingen
+      skattemæssig betydning her. Bemærk, at der gælder begrænsninger for, hvilke værdipapirer der må ligge i et
+      børneopsparingsdepot.</p>
+    </div>
+
+    <p class="kontekst-forbehold">Ovenstående er en gengivelse af, hvad reglerne siger for de nævnte situationer —
+    ikke rådgivning om din konkrete situation. Der findes undtagelser, som dette site ikke kender.
+    Spørg Skattestyrelsen eller en skatterådgiver, før du disponerer.</p>
+  </section>
 
   <h2>Status pr. indkomstår</h2>
   <table class="aarstabel">
@@ -70,10 +142,9 @@
     {% if fond.hjemsted %}<dt>Skattemæssigt hjemsted</dt><dd>{{ fond.hjemsted }}</dd>{% endif %}
   </dl>
 
-  <aside class="annonce" data-slot="fond-under-svar" aria-label="Annonce"></aside>
-
   <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
   aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
   Optagelse på listen er ikke en forvaltningsretlig afgørelse om selskabets skattemæssige status.</p>
 </article>
+<script src="{{ base_path }}/static/kontekst.js" defer></script>
 {% endblock %}
