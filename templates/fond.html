@@ -124,7 +124,7 @@
   <table class="aarstabel">
     <thead><tr><th scope="col">Indkomstår</th><th scope="col">Registreret som aktiebaseret</th></tr></thead>
     <tbody>
-    {% for aar in alle_aar %}
+    {% for aar in alle_aar|reverse %}
       <tr><td>{{ aar }}</td><td>{% if aar in fond.aar %}Ja{% else %}Nej{% endif %}</td></tr>
     {% endfor %}
     </tbody>
@@ -132,7 +132,9 @@
 
   <h2>Stamdata fra listen</h2>
   <dl class="stamdata">
-    {% if fond.type == "isin" %}<dt>ISIN</dt><dd>{{ fid }}</dd>{% endif %}
+    {% if fond.type == "isin" %}<dt>ISIN</dt>
+    <dd><code class="isin-kode">{{ fid }}</code>
+    <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button></dd>{% endif %}
     <dt>Navn</dt><dd>{{ navn }}</dd>
     {% if fond.navne|length > 1 %}
     <dt>Også registreret som</dt><dd>{{ fond.navne[1:] | join("; ") }}</dd>

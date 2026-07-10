@@ -30,6 +30,50 @@
 </section>
 
 
+<section class="kontekst forside-kontekst" id="hvem-er-du">
+  <h2>Hvad skal du bruge listen til?</h2>
+  <p class="kontekst-intro">Listen betyder noget forskelligt, alt efter hvordan du investerer.
+  Vælg din situation og se, hvad du skal lede efter — inden du søger.</p>
+
+  <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
+    <button type="button" role="tab" aria-selected="true"  aria-controls="f-ask"   id="ft-ask">Aktiesparekonto</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="f-frit"  id="ft-frit">Frit depot (mig selv)</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="f-barn"  id="ft-barn">Frit depot (mit barn)</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="f-boern" id="ft-boern">Børneopsparing</button>
+  </div>
+
+  <div class="kontekst-panel" id="f-ask" role="tabpanel" aria-labelledby="ft-ask">
+    <p class="dom dom-ja">Du leder efter fonde, der STÅR på listen</p>
+    <p>Aktiesparekontoloven § 5 tillader blandt andet omsættelige investeringsbeviser omfattet af
+    aktieavancebeskatningslovens § 19 B — altså investeringsselskaber, der er registreret som aktiebaserede.
+    Er investeringsselskabet ikke registreret, er det omfattet af § 19 C og kan ikke ligge på en aktiesparekonto.</p>
+  </div>
+
+  <div class="kontekst-panel" id="f-frit" role="tabpanel" aria-labelledby="ft-frit">
+    <p class="dom dom-neutral">Listen afgør indkomsttypen — ingen af delene er entydigt bedst</p>
+    <p>Står investeringsselskabet på listen, beskattes afkastet som aktieindkomst (§ 19 B).
+    Står det ikke på listen, beskattes det som kapitalindkomst (§ 19 C). Begge dele opgøres efter
+    lagerprincippet. Hvad der er mest fordelagtigt afhænger af din øvrige indkomst.</p>
+  </div>
+
+  <div class="kontekst-panel" id="f-barn" role="tabpanel" aria-labelledby="ft-barn">
+    <p class="dom dom-tvivl">Du leder typisk efter fonde, der IKKE står på listen</p>
+    <p>Barnets personfradrag kan modregnes i kapitalindkomst, ikke i aktieindkomst. Investerer du barnets frie
+    midler for at udnytte fradraget, er et investeringsselskab uden for listen (§ 19 C) derfor typisk mere
+    velegnet. Bemærk, at løbende afkast af pengegaver fra forældre beskattes hos giveren.</p>
+  </div>
+
+  <div class="kontekst-panel" id="f-boern" role="tabpanel" aria-labelledby="ft-boern">
+    <p class="dom dom-neutral">Listen er uden betydning</p>
+    <p>Afkast på en børneopsparingskonto beskattes ikke i bindingsperioden (pensionsbeskatningslovens § 51, stk. 4).
+    Om fonden er aktiebaseret eller ej, ændrer intet. Bemærk, at der gælder begrænsninger for, hvilke værdipapirer
+    der må ligge i et børneopsparingsdepot.</p>
+  </div>
+
+  <p class="kontekst-forbehold">Dette er en gengivelse af, hvad reglerne siger — ikke rådgivning om din konkrete
+  situation. Der findes undtagelser, som dette site ikke kender. Spørg Skattestyrelsen eller en skatterådgiver.</p>
+</section>
+
 <section class="forklaring">
   <h2>Hvad betyder det at stå på listen?</h2>
   <p>Investeringsselskaber på listen (ABL § 19 B) lagerbeskattes som <strong>aktieindkomst</strong>,
@@ -39,5 +83,6 @@
   <a href="{{ base_path }}/metode.html">se datagrundlaget</a>.</p>
 </section>
 <script>window.BASE_PATH = {{ base_path|tojson }};</script>
+<script src="{{ base_path }}/static/kontekst.js" defer></script>
 <script src="{{ base_path }}/static/search.js" defer></script>
 {% endblock %}
