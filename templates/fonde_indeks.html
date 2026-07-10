@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block title %}Alle fonde på ABIS-listen — {{ bogstav|upper }}{% endblock %}
+{% block title %}Alle fonde på positivlisten - {{ bogstav|upper }}{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fonde/{{ bogstav }}.html">{% endblock %}
 {% block content %}
-<h1>Fonde på listen — {{ bogstav|upper }}</h1>
+<h1>Alle fonde - {{ bogstav|upper }}</h1>
 <nav class="bogstaver">
 {% for b in alle_bogstaver %}<a href="{{ base_path }}/fonde/{{ b }}.html"{% if b == bogstav %} aria-current="page"{% endif %}>{{ b|upper }}</a> {% endfor %}
 </nav>
@@ -12,7 +12,7 @@
     <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
     <span class="fondsliste-meta">
       {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
-      {% if aktuelt_aar in e.aar %}<span class="status-ja">på listen</span>{% else %}<span class="status-nej">ikke på listen</span>{% endif %}
+      {% if aktuelt_aar in e.aar %}<span class="status-ja">på positivlisten</span>{% else %}<span class="status-nej">ikke på positivlisten</span>{% endif %}
     </span>
   </li>
 {% endfor %}
