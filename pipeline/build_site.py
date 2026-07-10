@@ -155,6 +155,7 @@ def main() -> None:
     sm += [f"<url><loc>{BASE_URL}{u}</loc></url>" for u in urls]
     sm.append("</urlset>")
     (SITE / "sitemap.xml").write_text("\n".join(sm), encoding="utf-8")
+    (SITE / "CNAME").write_text("www.xn--ppositivlisten-lib.dk\n", encoding="utf-8")   
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8"
     )
