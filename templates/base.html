@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Er din fond aktiebaseret?{% endblock %}</title>
+<meta name="description" content="{% block description %}Slå op om en ETF eller investeringsforening står på Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS/positivlisten).{% endblock %}">
+{% block canonical %}{% endblock %}
+<link rel="stylesheet" href="/static/style.css">
+{% block head %}{% endblock %}
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="/">Aktiebaseret<span>?</span></a>
+  <nav>
+    <a href="/fonde/a.html">Alle fonde</a>
+    <a href="/metode.html">Datagrundlag</a>
+    <a href="/om.html">Om</a>
+  </nav>
+</header>
+
+<div class="statuslinje" role="note">
+  Datagrundlag: Skattestyrelsens ABIS-liste{% if kilde.offentliggjort_tekst %}, offentliggjort den {{ kilde.offentliggjort_tekst }}{% endif %},
+  gældende for indkomståret {{ aktuelt_aar }}. Senest kontrolleret mod skat.dk: {{ kilde.hentet_utc[:10] }}.
+</div>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer>
+  <p class="disclaimer"><strong>Dette er et informativt værktøj — ikke skatterådgivning.</strong>
+  Optagelse på ABIS-listen er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status.
+  Verificér altid hos Skattestyrelsen, før du træffer beslutninger:
+  <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens officielle liste (skat.dk)</a>.</p>
+  <p class="kolofon">Bygger udelukkende på Skattestyrelsens offentliggjorte lister.
+  Kildefil: {{ kilde.filnavn }} · <a href="/metode.html">Sådan behandler vi data</a></p>
+</footer>
+</body>
+</html>

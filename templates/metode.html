@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Datagrundlag og metode{% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ base_url }}/metode.html">{% endblock %}
+{% block content %}
+<h1>Datagrundlag og metode</h1>
+
+<h2>Hvad listen dækker</h2>
+<p>ABIS-listen omfatter <strong>investeringsselskaber</strong> (aktieavancebeskatningslovens § 19) —
+typisk udenlandske ETF'er og visse danske akkumulerende fonde — der over for Skatteforvaltningen har
+meddelt, at de er aktiebaserede (§ 19 B). Står et investeringsselskab på listen for et indkomstår,
+lagerbeskattes gevinst og tab som aktieindkomst, og beviset kan som udgangspunkt indgå på en
+aktiesparekonto. Står det ikke på listen, beskattes det som kapitalindkomst (§ 19 C) og kan ikke
+indgå på aktiesparekontoen.</p>
+
+<h2>Hvad listen IKKE dækker</h2>
+<p><strong>Danske minimumsbeskattede investeringsforeninger</strong> (fx typiske udbyttebetalende
+indeksforeninger) skal ikke stå på ABIS-listen. Deres skattestatus følger af andre regler
+(aktieavancebeskatningslovens §§ 21-22): er mindst halvdelen af formuen placeret i aktier, beskattes
+de som aktieindkomst efter realisationsprincippet — uden at optræde her. At et papir ikke findes på
+dette site, betyder derfor <em>ikke</em>, at det ikke er aktiebaseret. Vi kan ikke ud fra ISIN alene
+afgøre, om et ukendt papir er et investeringsselskab eller en minimumsbeskattet forening.</p>
+
+<h2>Sådan opdateres data</h2>
+<p>Et automatisk job kontrollerer hver nat, om Skattestyrelsens Excel-fil er ændret. Ændres filen,
+hentes og behandles den, og hele sitet genbygges. Filens digitale fingeraftryk (SHA-256), filnavn og
+kontroldato vises i bunden af hver side. Alle historiske filversioner arkiveres uændret.
+Fejler kontrollen, opdateres sitet ikke, og datoen i statuslinjen står stille — vi viser aldrig
+gamle data som friske.</p>
+
+<h2>Kilde</h2>
+<p><a href="{{ kilde.side }}" rel="noopener">Skattestyrelsen: Beviser og aktier i
+investeringsforeninger og selskaber (IFPA)</a> — afsnittet "Liste over aktiebaserede
+investeringsselskaber". Aktuel kildefil: {{ kilde.filnavn }}.</p>
+{% endblock %}

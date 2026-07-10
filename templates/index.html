@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Er din ETF eller fond aktiebaseret? Søg i Skats positivliste (ABIS){% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ base_url }}/">{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Er din fond aktiebaseret?</h1>
+  <p class="undertekst">Søg på navn eller ISIN i Skattestyrelsens liste over aktiebaserede
+  investeringsselskaber ("positivlisten") — afgørende for aktiesparekontoen og for beskatningen
+  af ETF'er. {{ antal_pr_aar[aktuelt_aar|string] }} papirer på listen for {{ aktuelt_aar }}.</p>
+
+  <div class="soegning">
+    <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
+    <input id="q" type="search" placeholder="Fx »iShares Core MSCI World« eller »IE00B4L5Y983«" autocomplete="off" autofocus>
+    <ol id="resultater" aria-live="polite"></ol>
+    <div id="ikke-fundet" hidden>
+      <h2>Ikke fundet på listen</h2>
+      <p>Papiret står ikke på ABIS-listen for {{ aktuelt_aar }}. Det betyder <em>ikke</em> nødvendigvis,
+      at det ikke er aktiebaseret:</p>
+      <p>Er papiret et <strong>investeringsselskab</strong> (typisk en udenlandsk ETF), peger fraværet på,
+      at det beskattes som kapitalindkomst og ikke kan indgå på en aktiesparekonto.</p>
+      <p>Er papiret en <strong>dansk minimumsbeskattet investeringsforening</strong> (fx en udbyttebetalende
+      indeksforening), siger denne liste intet om dets status — den type fonde skal slet ikke stå på ABIS-listen.
+      Kontakt udbyderen eller Skattestyrelsen.</p>
+      <p>Vi kan ikke ud fra ISIN alene afgøre, hvilken kategori papiret tilhører.
+      <a href="/metode.html">Læs hvad listen dækker — og ikke dækker</a>.</p>
+    </div>
+  </div>
+</section>
+
+<aside class="annonce" data-slot="forside-under-soegning" aria-label="Annonce">
+  <!-- Annonceplads: aktiveres først når annoncenetværk og samtykkeløsning er på plads. -->
+</aside>
+
+<section class="forklaring">
+  <h2>Hvad betyder det at stå på listen?</h2>
+  <p>Investeringsselskaber på listen (ABL § 19 B) lagerbeskattes som <strong>aktieindkomst</strong>,
+  og beviserne kan som udgangspunkt indgå på en <strong>aktiesparekonto</strong>. Investeringsselskaber,
+  der ikke står på listen, beskattes som kapitalindkomst (ABL § 19 C) og kan ikke indgå på aktiesparekontoen.
+  Danske minimumsbeskattede investeringsforeninger følger andre regler og skal ikke stå på listen —
+  <a href="/metode.html">se datagrundlaget</a>.</p>
+</section>
+<script src="/static/search.js" defer></script>
+{% endblock %}

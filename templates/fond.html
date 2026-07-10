@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% set visningsnavn = fond.navn or isin %}
+{% block title %}Er {{ visningsnavn }} aktiebaseret? ({{ isin }}){% endblock %}
+{% block description %}{{ visningsnavn }} ({{ isin }}) {% if paa_listen_nu %}står på{% else %}står ikke på{% endif %} Skattestyrelsens liste over aktiebaserede investeringsselskaber for {{ aktuelt_aar }}. Se betydningen for skat og aktiesparekonto.{% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ base_url }}/fond/{{ isin }}/">{% endblock %}
+{% block head %}
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "Er {{ visningsnavn }} aktiebaseret?",
+ "about": {"@type": "InvestmentFund", "name": {{ visningsnavn|tojson }}, "identifier": "{{ isin }}"},
+ "dateModified": "{{ kilde.hentet_utc[:10] }}",
+ "isBasedOn": "{{ kilde.side }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<nav class="brødkrumme"><a href="/">Forside</a> › <a href="/fonde/a.html">Alle fonde</a> › {{ isin }}</nav>
+
+<article>
+  <h1>Er {{ visningsnavn }} aktiebaseret?</h1>
+
+  {% if paa_listen_nu %}
+  <div class="svar svar-ja">
+    <p class="svar-kort">JA</p>
+    <p><strong>{{ visningsnavn }}</strong> ({{ isin }}) står på Skattestyrelsens liste over aktiebaserede
+    investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
+    {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.
+    Gevinst og tab lagerbeskattes som aktieindkomst, og beviset kan som udgangspunkt indgå på en aktiesparekonto.</p>
+  </div>
+  {% else %}
+  <div class="svar svar-historisk">
+    <p class="svar-kort">IKKE PÅ LISTEN FOR {{ aktuelt_aar }}</p>
+    <p><strong>{{ visningsnavn }}</strong> ({{ isin }}) stod på listen for
+    {{ fond.aar | join(", ") }}, men står ikke på listen for {{ aktuelt_aar }}.
+    Status kan være ændret — verificér hos Skattestyrelsen, før du disponerer.</p>
+  </div>
+  {% endif %}
+
+  <h2>Status pr. indkomstår</h2>
+  <table class="aarstabel">
+    <thead><tr><th scope="col">Indkomstår</th><th scope="col">På ABIS-listen</th></tr></thead>
+    <tbody>
+    {% for aar_str, antal in antal_pr_aar.items() %}
+      {% set aar = aar_str|int %}
+      <tr><td>{{ aar }}</td><td>{% if aar in fond.aar %}Ja{% else %}Nej{% endif %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Stamdata fra listen</h2>
+  <dl class="stamdata">
+    <dt>ISIN</dt><dd>{{ isin }}</dd>
+    {% if fond.navn %}<dt>Navn</dt><dd>{{ fond.navn }}</dd>{% endif %}
+    {% if fond.lei %}<dt>LEI</dt><dd>{{ fond.lei }}</dd>{% endif %}
+    {% if fond.cvr_se %}<dt>CVR/SE-nr.</dt><dd>{{ fond.cvr_se }}</dd>{% endif %}
+    {% if fond.land %}<dt>Land</dt><dd>{{ fond.land }}</dd>{% endif %}
+  </dl>
+
+  <aside class="annonce" data-slot="fond-under-svar" aria-label="Annonce"></aside>
+
+  <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
+  aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
+  Optagelse på listen er ikke en forvaltningsretlig afgørelse om selskabets skattemæssige status.</p>
+</article>
+{% endblock %}
