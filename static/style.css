@@ -70,3 +70,4 @@ footer p{max-width:var(--maks);margin:0 auto;padding:.7rem 1.25rem;font-size:.85
   background:#f4f7fa;border-radius:.3rem;cursor:pointer;color:#3c4654}
 .kopier:hover{background:#e7edf4}
 .forside-kontekst .dom{font-size:1rem}
+.hero h1 .accent{color:var(--ja)}
