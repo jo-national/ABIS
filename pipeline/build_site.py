@@ -12,7 +12,25 @@ import json
 import shutil
 from pathlib import Path
 
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
+from zoneinfo import ZoneInfo
+
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+DK = ZoneInfo("Europe/Copenhagen")
+MDR = ["januar", "februar", "marts", "april", "maj", "juni", "juli",
+       "august", "september", "oktober", "november", "december"]
+
+
+def dansk_dato(dt: datetime) -> str:
+    dt = dt.astimezone(DK)
+    return f"{dt.day}. {MDR[dt.month - 1]} {dt.year}"
+
+
+def dansk_dato_tid(dt: datetime) -> str:
+    dt = dt.astimezone(DK)
+    return f"{dt.day}. {MDR[dt.month - 1]} {dt.year} kl. {dt:%H.%M} (dansk tid)"
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "abis.json"
@@ -40,10 +58,35 @@ def main() -> None:
         trim_blocks=True,
         lstrip_blocks=True,
     )
+    kilde = data["kilde"]
+
+    # Tidsstempler til statuslinje og metodeside.
+    hentet_dt = datetime.fromisoformat(kilde["hentet_utc"])
+    lc_fil = ROOT / "data" / "last_checked.json"
+    if lc_fil.exists():
+        lc = json.loads(lc_fil.read_text(encoding="utf-8"))
+        tjekket_dt = datetime.fromisoformat(lc["checked_at_utc"])
+        http_lm = lc.get("http_last_modified") or kilde.get("http_last_modified")
+    else:
+        tjekket_dt = hentet_dt
+        http_lm = kilde.get("http_last_modified")
+
+    if http_lm:
+        senest_opdateret = dansk_dato_tid(parsedate_to_datetime(http_lm))
+    elif kilde.get("offentliggjort_tekst"):
+        senest_opdateret = (f"den {kilde['offentliggjort_tekst']} "
+                            "(offentliggørelsesdato ifølge skat.dk; klokkeslæt oplyses ikke)")
+    else:
+        senest_opdateret = "ukendt — se skat.dk"
+
     ctx = {
         "aktuelt_aar": aktuelt_aar,
+        "sidst_tjekket": dansk_dato_tid(tjekket_dt),
+        "hentet_dansk": dansk_dato_tid(hentet_dt),
+        "senest_opdateret": senest_opdateret,
+        "opdateret_dato": kilde.get("offentliggjort_tekst") or "se skat.dk",
         "alle_aar": data["alle_aar"],
-        "kilde": data["kilde"],
+        "kilde": kilde,
         "antal_pr_aar": data["antal_pr_aar"],
         "antal_fonde": len(fonde),
         "antal_uden_isin": data["antal_uden_isin"],

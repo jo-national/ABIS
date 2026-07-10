@@ -89,6 +89,23 @@ def main() -> None:
     sha = hashlib.sha256(resp.content).hexdigest()
     print(f"SHA-256: {sha}")
 
+    # Registrér dette tjek, uanset om filen er ændret. Skrives til en fil,
+    # der IKKE versioneres (se .gitignore) — den lever kun i den enkelte
+    # kørsel og læses af build_site.py umiddelbart efter. Sådan kan
+    # statuslinjen ærligt vise "senest tjekket", uden en commit hver nat.
+    DATA.mkdir(parents=True, exist_ok=True)
+    (DATA / "last_checked.json").write_text(
+        json.dumps(
+            {
+                "checked_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "http_last_modified": resp.headers.get("Last-Modified"),
+            },
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
     state = {}
     if STATE_FILE.exists():
         state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
@@ -113,6 +130,7 @@ def main() -> None:
         "sha256": sha,
         "published_text": published_text,
         "fetched_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "http_last_modified": resp.headers.get("Last-Modified"),
     }
     DATA.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(
