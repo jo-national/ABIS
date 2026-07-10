@@ -1,87 +1,102 @@
 {% extends "base.html" %}
-{% block title %}Positivlisten? — er din ETF eller fond aktiebaseret? (Skats ABIS-liste){% endblock %}
+{% block title %}Positivlisten? - er din ETF eller fond aktiebaseret? (Skats ABIS-liste){% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/">{% endblock %}
 
+{% block toptitel %}
+<h1 class="brand-titel">Positivlisten<span class="accent">?</span></h1>
+{% endblock %}
 {% block content %}
 <section class="hero">
-  <h1>Positivlisten<span class="accent">?</span></h1>
-  <p class="undertekst">Er din fond aktiebaseret? Søg på navn eller ISIN i Skattestyrelsens liste over aktiebaserede
-  investeringsselskaber ("positivlisten") — afgørende for aktiesparekontoen og for beskatningen
-  af ETF'er. {{ antal_pr_aar[aktuelt_aar|string] }} fonde er registreret for {{ aktuelt_aar }}.</p>
+ <p class="undertekst">Er din fond aktiebaseret? Søg på navn eller ISIN i Skattestyrelsens liste over aktiebaserede
+ investeringsselskaber ("positivlisten") - afgørende for aktiesparekontoen og for beskatningen
+ af ETF'er. {{ antal_pr_aar[aktuelt_aar|string] }} fonde er registreret for {{ aktuelt_aar }}.</p>
 
-  <div class="soegning">
-    <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
-    <input id="q" type="search" placeholder="Fx »iShares Core MSCI World« eller »IE00B4L5Y983«" autocomplete="off" autofocus>
-    <ol id="resultater" aria-live="polite"></ol>
-    <div id="ikke-fundet" hidden>
-      <h2>Ikke fundet</h2>
-      <p>Fonden står ikke på ABIS-listen for {{ aktuelt_aar }}. Det betyder <em>ikke</em> nødvendigvis,
-      at den ikke er aktiebaseret.</p>
-      <p>Er der tale om et <strong>investeringsselskab</strong> (typisk en udenlandsk ETF), peger fraværet på,
-      at det beskattes som kapitalindkomst og ikke kan indgå på en aktiesparekonto.</p>
-      <p>Er der tale om en <strong>dansk minimumsbeskattet investeringsforening</strong> (fx en udbyttebetalende
-      indeksforening), siger denne liste intet om dens status — den type fonde skal slet ikke stå på ABIS-listen.</p>
-      <p><strong>Søgte du på ISIN?</strong> {{ antal_uden_isin }} selskaber på listen er udstedt uden ISIN-kode.
-      Prøv at søge på navnet i stedet.</p>
-      <p>Vi kan ikke ud fra en ISIN alene afgøre, hvilken kategori et ukendt papir tilhører.
-      <a href="{{ base_path }}/metode.html">Læs hvad listen dækker — og ikke dækker</a>.</p>
-    </div>
-  </div>
+ <div class="soegning">
+ <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
+ <input id="q" type="search" placeholder="Fx »iShares Core MSCI World« eller »IE00B4L5Y983«" autocomplete="off" autofocus>
+ <ol id="resultater" aria-live="polite"></ol>
+ <div id="ikke-fundet" hidden>
+ <h2>Ikke fundet</h2>
+ <p>Fonden står ikke på ABIS-listen for {{ aktuelt_aar }}. Det betyder <em>ikke</em> nødvendigvis,
+ at den ikke er aktiebaseret.</p>
+ <p>Er der tale om et <strong>investeringsselskab</strong> (typisk en udenlandsk ETF), peger fraværet på,
+ at det beskattes som kapitalindkomst og ikke kan indgå på en aktiesparekonto.</p>
+ <p>Er der tale om en <strong>dansk minimumsbeskattet investeringsforening</strong> (fx en udbyttebetalende
+ indeksforening), siger denne liste intet om dens status - den type fonde skal slet ikke stå på ABIS-listen.</p>
+ <p><strong>Søgte du på ISIN?</strong> {{ antal_uden_isin }} selskaber på listen er udstedt uden ISIN-kode.
+ Prøv at søge på navnet i stedet.</p>
+ <p>Vi kan ikke ud fra en ISIN alene afgøre, hvilken kategori et ukendt papir tilhører.
+ <a href="{{ base_path }}/metode.html">Læs hvad listen dækker - og ikke dækker</a>.</p>
+ </div>
+ </div>
 </section>
 
 
 <section class="kontekst forside-kontekst" id="hvem-er-du">
-  <h2>Hvad skal du bruge listen til?</h2>
-  <p class="kontekst-intro">Listen betyder noget forskelligt, alt efter hvordan du investerer.
-  Vælg din situation og se, hvad du skal lede efter — inden du søger.</p>
+ <h2>Hvad skal du bruge listen til?</h2>
+ <p class="kontekst-intro">Listen betyder noget forskelligt, alt efter hvordan du investerer.
+ Vælg din situation og se, hvad du skal lede efter - inden du søger.</p>
 
-  <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
-    <button type="button" role="tab" aria-selected="true"  aria-controls="f-frit"  id="ft-frit">Aktiedepot – voksen</button>
+ <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
+    <button type="button" role="tab" aria-selected="true"  aria-controls="f-frit"  id="ft-frit">Aktiedepot - voksen</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="f-ask"   id="ft-ask">Aktiesparekonto</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="f-barn"  id="ft-barn">Depot for mindreårige</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="f-boern" id="ft-boern">Børneopsparing</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="f-pension" id="ft-pension">Pension</button>
   </div>
 
-  <div class="kontekst-panel" id="f-frit" role="tabpanel" aria-labelledby="ft-frit">
-    <p class="dom dom-neutral">Listen afgør indkomsttypen — ingen af delene er entydigt bedst</p>
-    <p>Står investeringsselskabet på listen, beskattes afkastet som aktieindkomst (§ 19 B).
-    Står det ikke på listen, beskattes det som kapitalindkomst (§ 19 C). Begge dele opgøres efter
-    lagerprincippet. Hvad der er mest fordelagtigt afhænger af din øvrige indkomst.</p>
+    <div class="kontekst-panel-wrap">
+<div class="kontekst-panel" id="f-frit" role="tabpanel" aria-labelledby="ft-frit">
+    <p class="dom dom-neutral">Listen afgør indkomsttypen - ingen af delene er entydigt bedst</p>
+    <p>Står værdipapiret på positivlisten, beskattes afkastet som aktieindkomst.
+    Står værdipapiret ikke på positivlisten, beskattes det som kapitalindkomst.
+    Begge dele opgøres efter lagerprincippet.
+    Hvad der er mest fordelagtigt afhænger af din øvrige indkomst.</p>
   </div>
 
   <div class="kontekst-panel" id="f-ask" role="tabpanel" aria-labelledby="ft-ask">
-    <p class="dom dom-ja">Du leder efter fonde, der STÅR på listen</p>
-    <p>Aktiesparekontoloven § 5, stk. 1, tillader noterede aktier m.v. (nr. 2) og omsættelige
-    investeringsbeviser omfattet af aktieavancebeskatningslovens § 19 B (nr. 3) — altså papirer udstedt af
-    investeringsselskaber, der er registreret som aktiebaserede. Er investeringsselskabet ikke registreret,
-    er det omfattet af § 19 C og kan ikke ligge på en aktiesparekonto.</p>
+    <p class="dom dom-ja">Du leder efter fonde, der STÅR på positivlisten</p>
+    <p>Aktiesparekontoloven tillader noterede aktier og omsættelige investeringsbeviser omfattet af
+    aktieavancebeskatningslovens §19B (nr.3). Altså værdipapirer udstedt af investeringsselskaber, der
+    fremgår af positivlisten. Er værdipapiret ikke registreret på positivlisten, er det omfattet af §19C
+    og kan ikke ligge på en aktiesparekonto.</p>
   </div>
-
 
   <div class="kontekst-panel" id="f-barn" role="tabpanel" aria-labelledby="ft-barn">
     <p class="dom dom-tvivl">Du leder typisk efter fonde, der IKKE står på listen</p>
-    <p>Barnets personfradrag kan modregnes i kapitalindkomst, ikke i aktieindkomst. Investerer du barnets frie
-    midler for at udnytte fradraget, er et investeringsselskab uden for listen (§ 19 C) derfor typisk mere
-    velegnet. Bemærk, at løbende afkast af pengegaver fra forældre beskattes hos giveren.</p>
+    <p>Barnets personfradrag kan modregnes i kapitalindkomst - ikke i aktieindkomst.
+    Investerer du barnets frie midler for at udnytte personfradraget, er et investeringsselskab uden for
+    positivlisten derfor typisk mere velegnet. Bemærk, at løbende afkast af pengegaver fra forældre
+    beskattes hos giveren.</p>
   </div>
 
   <div class="kontekst-panel" id="f-boern" role="tabpanel" aria-labelledby="ft-boern">
-    <p class="dom dom-neutral">Listen er uden betydning</p>
-    <p>Afkast på en børneopsparingskonto beskattes ikke i bindingsperioden (pensionsbeskatningslovens § 51, stk. 4).
-    Om fonden er aktiebaseret eller ej, ændrer intet. Bemærk, at der gælder begrænsninger for, hvilke værdipapirer
-    der må ligge i et børneopsparingsdepot.</p>
+    <p class="dom dom-neutral">Uden betydning</p>
+    <p>Afkast på en børneopsparingskonto beskattes ikke i bindingsperioden (pensionsbeskatningslovens
+    §51, stk.4). Om fonden er aktiebaseret eller ej, ændrer intet. Bemærk, at der gælder begrænsninger for,
+    hvilke værdipapirer der må ligge i et børneopsparingsdepot. Det kan du læse mere om
+    <a href="https://info.skat.dk/data.aspx?oid=2048447" rel="noopener">her</a>.</p>
   </div>
 
-  <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger — ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
+  <div class="kontekst-panel" id="f-pension" role="tabpanel" aria-labelledby="ft-pension">
+    <p class="dom dom-neutral">Uden betydning</p>
+    <p>På en pensionsordning er positivlisten uden betydning. Afkastet beskattes med 15,3% i årlig PAL-skat
+    efter lagerprincippet, uanset om værdipapiret er aktiebaseret eller ej, og uanset hvilken pensionstype
+    der er tale om - aldersopsparing, ratepension, livsvarig pension (livrente) eller en kapitalpension, du
+    har flyttet ind. Positivlistens sondring mellem aktieindkomst og kapitalindkomst gælder kun frie midler,
+    ikke pensionsmidler.</p>
+  </div>
+  </div>
+  <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger - ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
 </section>
 
 <section class="forklaring">
-  <h2>Hvad betyder det at stå på listen?</h2>
-  <p>Investeringsselskaber på listen (ABL § 19 B) lagerbeskattes som <strong>aktieindkomst</strong>,
-  og beviserne kan som udgangspunkt indgå på en <strong>aktiesparekonto</strong>. Investeringsselskaber,
-  der ikke står på listen, beskattes som kapitalindkomst (ABL § 19 C) og kan ikke indgå på aktiesparekontoen.
-  Danske minimumsbeskattede investeringsforeninger følger andre regler og skal ikke stå på listen —
-  <a href="{{ base_path }}/metode.html">se datagrundlaget</a>.</p>
+ <h2>Hvad betyder det at stå på listen?</h2>
+ <p>Investeringsselskaber på listen (ABL §19B) lagerbeskattes som <strong>aktieindkomst</strong>,
+ og beviserne kan som udgangspunkt indgå på en <strong>aktiesparekonto</strong>. Investeringsselskaber,
+ der ikke står på listen, beskattes som kapitalindkomst (ABL §19C) og kan ikke indgå på aktiesparekontoen.
+ Danske minimumsbeskattede investeringsforeninger følger andre regler og skal ikke stå på listen -
+ <a href="{{ base_path }}/metode.html">se datagrundlaget</a>.</p>
 </section>
 <script>window.BASE_PATH = {{ base_path|tojson }};</script>
 <script src="{{ base_path }}/static/kontekst.js" defer></script>

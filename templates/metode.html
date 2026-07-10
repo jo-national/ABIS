@@ -5,23 +5,23 @@
 <h1>Datagrundlag og metode</h1>
 
 <h2>Hvad listen dækker</h2>
-<p>ABIS-listen omfatter <strong>investeringsselskaber</strong> (aktieavancebeskatningslovens § 19) —
-typisk udenlandske ETF'er og visse danske akkumulerende fonde — der over for Skatteforvaltningen har
-meddelt, at de er aktiebaserede (§ 19 B). Er et investeringsselskab registreret for et indkomstår,
+<p>ABIS-listen omfatter <strong>investeringsselskaber</strong> (aktieavancebeskatningslovens §19) -
+typisk udenlandske ETF'er og visse danske akkumulerende fonde - der over for Skatteforvaltningen har
+meddelt, at de er aktiebaserede (§19B). Er et investeringsselskab registreret for et indkomstår,
 lagerbeskattes gevinst og tab som aktieindkomst, og beviset kan som udgangspunkt indgå på en
-aktiesparekonto. Er det ikke registreret, beskattes det som kapitalindkomst (§ 19 C) og kan ikke
+aktiesparekonto. Er det ikke registreret, beskattes det som kapitalindkomst (§19C) og kan ikke
 indgå på aktiesparekontoen.</p>
 
 <h2>Hvad listen IKKE dækker</h2>
 <p><strong>Danske minimumsbeskattede investeringsforeninger</strong> (fx typiske udbyttebetalende
 indeksforeninger) skal ikke stå på ABIS-listen. Deres skattestatus følger af andre regler
-(aktieavancebeskatningslovens §§ 21-22): er mindst halvdelen af formuen placeret i aktier, beskattes
-de som aktieindkomst efter realisationsprincippet — uden at optræde her. At en fond ikke findes på
+(aktieavancebeskatningslovens §§21-22): er mindst halvdelen af formuen placeret i aktier, beskattes
+de som aktieindkomst efter realisationsprincippet - uden at optræde her. At en fond ikke findes på
 denne hjemmeside, betyder derfor <em>ikke</em>, at den ikke er aktiebaseret.</p>
 <p>Et konkret eksempel på forskellen: ETF'en <a href="{{ base_path }}/fond/IE00B4L5Y983/">iShares Core
-MSCI World UCITS ETF</a> er et irsk investeringsselskab — den står på listen og får svaret JA her.
+MSCI World UCITS ETF</a> er et irsk investeringsselskab - den står på listen og får svaret JA her.
 En typisk dansk, udbyttebetalende global indeksforening købt gennem banken investerer i stort set de
-samme aktier, men står <em>ikke</em> på listen, fordi den er minimumsbeskattet — og dens afkast
+samme aktier, men står <em>ikke</em> på listen, fordi den er minimumsbeskattet - og dens afkast
 beskattes alligevel som aktieindkomst. Søger du sådan en forening her og får svaret "ikke fundet",
 er det altså ikke et svar på, om den er aktiebaseret. Vi kan ikke ud fra en ISIN alene afgøre, om et
 ukendt papir er et investeringsselskab eller en minimumsbeskattet forening.</p>
@@ -41,7 +41,7 @@ som de står, og markerer dem på den pågældende fondsside.</p>
 <p>Et automatisk job kontrollerer hver nat, om Skattestyrelsens Excel-fil er ændret. Ændres filen,
 hentes og behandles den, og hele hjemmesiden genbygges. Filens digitale fingeraftryk (SHA-256), filnavn og
 kontroldato vises i bunden af hver side. Alle historiske filversioner arkiveres uændret.
-Fejler kontrollen, opdateres hjemmesiden ikke, og kontroltidspunktet i toppen opdateres ikke — vi viser aldrig
+Fejler kontrollen, opdateres hjemmesiden ikke, og kontroltidspunktet i toppen opdateres ikke - vi viser aldrig
 gamle data som friske.</p>
 
 <h2>Kilde</h2>
@@ -49,6 +49,6 @@ gamle data som friske.</p>
 <p>Filen blev hentet fra Skattestyrelsens hjemmeside den {{ hentet_dansk }}.</p>
 <p>Filen er senest opdateret på Skattestyrelsens hjemmeside {{ senest_opdateret }}.</p>
 <p>Kilden er <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsen: Beviser og aktier i
-investeringsforeninger og selskaber (IFPA)</a> — afsnittet "Liste over aktiebaserede
+investeringsforeninger og selskaber (IFPA)</a> - afsnittet "Liste over aktiebaserede
 investeringsselskaber".</p>
 {% endblock %}

@@ -19,137 +19,142 @@
 <nav class="brødkrumme"><a href="{{ base_path }}/">Forside</a> › <a href="{{ base_path }}/fonde/a.html">Alle fonde</a> › {{ fid }}</nav>
 
 <article>
-  <h1>Er {{ navn }} aktiebaseret?</h1>
+ <h1>Er {{ navn }} aktiebaseret?</h1>
 
-  {% if paa_listen_nu %}
-  <div class="svar svar-ja">
-    <p class="svar-kort">JA</p>
-    <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
-    Skattestyrelsens liste over aktiebaserede investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
-    {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.
-    Gevinst og tab lagerbeskattes som aktieindkomst (aktieavancebeskatningslovens § 19 B).</p>
-  </div>
-  {% else %}
-  <div class="svar svar-historisk">
-    <p class="svar-kort">IKKE PÅ LISTEN FOR {{ aktuelt_aar }}</p>
-    <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
-    {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}. Er selskabet fortsat et
-    investeringsselskab (aktieavancebeskatningslovens § 19) uden at være aktiebaseret, beskattes afkastet som
-    kapitalindkomst (§ 19 C). Fraværet kan dog også skyldes, at selskabet er ophørt, omdannet eller overgået
-    til andre regler — verificér hos Skattestyrelsen, før du disponerer.</p>
-  </div>
-  {% endif %}
+ {% if paa_listen_nu %}
+ <div class="svar svar-ja">
+ <p class="svar-kort">JA</p>
+ <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
+ Skattestyrelsens liste over aktiebaserede investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
+ {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.
+ Gevinst og tab lagerbeskattes som aktieindkomst (aktieavancebeskatningslovens §19B).</p>
+ </div>
+ {% else %}
+ <div class="svar svar-historisk">
+ <p class="svar-kort">IKKE PÅ LISTEN FOR {{ aktuelt_aar }}</p>
+ <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
+ {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}. Er selskabet fortsat et
+ investeringsselskab (aktieavancebeskatningslovens §19) uden at være aktiebaseret, beskattes afkastet som
+ kapitalindkomst (§19C). Fraværet kan dog også skyldes, at selskabet er ophørt, omdannet eller overgået
+ til andre regler - verificér hos Skattestyrelsen, før du disponerer.</p>
+ </div>
+ {% endif %}
 
-  {% if fond.type == "uden_isin" %}
-  <p class="note"><strong>Bemærk:</strong> Skattestyrelsen oplyser ingen ISIN-kode for dette selskab
-  (feltet står som "Udstedt uden"). Det identificeres derfor på {% if fond.cvr %}CVR-nummer{% else %}navn{% endif %}.
-  Det siger intet om selskabets skattemæssige status.</p>
-  {% endif %}
-  {% if fond.kontrolciffer_fejl %}
-  <p class="note"><strong>Bemærk:</strong> ISIN-koden {{ fid }} har et kontrolciffer, der ikke stemmer.
-  Koden er gengivet præcis som i Skattestyrelsens fil. Kontrollér den hos din bank eller Skattestyrelsen.</p>
-  {% endif %}
+ {% if fond.type == "uden_isin" %}
+ <p class="note"><strong>Bemærk:</strong> Skattestyrelsen oplyser ingen ISIN-kode for dette selskab
+ (feltet står som "Udstedt uden"). Det identificeres derfor på {% if fond.cvr %}CVR-nummer{% else %}navn{% endif %}.
+ Det siger intet om selskabets skattemæssige status.</p>
+ {% endif %}
+ {% if fond.kontrolciffer_fejl %}
+ <p class="note"><strong>Bemærk:</strong> ISIN-koden {{ fid }} har et kontrolciffer, der ikke stemmer.
+ Koden er gengivet præcis som i Skattestyrelsens fil. Kontrollér den hos din bank eller Skattestyrelsen.</p>
+ {% endif %}
 
-  <section class="kontekst" id="hvad-betyder-det">
-    <h2>Hvad betyder det for mig?</h2>
-    <p class="kontekst-intro">Den samme listestatus betyder noget forskelligt afhængigt af, hvordan du investerer.
-    Vælg din situation.</p>
+ <section class="kontekst" id="hvad-betyder-det">
+ <h2>Hvad betyder det for mig?</h2>
+ <p class="kontekst-intro">Den samme listestatus betyder noget forskelligt afhængigt af, hvordan du investerer.
+ Vælg din situation.</p>
 
-    <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
-      <button type="button" role="tab" aria-selected="true"  aria-controls="k-frit"  id="t-frit">Aktiedepot – voksen</button>
+ <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
+      <button type="button" role="tab" aria-selected="true"  aria-controls="k-frit"  id="t-frit">Aktiedepot - voksen</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="k-ask"   id="t-ask">Aktiesparekonto</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="k-barn"  id="t-barn">Depot for mindreårige</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="k-boern" id="t-boern">Børneopsparing</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="k-pension" id="t-pension">Pension</button>
     </div>
 
-    <div class="kontekst-panel" id="k-frit" role="tabpanel" aria-labelledby="t-frit">
-      {% if paa_listen_nu %}
-      <p class="dom dom-neutral">Aktieindkomst, lagerbeskattet</p>
-      <p>Gevinst og tab opgøres efter lagerprincippet — du beskattes af årets værdistigning, også uden at sælge —
-      og beskattes som aktieindkomst (§ 19 B).</p>
-      {% else %}
-      <p class="dom dom-neutral">Kapitalindkomst, lagerbeskattet</p>
-      <p>Fonden er ikke registreret som aktiebaseret for {{ aktuelt_aar }}. Afkastet beskattes som
-      kapitalindkomst (§ 19 C) efter lagerprincippet.</p>
-      {% endif %}
+        <div class="kontekst-panel-wrap">
+<div class="kontekst-panel" id="k-frit" role="tabpanel" aria-labelledby="t-frit">
+      <p class="dom dom-neutral">Listen afgør indkomsttypen - ingen af delene er entydigt bedst</p>
+      <p>Står værdipapiret på positivlisten, beskattes afkastet som aktieindkomst.
+      Står værdipapiret ikke på positivlisten, beskattes det som kapitalindkomst.
+      Begge dele opgøres efter lagerprincippet.
+      Hvad der er mest fordelagtigt afhænger af din øvrige indkomst.</p>
     </div>
 
     <div class="kontekst-panel" id="k-ask" role="tabpanel" aria-labelledby="t-ask">
       {% if paa_listen_nu and fond.type == "isin" %}
-      <p class="dom dom-ja">Kan som udgangspunkt indgå på en aktiesparekonto</p>
-      <p>Aktiesparekontoloven § 5, stk. 1, tillader dels aktier m.v. optaget til handel på et reguleret
-      marked eller en multilateral handelsfacilitet (nr. 2), dels omsættelige investeringsbeviser omfattet af
-      aktieavancebeskatningslovens § 19 B (nr. 3). Denne fond er registreret som aktiebaseret for {{ aktuelt_aar }}.
-      Betingelsen om notering henholdsvis omsættelighed skal være opfyldt — kontrollér hos din bank.</p>
+      <p class="dom dom-ja">Du leder efter fonde, der STÅR på positivlisten</p>
+      <p>Aktiesparekontoloven tillader noterede aktier og omsættelige investeringsbeviser omfattet af
+      aktieavancebeskatningslovens §19B (nr.3). Altså værdipapirer udstedt af investeringsselskaber, der
+      fremgår af positivlisten. Er værdipapiret ikke registreret på positivlisten, er det omfattet af §19C
+      og kan ikke ligge på en aktiesparekonto.</p>
       {% elif paa_listen_nu and fond.type == "uden_isin" %}
-      <p class="dom dom-tvivl">Sandsynligvis ikke — kontrollér</p>
-      <p>Selskabet er registreret som aktiebaseret for {{ aktuelt_aar }}, men Skattestyrelsen oplyser ingen
-      ISIN-kode, hvilket typisk indikerer et unoteret selskab. Aktiesparekontoloven § 5, stk. 1, kræver for
-      aktier, at de er optaget til handel på et reguleret marked eller en multilateral handelsfacilitet (nr. 2),
-      og tillader derudover kun omsættelige <em>investeringsbeviser</em> omfattet af § 19 B (nr. 3). Unoterede
-      aktier opfylder ingen af delene. Vi kan ikke ud fra listen alene afgøre, hvilken type andele selskabet
-      udsteder. Spørg din bank eller Skattestyrelsen.</p>
+      <p class="dom dom-tvivl">Sandsynligvis ikke - kontrollér</p>
+      <p>Selskabet står på positivlisten, men Skattestyrelsen oplyser ingen ISIN-kode, hvilket typisk
+      indikerer et unoteret selskab. Aktiesparekontoloven tillader noterede aktier og omsættelige
+      investeringsbeviser omfattet af §19B - unoterede aktier opfylder ingen af delene. Vi kan ikke ud fra
+      listen alene afgøre, hvilken type andele selskabet udsteder. Spørg din bank eller Skattestyrelsen.</p>
       {% else %}
-      <p class="dom dom-nej">Kan ikke indgå på en aktiesparekonto</p>
-      <p>Fonden er ikke registreret som aktiebaseret for {{ aktuelt_aar }}. Et investeringsselskab omfattet af
-      § 19 C er ikke blandt de værdipapirer, aktiesparekontoloven § 5 tillader.</p>
+      <p class="dom dom-nej">Kan ikke ligge på en aktiesparekonto</p>
+      <p>Værdipapiret er ikke registreret på positivlisten. Et investeringsselskab omfattet af §19C er ikke
+      blandt de værdipapirer, aktiesparekontoloven tillader.</p>
       {% endif %}
     </div>
 
-
     <div class="kontekst-panel" id="k-barn" role="tabpanel" aria-labelledby="t-barn">
       {% if paa_listen_nu %}
-      <p class="dom dom-nej">Barnets personfradrag kan ikke udnyttes</p>
-      <p>Fonden beskattes som aktieindkomst. Personfradraget kan modregnes i kapitalindkomst, ikke i aktieindkomst.
-      Investerer du barnets frie midler med det formål at udnytte personfradraget, er en fond, der
-      <em>ikke</em> står på listen, typisk mere velegnet. Bemærk desuden, at løbende afkast af pengegaver fra
-      forældre beskattes hos giveren.</p>
+      <p class="dom dom-nej">Du leder typisk efter fonde, der IKKE står på listen</p>
+      <p>Barnets personfradrag kan modregnes i kapitalindkomst - ikke i aktieindkomst.
+      Investerer du barnets frie midler for at udnytte personfradraget, er et investeringsselskab uden for
+      positivlisten derfor typisk mere velegnet. Dette værdipapir står på listen og beskattes som
+      aktieindkomst. Bemærk, at løbende afkast af pengegaver fra forældre beskattes hos giveren.</p>
       {% else %}
       <p class="dom dom-ja">Barnets personfradrag kan udnyttes</p>
-      <p>Fonden er ikke registreret som aktiebaseret og beskattes som kapitalindkomst, som kan modregnes i barnets
-      personfradrag. Lagerbeskatningen betyder, at fradraget udnyttes løbende år for år. Bemærk, at løbende afkast
-      af pengegaver fra forældre beskattes hos giveren, og at barnets øvrige indkomst også bruger af fradraget.</p>
+      <p>Barnets personfradrag kan modregnes i kapitalindkomst - ikke i aktieindkomst.
+      Dette værdipapir står ikke på positivlisten og beskattes som kapitalindkomst, og er derfor typisk
+      mere velegnet, hvis formålet er at udnytte personfradraget. Bemærk, at løbende afkast af pengegaver
+      fra forældre beskattes hos giveren, og at barnets øvrige indkomst også bruger af fradraget.</p>
       {% endif %}
     </div>
 
     <div class="kontekst-panel" id="k-boern" role="tabpanel" aria-labelledby="t-boern">
       <p class="dom dom-neutral">Uden betydning</p>
-      <p>Afkast på en børneopsparingskonto beskattes ikke i bindingsperioden — hverken renter, udbytter eller
-      kursgevinster (pensionsbeskatningslovens § 51, stk. 4). Om fonden er aktiebaseret eller ej, har derfor ingen
-      skattemæssig betydning her. Bemærk, at der gælder begrænsninger for, hvilke værdipapirer der må ligge i et
-      børneopsparingsdepot.</p>
+      <p>Afkast på en børneopsparingskonto beskattes ikke i bindingsperioden (pensionsbeskatningslovens
+      §51, stk.4). Om fonden er aktiebaseret eller ej, ændrer intet. Bemærk, at der gælder begrænsninger
+      for, hvilke værdipapirer der må ligge i et børneopsparingsdepot. Det kan du læse mere om
+      <a href="https://info.skat.dk/data.aspx?oid=2048447" rel="noopener">her</a>.</p>
     </div>
 
-    <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger — ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
-  </section>
+    <div class="kontekst-panel" id="k-pension" role="tabpanel" aria-labelledby="t-pension">
+      <p class="dom dom-neutral">Uden betydning</p>
+      <p>På en pensionsordning er positivlisten uden betydning. Afkastet beskattes med 15,3% i årlig
+      PAL-skat efter lagerprincippet, uanset om værdipapiret er aktiebaseret eller ej, og uanset hvilken
+      pensionstype der er tale om - aldersopsparing, ratepension, livsvarig pension (livrente) eller en
+      kapitalpension, du har flyttet ind. Positivlistens sondring mellem aktieindkomst og kapitalindkomst
+      gælder kun frie midler, ikke pensionsmidler.</p>
+    </div>
+    </div>
+    <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger - ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
+ </section>
 
-  <h2>Status pr. indkomstår</h2>
-  <table class="aarstabel">
-    <thead><tr><th scope="col">Indkomstår</th><th scope="col">Registreret som aktiebaseret</th></tr></thead>
-    <tbody>
-    {% for aar in alle_aar|reverse %}
-      <tr><td>{{ aar }}</td><td>{% if aar in fond.aar %}Ja{% else %}Nej{% endif %}</td></tr>
-    {% endfor %}
-    </tbody>
-  </table>
+ <h2>Status pr. indkomstår</h2>
+ <table class="aarstabel">
+ <thead><tr><th scope="col">Indkomstår</th><th scope="col">Registreret som aktiebaseret</th></tr></thead>
+ <tbody>
+ {% for aar in alle_aar|reverse %}
+ <tr><td>{{ aar }}</td><td>{% if aar in fond.aar %}Ja{% else %}Nej{% endif %}</td></tr>
+ {% endfor %}
+ </tbody>
+ </table>
 
-  <h2>Stamdata fra listen</h2>
-  <dl class="stamdata">
-    {% if fond.type == "isin" %}<dt>ISIN</dt>
-    <dd><code class="isin-kode">{{ fid }}</code>
-    <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button></dd>{% endif %}
-    <dt>Navn</dt><dd>{{ navn }}</dd>
-    {% if fond.navne|length > 1 %}
-    <dt>Også registreret som</dt><dd>{{ fond.navne[1:] | join("; ") }}</dd>
-    {% endif %}
-    {% if fond.lei %}<dt>LEI</dt><dd>{{ fond.lei }}</dd>{% endif %}
-    {% if fond.cvr %}<dt>CVR/SE/TIN</dt><dd>{{ fond.cvr }}</dd>{% endif %}
-    {% if fond.hjemsted %}<dt>Skattemæssigt hjemsted</dt><dd>{{ fond.hjemsted }}</dd>{% endif %}
-  </dl>
+ <h2>Stamdata fra listen</h2>
+ <dl class="stamdata">
+ {% if fond.type == "isin" %}<dt>ISIN</dt>
+ <dd><code class="isin-kode">{{ fid }}</code>
+ <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button></dd>{% endif %}
+ <dt>Navn</dt><dd>{{ navn }}</dd>
+ {% if fond.navne|length > 1 %}
+ <dt>Også registreret som</dt><dd>{{ fond.navne[1:] | join("; ") }}</dd>
+ {% endif %}
+ {% if fond.lei %}<dt>LEI</dt><dd>{{ fond.lei }}</dd>{% endif %}
+ {% if fond.cvr %}<dt>CVR/SE/TIN</dt><dd>{{ fond.cvr }}</dd>{% endif %}
+ {% if fond.hjemsted %}<dt>Skattemæssigt hjemsted</dt><dd>{{ fond.hjemsted }}</dd>{% endif %}
+ </dl>
 
-  <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
-  aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
-  Optagelse på listen er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status.</p>
+ <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
+ aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
+ Optagelse på listen er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status.</p>
 </article>
 <script src="{{ base_path }}/static/kontekst.js" defer></script>
 {% endblock %}
