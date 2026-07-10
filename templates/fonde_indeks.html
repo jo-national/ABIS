@@ -4,11 +4,11 @@
 {% block content %}
 <h1>Fonde på listen — {{ bogstav|upper }}</h1>
 <nav class="bogstaver">
-{% for b in alle_bogstaver %}<a href="/fonde/{{ b }}.html"{% if b == bogstav %} aria-current="page"{% endif %}>{{ b|upper }}</a> {% endfor %}
+{% for b in alle_bogstaver %}<a href="{{ base_path }}/fonde/{{ b }}.html"{% if b == bogstav %} aria-current="page"{% endif %}>{{ b|upper }}</a> {% endfor %}
 </nav>
 <ul class="fondsliste">
-{% for isin, e in fonde %}
-  <li><a href="/fond/{{ isin }}/">{{ e.navn or isin }}</a> <span class="isin">{{ isin }}</span></li>
+{% for fid, e, navn in fonde %}
+  <li><a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a> <span class="isin">{{ fid }}</span></li>
 {% endfor %}
 </ul>
 {% endblock %}

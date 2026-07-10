@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}Er din fond aktiebaseret?{% endblock %}</title>
-<meta name="description" content="{% block description %}Slå op om en ETF eller investeringsforening står på Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS/positivlisten).{% endblock %}">
+<meta name="description" content="{% block description %}Slå op om en ETF eller fond står på Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS/positivlisten).{% endblock %}">
 {% block canonical %}{% endblock %}
-<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="{{ base_path }}/static/style.css">
 {% block head %}{% endblock %}
 </head>
 <body>
 <header class="top">
-  <a class="logo" href="/">Aktiebaseret<span>?</span></a>
+  <a class="logo" href="{{ base_path }}/">Aktiebaseret<span>?</span></a>
   <nav>
-    <a href="/fonde/a.html">Alle fonde</a>
-    <a href="/metode.html">Datagrundlag</a>
-    <a href="/om.html">Om</a>
+    <a href="{{ base_path }}/fonde/a.html">Alle fonde</a>
+    <a href="{{ base_path }}/metode.html">Datagrundlag</a>
+    <a href="{{ base_path }}/om.html">Om</a>
   </nav>
 </header>
 
@@ -34,7 +34,7 @@
   Verificér altid hos Skattestyrelsen, før du træffer beslutninger:
   <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens officielle liste (skat.dk)</a>.</p>
   <p class="kolofon">Bygger udelukkende på Skattestyrelsens offentliggjorte lister.
-  Kildefil: {{ kilde.filnavn }} · <a href="/metode.html">Sådan behandler vi data</a></p>
+  Kildefil: {{ kilde.filnavn }} · <a href="{{ base_path }}/metode.html">Sådan behandler vi data</a></p>
 </footer>
 </body>
 </html>

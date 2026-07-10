@@ -7,30 +7,29 @@
   <h1>Er din fond aktiebaseret?</h1>
   <p class="undertekst">Søg på navn eller ISIN i Skattestyrelsens liste over aktiebaserede
   investeringsselskaber ("positivlisten") — afgørende for aktiesparekontoen og for beskatningen
-  af ETF'er. {{ antal_pr_aar[aktuelt_aar|string] }} papirer på listen for {{ aktuelt_aar }}.</p>
+  af ETF'er. {{ antal_pr_aar[aktuelt_aar|string] }} fonde er registreret for {{ aktuelt_aar }}.</p>
 
   <div class="soegning">
     <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
     <input id="q" type="search" placeholder="Fx »iShares Core MSCI World« eller »IE00B4L5Y983«" autocomplete="off" autofocus>
     <ol id="resultater" aria-live="polite"></ol>
     <div id="ikke-fundet" hidden>
-      <h2>Ikke fundet på listen</h2>
-      <p>Papiret står ikke på ABIS-listen for {{ aktuelt_aar }}. Det betyder <em>ikke</em> nødvendigvis,
-      at det ikke er aktiebaseret:</p>
-      <p>Er papiret et <strong>investeringsselskab</strong> (typisk en udenlandsk ETF), peger fraværet på,
+      <h2>Ikke fundet</h2>
+      <p>Fonden står ikke på ABIS-listen for {{ aktuelt_aar }}. Det betyder <em>ikke</em> nødvendigvis,
+      at den ikke er aktiebaseret.</p>
+      <p>Er der tale om et <strong>investeringsselskab</strong> (typisk en udenlandsk ETF), peger fraværet på,
       at det beskattes som kapitalindkomst og ikke kan indgå på en aktiesparekonto.</p>
-      <p>Er papiret en <strong>dansk minimumsbeskattet investeringsforening</strong> (fx en udbyttebetalende
-      indeksforening), siger denne liste intet om dets status — den type fonde skal slet ikke stå på ABIS-listen.
-      Kontakt udbyderen eller Skattestyrelsen.</p>
-      <p>Vi kan ikke ud fra ISIN alene afgøre, hvilken kategori papiret tilhører.
-      <a href="/metode.html">Læs hvad listen dækker — og ikke dækker</a>.</p>
+      <p>Er der tale om en <strong>dansk minimumsbeskattet investeringsforening</strong> (fx en udbyttebetalende
+      indeksforening), siger denne liste intet om dens status — den type fonde skal slet ikke stå på ABIS-listen.</p>
+      <p><strong>Søgte du på ISIN?</strong> {{ antal_uden_isin }} selskaber på listen er udstedt uden ISIN-kode.
+      Prøv at søge på navnet i stedet.</p>
+      <p>Vi kan ikke ud fra en ISIN alene afgøre, hvilken kategori et ukendt papir tilhører.
+      <a href="{{ base_path }}/metode.html">Læs hvad listen dækker — og ikke dækker</a>.</p>
     </div>
   </div>
 </section>
 
-<aside class="annonce" data-slot="forside-under-soegning" aria-label="Annonce">
-  <!-- Annonceplads: aktiveres først når annoncenetværk og samtykkeløsning er på plads. -->
-</aside>
+<aside class="annonce" data-slot="forside-under-soegning" aria-label="Annonce"></aside>
 
 <section class="forklaring">
   <h2>Hvad betyder det at stå på listen?</h2>
@@ -38,7 +37,8 @@
   og beviserne kan som udgangspunkt indgå på en <strong>aktiesparekonto</strong>. Investeringsselskaber,
   der ikke står på listen, beskattes som kapitalindkomst (ABL § 19 C) og kan ikke indgå på aktiesparekontoen.
   Danske minimumsbeskattede investeringsforeninger følger andre regler og skal ikke stå på listen —
-  <a href="/metode.html">se datagrundlaget</a>.</p>
+  <a href="{{ base_path }}/metode.html">se datagrundlaget</a>.</p>
 </section>
-<script src="/static/search.js" defer></script>
+<script>window.BASE_PATH = {{ base_path|tojson }};</script>
+<script src="{{ base_path }}/static/search.js" defer></script>
 {% endblock %}

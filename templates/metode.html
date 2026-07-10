@@ -7,18 +7,29 @@
 <h2>Hvad listen dækker</h2>
 <p>ABIS-listen omfatter <strong>investeringsselskaber</strong> (aktieavancebeskatningslovens § 19) —
 typisk udenlandske ETF'er og visse danske akkumulerende fonde — der over for Skatteforvaltningen har
-meddelt, at de er aktiebaserede (§ 19 B). Står et investeringsselskab på listen for et indkomstår,
+meddelt, at de er aktiebaserede (§ 19 B). Er et investeringsselskab registreret for et indkomstår,
 lagerbeskattes gevinst og tab som aktieindkomst, og beviset kan som udgangspunkt indgå på en
-aktiesparekonto. Står det ikke på listen, beskattes det som kapitalindkomst (§ 19 C) og kan ikke
+aktiesparekonto. Er det ikke registreret, beskattes det som kapitalindkomst (§ 19 C) og kan ikke
 indgå på aktiesparekontoen.</p>
 
 <h2>Hvad listen IKKE dækker</h2>
 <p><strong>Danske minimumsbeskattede investeringsforeninger</strong> (fx typiske udbyttebetalende
 indeksforeninger) skal ikke stå på ABIS-listen. Deres skattestatus følger af andre regler
 (aktieavancebeskatningslovens §§ 21-22): er mindst halvdelen af formuen placeret i aktier, beskattes
-de som aktieindkomst efter realisationsprincippet — uden at optræde her. At et papir ikke findes på
-dette site, betyder derfor <em>ikke</em>, at det ikke er aktiebaseret. Vi kan ikke ud fra ISIN alene
+de som aktieindkomst efter realisationsprincippet — uden at optræde her. At en fond ikke findes på
+dette site, betyder derfor <em>ikke</em>, at den ikke er aktiebaseret. Vi kan ikke ud fra en ISIN alene
 afgøre, om et ukendt papir er et investeringsselskab eller en minimumsbeskattet forening.</p>
+
+<h2>Sådan læser vi Skattestyrelsens fil</h2>
+<p>Filen har et faneblad pr. indkomstår og en kolonne, "Registrerede år", der for hvert selskab angiver
+præcis hvilke år, det har været registreret som aktiebaseret. Vi bruger den kolonne som kilde til
+år-for-år-tabellen på hver fondsside, og kontrollerer den mod fanebladene. Kolonnen dækker også
+indkomståret 2020, som ikke har sit eget faneblad.</p>
+<p>{{ antal_uden_isin }} selskaber på listen er udstedt uden ISIN-kode. De optræder her identificeret på
+CVR-nummer eller navn. De ville ellers mangle, selv om de står på listen.</p>
+<p>Et selskab kan optræde under flere navnevarianter gennem årene. Alle varianter bevares og kan søges frem.
+Enkelte celler i Skattestyrelsens fil indeholder tydelige tastefejl. Vi retter dem ikke, men gengiver dem
+som de står, og markerer dem på den pågældende fondsside.</p>
 
 <h2>Sådan opdateres data</h2>
 <p>Et automatisk job kontrollerer hver nat, om Skattestyrelsens Excel-fil er ændret. Ændres filen,
