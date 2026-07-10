@@ -1,3 +1,4 @@
 site/
 __pycache__/
 fetch.log
+data/last_checked.json
