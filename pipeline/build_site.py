@@ -74,18 +74,18 @@ def main() -> None:
     if lc_fil.exists():
         lc = json.loads(lc_fil.read_text(encoding="utf-8"))
         tjekket_dt = datetime.fromisoformat(lc["checked_at_utc"])
-        http_lm = lc.get("http_last_modified") or kilde.get("http_last_modified")
     else:
         tjekket_dt = hentet_dt
-        http_lm = kilde.get("http_last_modified")
 
-    if http_lm:
-        senest_opdateret = dansk_dato_tid(parsedate_to_datetime(http_lm))
-    elif kilde.get("offentliggjort_tekst"):
-        senest_opdateret = (f"den {kilde['offentliggjort_tekst']} "
-                            "(offentliggørelsesdato ifølge skat.dk; klokkeslæt oplyses ikke)")
+    # Kun ÉN brugervendt "senest opdateret"-dato på hele sitet: den officielle
+    # offentliggørelsesdato, som Skattestyrelsen selv angiver på siden. Filens rå
+    # HTTP Last-Modified-header bruges bevidst IKKE, da den (serverens
+    # upload-tidsstempel) rutinemæssigt afviger fra offentliggørelsesdatoen og
+    # ville fremstå som en modstridende dato. Én kilde, samme dato overalt.
+    if kilde.get("offentliggjort_tekst"):
+        senest_opdateret = f"den {kilde['offentliggjort_tekst']}"
     else:
-        senest_opdateret = "ukendt — se skat.dk"
+        senest_opdateret = "- se skat.dk"
 
     ctx = {
         "aktuelt_aar": aktuelt_aar,
