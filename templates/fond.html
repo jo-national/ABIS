@@ -33,9 +33,10 @@
   <div class="svar svar-historisk">
     <p class="svar-kort">IKKE PÅ LISTEN FOR {{ aktuelt_aar }}</p>
     <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
-    {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}. Et investeringsselskab,
-    der ikke er aktiebaseret, beskattes som kapitalindkomst (§ 19 C).
-    Status kan være ændret — verificér hos Skattestyrelsen, før du disponerer.</p>
+    {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}. Er selskabet fortsat et
+    investeringsselskab (aktieavancebeskatningslovens § 19) uden at være aktiebaseret, beskattes afkastet som
+    kapitalindkomst (§ 19 C). Fraværet kan dog også skyldes, at selskabet er ophørt, omdannet eller overgået
+    til andre regler — verificér hos Skattestyrelsen, før du disponerer.</p>
   </div>
   {% endif %}
 
@@ -64,15 +65,18 @@
     <div class="kontekst-panel" id="k-ask" role="tabpanel" aria-labelledby="t-ask">
       {% if paa_listen_nu and fond.type == "isin" %}
       <p class="dom dom-ja">Kan som udgangspunkt indgå på en aktiesparekonto</p>
-      <p>Aktiesparekontoloven § 5 tillader blandt andet omsættelige investeringsbeviser omfattet af
-      aktieavancebeskatningslovens § 19 B. Denne fond er registreret som aktiebaseret for {{ aktuelt_aar }}.
-      Er beviset ikke omsætteligt, gælder det ikke — kontrollér hos din bank.</p>
+      <p>Aktiesparekontoloven § 5, stk. 1, tillader dels aktier m.v. optaget til handel på et reguleret
+      marked eller en multilateral handelsfacilitet (nr. 2), dels omsættelige investeringsbeviser omfattet af
+      aktieavancebeskatningslovens § 19 B (nr. 3). Denne fond er registreret som aktiebaseret for {{ aktuelt_aar }}.
+      Betingelsen om notering henholdsvis omsættelighed skal være opfyldt — kontrollér hos din bank.</p>
       {% elif paa_listen_nu and fond.type == "uden_isin" %}
       <p class="dom dom-tvivl">Sandsynligvis ikke — kontrollér</p>
       <p>Selskabet er registreret som aktiebaseret for {{ aktuelt_aar }}, men Skattestyrelsen oplyser ingen
-      ISIN-kode, hvilket typisk indikerer et unoteret selskab. Aktiesparekontoloven § 5 omfatter noterede aktier
-      og <em>omsættelige</em> investeringsbeviser. Vi kan ikke afgøre ud fra listen alene, om dette selskabs
-      andele opfylder betingelsen. Spørg din bank eller Skattestyrelsen.</p>
+      ISIN-kode, hvilket typisk indikerer et unoteret selskab. Aktiesparekontoloven § 5, stk. 1, kræver for
+      aktier, at de er optaget til handel på et reguleret marked eller en multilateral handelsfacilitet (nr. 2),
+      og tillader derudover kun omsættelige <em>investeringsbeviser</em> omfattet af § 19 B (nr. 3). Unoterede
+      aktier opfylder ingen af delene. Vi kan ikke ud fra listen alene afgøre, hvilken type andele selskabet
+      udsteder. Spørg din bank eller Skattestyrelsen.</p>
       {% else %}
       <p class="dom dom-nej">Kan ikke indgå på en aktiesparekonto</p>
       <p>Fonden er ikke registreret som aktiebaseret for {{ aktuelt_aar }}. Et investeringsselskab omfattet af
