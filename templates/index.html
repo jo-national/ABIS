@@ -7,13 +7,12 @@
 {% endblock %}
 {% block content %}
 <section class="hero">
- <p class="undertekst">Er dit værdipapir på positivlisten?
+ <p class="undertekst">Er dit værdipapir på positivlisten?<br>
  Søg på navnet eller ISIN-koden, så fortæller vi dig alt, du skal vide.</p>
- <p class="undertekst-tal">{{ antal_pr_aar[aktuelt_aar|string]|tusind }} fonde er registreret for {{ aktuelt_aar }}.</p>
 
  <div class="soegning">
  <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
- <input id="q" type="search" placeholder="Fx »iShares Core MSCI World« eller »IE00B4L5Y983«" autocomplete="off" autofocus>
+ <input id="q" type="search" placeholder="F.eks. iShares Core MSCI World eller IE00B4L5Y983." autocomplete="off" autofocus>
  <ol id="resultater" aria-live="polite"></ol>
  <div id="ikke-fundet" hidden>
  <h2>Ikke fundet</h2>
@@ -28,6 +27,7 @@
  <p>Vi kan ikke ud fra en ISIN alene afgøre, hvilken kategori et ukendt papir tilhører.
  <a href="{{ base_path }}/metode.html">Læs hvad listen dækker - og ikke dækker</a>.</p>
  </div>
+ <p class="undertekst-tal">{{ antal_pr_aar[aktuelt_aar|string]|tusind }} fonde er registreret for {{ aktuelt_aar }}.</p>
  </div>
 </section>
 
@@ -38,7 +38,7 @@
  Vælg din situation og se, hvad du skal lede efter - inden du søger.</p>
 
  <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
-    <button type="button" role="tab" aria-selected="true"  aria-controls="f-frit"  id="ft-frit">Aktiedepot - voksen</button>
+    <button type="button" role="tab" aria-selected="true"  aria-controls="f-frit"  id="ft-frit">Aktiedepot</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="f-ask"   id="ft-ask">Aktiesparekonto</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="f-barn"  id="ft-barn">Depot for mindreårige</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="f-boern" id="ft-boern">Børneopsparing</button>

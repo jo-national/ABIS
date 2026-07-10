@@ -56,7 +56,7 @@
  Vælg din situation.</p>
 
  <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
-      <button type="button" role="tab" aria-selected="true"  aria-controls="k-frit"  id="t-frit">Aktiedepot - voksen</button>
+      <button type="button" role="tab" aria-selected="true"  aria-controls="k-frit"  id="t-frit">Aktiedepot</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="k-ask"   id="t-ask">Aktiesparekonto</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="k-barn"  id="t-barn">Depot for mindreårige</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="k-boern" id="t-boern">Børneopsparing</button>
@@ -141,7 +141,7 @@
  <h2>Stamdata fra listen</h2>
  <dl class="stamdata">
  {% if fond.type == "isin" %}<dt>ISIN</dt>
- <dd><code class="isin-kode">{{ fid }}</code>
+ <dd><span class="isin-vaerdi">{{ fid }}</span>
  <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button></dd>{% endif %}
  <dt>Navn</dt><dd>{{ navn }}</dd>
  {% if fond.navne|length > 1 %}
