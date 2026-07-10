@@ -65,3 +65,8 @@ footer p{max-width:var(--maks);margin:0 auto;padding:.7rem 1.25rem;font-size:.85
 .dom-tvivl{color:var(--advarsel)}
 .dom-neutral{color:var(--blaek)}
 .kontekst-forbehold{font-size:.85rem;color:#5a6472;border-top:1px solid var(--linje);margin-top:.9rem;padding-top:.6rem}
+.isin-kode{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.95rem}
+.kopier{font:inherit;font-size:.75rem;margin-left:.5rem;padding:.15rem .5rem;border:1px solid var(--linje);
+  background:#f4f7fa;border-radius:.3rem;cursor:pointer;color:#3c4654}
+.kopier:hover{background:#e7edf4}
+.forside-kontekst .dom{font-size:1rem}

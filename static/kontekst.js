@@ -25,3 +25,25 @@
   });
   vis(0);
 })();
+
+// Kopiér ISIN til udklipsholder. Knappen skjules, hvis browseren ikke kan.
+(function () {
+  const knapper = document.querySelectorAll("[data-kopier]");
+  if (!knapper.length) return;
+  if (!navigator.clipboard) {
+    knapper.forEach((k) => (k.hidden = true));
+    return;
+  }
+  knapper.forEach((k) => {
+    k.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(k.dataset.kopier);
+        const før = k.textContent;
+        k.textContent = "Kopieret";
+        setTimeout(() => (k.textContent = før), 1500);
+      } catch {
+        k.textContent = "Kunne ikke kopiere";
+      }
+    });
+  });
+})();
