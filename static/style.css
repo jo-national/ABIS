@@ -1,0 +1,53 @@
+/* Baseline-stil: klarhed over effekter. Endeligt design leveres via Claude Design. */
+:root{
+  --blaek:#1c2430; --papir:#fafbfc; --linje:#d8dee6;
+  --ja:#0c6b3d; --ja-bg:#e8f5ee; --advarsel:#8a5a00; --advarsel-bg:#fdf3e0;
+  --link:#0b5bd3; --maks:46rem;
+}
+*{box-sizing:border-box}
+body{margin:0;font:400 1rem/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--blaek);background:var(--papir)}
+main{max-width:var(--maks);margin:0 auto;padding:1rem 1.25rem 3rem}
+a{color:var(--link)}
+h1{font-size:1.75rem;line-height:1.25;margin:1.2rem 0 .6rem}
+h2{font-size:1.2rem;margin:1.8rem 0 .4rem}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:var(--maks);margin:0 auto;padding:.9rem 1.25rem}
+.top .logo{font-weight:700;text-decoration:none;color:var(--blaek);font-size:1.1rem}
+.top .logo span{color:var(--ja)}
+.top nav a{margin-left:1rem;text-decoration:none;font-size:.95rem}
+.statuslinje{background:#eef2f7;border-block:1px solid var(--linje);font-size:.85rem;padding:.45rem 1.25rem;text-align:center}
+.hero .undertekst{font-size:1.05rem}
+.soegning input{width:100%;font-size:1.15rem;padding:.8rem 1rem;border:2px solid var(--blaek);border-radius:.5rem;background:#fff}
+#resultater{list-style:none;margin:.5rem 0;padding:0;border:1px solid var(--linje);border-radius:.5rem;background:#fff;display:none}
+#resultater.vis{display:block}
+#resultater li{border-bottom:1px solid var(--linje)}
+#resultater li:last-child{border-bottom:0}
+#resultater a{display:flex;justify-content:space-between;gap:1rem;padding:.55rem .9rem;text-decoration:none;color:inherit}
+#resultater a:hover,#resultater a:focus{background:#f0f4fa}
+#resultater .isin{color:#5a6472;font-size:.85rem;white-space:nowrap}
+#resultater .status-ja{color:var(--ja);font-weight:600}
+#ikke-fundet{border:1px solid var(--linje);border-left:4px solid var(--advarsel);background:var(--advarsel-bg);border-radius:.4rem;padding:.2rem 1rem;margin-top:.6rem}
+.svar{border-radius:.5rem;padding:1rem 1.25rem;margin:1rem 0}
+.svar-ja{background:var(--ja-bg);border:1px solid var(--ja)}
+.svar-historisk{background:var(--advarsel-bg);border:1px solid var(--advarsel)}
+.svar-kort{font-size:1.5rem;font-weight:800;margin:.1rem 0}
+.svar-ja .svar-kort{color:var(--ja)}
+.svar-historisk .svar-kort{color:var(--advarsel)}
+.aarstabel{border-collapse:collapse;width:100%;max-width:22rem}
+.aarstabel th,.aarstabel td{border:1px solid var(--linje);padding:.35rem .7rem;text-align:left}
+.stamdata{display:grid;grid-template-columns:auto 1fr;gap:.25rem 1rem}
+.stamdata dt{font-weight:600}
+.stamdata dd{margin:0;overflow-wrap:anywhere}
+.fondsliste{list-style:none;padding:0}
+.fondsliste li{padding:.3rem 0;border-bottom:1px solid var(--linje);display:flex;justify-content:space-between;gap:1rem}
+.fondsliste .isin{color:#5a6472;font-size:.85rem;white-space:nowrap}
+.bogstaver a{margin-right:.4rem}
+.annonce{min-height:0;margin:1.5rem 0}
+.annonce[data-aktiv]{min-height:90px;border:1px dashed var(--linje);border-radius:.4rem}
+.annonce[data-aktiv]::before{content:"Annonce";font-size:.7rem;color:#5a6472;display:block;padding:.2rem .4rem}
+.brødkrumme{font-size:.85rem;margin-top:1rem}
+.kilde{font-size:.9rem;color:#3c4654}
+footer{border-top:1px solid var(--linje);background:#eef2f7}
+footer p{max-width:var(--maks);margin:0 auto;padding:.7rem 1.25rem;font-size:.85rem}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){#resultater a{transition:background .1s}}
