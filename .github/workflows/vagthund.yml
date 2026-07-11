@@ -1,0 +1,49 @@
+name: Vagthund - tjek at daglig opdatering kørte
+
+# Kører hver dag kl. 05:45 UTC (07:45 dansk sommertid) - en time efter den
+# rigtige opdatering (04:45 UTC / 06:45 dansk tid). Tjekker om
+# "Opdater data og udgiv site" er kørt inden for det seneste døgn. Er den
+# ikke, fejler dette job bevidst (rødt kryds), hvilket sender en mail til
+# dig, hvis du har slået mail-notifikationer til under
+# github.com/settings/notifications -> Actions.
+#
+# Denne fil erstatter IKKE opdater.yml - den overvåger den udefra.
+
+on:
+  schedule:
+    - cron: "45 5 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  actions: read
+
+jobs:
+  tjek-seneste-koersel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tjek om "Opdater data og udgiv site" er kørt for nylig
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          SIDSTE=$(gh api \
+            "repos/${{ github.repository }}/actions/workflows/opdater.yml/runs?per_page=1" \
+            --jq '.workflow_runs[0].created_at')
+
+          if [ -z "$SIDSTE" ] || [ "$SIDSTE" = "null" ]; then
+            echo "::error::Fandt ingen tidligere kørsler af opdater.yml overhovedet."
+            exit 1
+          fi
+
+          SIDSTE_EPOCH=$(date -d "$SIDSTE" +%s)
+          NU_EPOCH=$(date -u +%s)
+          TIMER_SIDEN=$(( (NU_EPOCH - SIDSTE_EPOCH) / 3600 ))
+
+          echo "Seneste kørsel af opdater.yml: $SIDSTE ($TIMER_SIDEN timer siden)."
+
+          if [ "$TIMER_SIDEN" -gt 26 ]; then
+            echo "::error::Den daglige opdatering er ikke kørt i $TIMER_SIDEN timer. Tjek fanen Actions og se punktet om cron-fejlfinding."
+            exit 1
+          fi
+
+          echo "OK - opdateringen kørte som forventet."

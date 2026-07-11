@@ -1,4 +1,6 @@
 name: Opdater data og udgiv site
+# Filen er rørt en anelse (denne linje) for at få GitHub til at genregistrere
+# den daglige tidsplan nedenfor - se schedule: 45 4 * * *.
 
 on:
   schedule:
