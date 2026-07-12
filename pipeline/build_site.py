@@ -270,6 +270,14 @@ def main() -> None:
     )
     # Browsere beder automatisk om /favicon.ico i roden.
     shutil.copy(STATIC / "favicon.ico", SITE / "favicon.ico")
+
+    # Host den aktuelle kildefil, så "benytter lige nu filen X" kan være et
+    # dybdelink. Vi tager den NYESTE arkiverede version af netop det filnavn,
+    # sitet kører på - så linket altid matcher det viste filnavn.
+    raa_kandidater = sorted((ROOT / "data" / "raw").glob(f"*_{kilde['filnavn']}"))
+    if raa_kandidater:
+        (SITE / "kilde").mkdir(exist_ok=True)
+        shutil.copy(raa_kandidater[-1], SITE / "kilde" / kilde["filnavn"])
     (SITE / "CNAME").write_text("www.xn--ppositivlisten-lib.dk\n", encoding="utf-8")   
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8"
