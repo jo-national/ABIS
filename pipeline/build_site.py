@@ -66,6 +66,58 @@ def main() -> None:
         lstrip_blocks=True,
     )
     env.filters["tusind"] = tusind
+
+    # Udbyder-genkendelse: oversætter fondsnavne til de brands, folk søger på.
+    # Kurateret og konservativ - kun mappinger vi er sikre på. Alt andet -> "Andre".
+    # Rækkefølgen betyder noget: mere specifikke tokens først.
+    UDBYDER_REGLER = [
+        ("iShares",         ["ISHARES"]),
+        ("BlackRock",       ["BLACKROCK", "BGF", "BSF"]),  # BGF/BSF = BlackRock-fondsparaplyer
+        ("Xtrackers",       ["XTRACKERS"]),
+        ("DWS",             ["DWS"]),
+        ("JPMorgan",        ["JPMORGAN", "JPM ", "J.P. MORGAN", "J P MORGAN"]),
+        ("Amundi",          ["AMUNDI", "LYXOR"]),
+        ("Robeco",          ["ROBECO", "RCGF"]),  # RCGF = Robeco Capital Growth Funds
+        ("Nordea",          ["NORDEA"]),
+        ("Vanguard",        ["VANGUARD"]),
+        ("Global X",        ["GLOBAL X", "GLOBALX"]),
+        ("VanEck",          ["VANECK", "VAN ECK"]),
+        ("WisdomTree",      ["WISDOMTREE", "WISDOM TREE"]),
+        ("Wellington",      ["WELLINGTON"]),
+        ("PGIM",            ["PGIM"]),
+        ("Schroders",       ["SCHRODER"]),
+        ("Legal & General", ["LEGAL & GENERAL", "LEGAL AND GENERAL", "L&G"]),
+        ("M&G",             ["M&G"]),
+        ("Fidelity",        ["FIDELITY"]),
+        ("Fundsmith",       ["FUNDSMITH"]),
+        ("T. Rowe Price",   ["T. ROWE", "T ROWE", "T.ROWE"]),
+        ("Danske Invest",   ["DANSKE INVEST", "DANSKE"]),
+        ("Sparinvest",      ["SPARINVEST", "SPARINDEX"]),
+        ("BankInvest",      ["BANKINVEST", "BANK INVEST"]),
+        ("Maj Invest",      ["MAJ INVEST", "MAJINVEST"]),
+        ("Sydinvest",       ["SYDINVEST"]),
+        ("SEB",             ["SEB "]),
+        ("Handelsbanken",   ["HANDELSBANKEN"]),
+        ("UBS",             ["UBS "]),
+        ("Invesco",         ["INVESCO"]),
+        ("HSBC",            ["HSBC"]),
+        ("State Street",    ["STATE STREET", "SPDR"]),
+        ("Franklin",        ["FRANKLIN"]),
+        ("Columbia",        ["COLUMBIA THREADNEEDLE", "THREADNEEDLE"]),
+        ("Pictet",          ["PICTET"]),
+    ]
+
+    def udbyder(navn: str) -> str:
+        if not navn:
+            return "Andre"
+        n = " " + navn.upper() + " "
+        for label, tokens in UDBYDER_REGLER:
+            for t in tokens:
+                if t in n:
+                    return label
+        return "Andre"
+
+    env.filters["udbyder"] = udbyder
     kilde = data["kilde"]
 
     # Tidsstempler til statuslinje og metodeside.
