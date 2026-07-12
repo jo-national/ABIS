@@ -7,7 +7,7 @@
 <nav class="bogstaver">
 {% for b in alle_bogstaver %}<a href="{{ base_path }}/fonde/{{ b }}.html"{% if b == bogstav %} aria-current="page"{% endif %}>{{ b|upper }}</a> {% endfor %}
 </nav>
-<ul class="fondsliste" data-filtrerbar>
+<ul class="fondsliste" data-filtrerbar data-globalsoeg data-base="{{ base_path }}">
 {% for fid, e, navn in fonde %}
   <li data-udbyder="{{ navn|udbyder }}">
     <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>

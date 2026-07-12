@@ -20,8 +20,8 @@
 {% endblock %}
 {% block content %}
 <section class="hero">
- <p class="undertekst">Er dit værdipapir på positivlisten?<br>
- Søg på navnet eller ISIN-koden, så fortæller vi dig alt, du skal vide.</p>
+ <p class="undertekst">{{ tekster.forside_hero_linje1 }}<br>
+ {{ tekster.forside_hero_linje2 }}</p>
 
  <div class="soegning">
  <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
@@ -46,9 +46,8 @@
 
 
 <section class="kontekst forside-kontekst" id="hvem-er-du">
- <h2>Hvad skal du bruge positivlisten til?</h2>
- <p class="kontekst-intro">Positivlisten betyder noget forskelligt, alt efter hvordan du investerer.
- Vælg din situation og se, hvad du skal lede efter - inden du søger.</p>
+ <h2>{{ tekster.forside_kontekst_overskrift }}</h2>
+ <p class="kontekst-intro">{{ tekster.forside_kontekst_intro }}</p>
 
  <div class="kontekst-knapper" role="tablist" aria-label="Vælg din situation">
     <button type="button" role="tab" aria-selected="true"  aria-controls="f-frit"  id="ft-frit">Aktiedepot</button>

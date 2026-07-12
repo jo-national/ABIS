@@ -1,38 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Om hjemmesiden{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/om.html">{% endblock %}
+{% block og_sti %}/om.html{% endblock %}
 {% block content %}
 <h1 class="sr-only">Om hjemmesiden</h1>
 
-<h2>Hvad kan jeg bruge hjemmesiden til?</h2>
-<p>Hjemmesiden er en hjælp til dig, der er i tvivl om, hvorvidt et bestemt værdipapir står på
-Skattestyrelsens liste over aktiebaserede investeringsselskaber - mere mundret kaldet
-<strong>positivlisten</strong> eller <strong>ABIS-listen</strong>.</p>
-<p>Hjemmesiden forsøger også at forklare, hvad det betyder for beskatningen - og for den måde,
-du investerer på.</p>
+<h2>{{ tekster.om_formaal_overskrift }}</h2>
+<p>{{ tekster.om_formaal_tekst1 }}</p>
+<p>{{ tekster.om_formaal_tekst2 }}</p>
 
-<h2>Hvem står bag?</h2>
-<p>Jonas Melander Hammer. Kontakt:
+<h2>{{ tekster.om_hvem_overskrift }}</h2>
+<p>{{ tekster.om_hvem_navn }}. Kontakt:
 <a href="mailto:jonasmelanderhammer@gmail.com">jonasmelanderhammer@gmail.com</a>.</p>
 
-<h2>Uafhængighed og finansiering</h2>
-<p>Hjemmesiden har ingen annoncer, ingen affiliate-links og ingen sponsorater. Der sælges ingen
-produkter, og der anbefales ingen fonde, banker eller platforme. Hjemmesiden drives for egen regning;
-den eneste udgift er domænet.</p>
-<p>Der er ingen cookies, ingen sporing og intet analyseværktøj. Hjemmesiden indsamler ingen
-personoplysninger, og der er ingen brugerkonti.</p>
+<h2>{{ tekster.om_uafhaengighed_overskrift }}</h2>
+<p>{{ tekster.om_uafhaengighed_tekst1 }}</p>
+<p>{{ tekster.om_uafhaengighed_tekst2 }}</p>
 
-<h2>Datagrundlag</h2>
-<p>Alle data på hjemmesiden kommer udelukkende fra Skattestyrelsens egne offentliggjorte lister på
-skat.dk. Hjemmesiden tilføjer eller vurderer intet, og der bruges ingen data fra banker eller
-handelsplatforme.</p>
+<h2>{{ tekster.om_datagrundlag_overskrift }}</h2>
+<p>{{ tekster.om_datagrundlag_tekst }}</p>
 <p>Du kan læse mere om metoden - og om hvad positivlisten ikke dækker -
 <a href="{{ base_path }}/metode.html">her</a>.</p>
 
-<h2>Forbehold</h2>
-<p>Hjemmesiden er ikke skatterådgivning. Optagelse på positivlisten er ikke en afgørelse fra
-Skattestyrelsen om et selskabs skattemæssige status.</p>
-<p>Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du
-derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
+<h2>{{ tekster.om_forbehold_overskrift }}</h2>
+<p>{{ tekster.om_forbehold_tekst1 }}</p>
+<p>{{ tekster.om_forbehold_tekst2 }}</p>
 <p>Finder du en fejl, hører jeg gerne om det på jonasmelanderhammer@gmail.com.</p>
 {% endblock %}
