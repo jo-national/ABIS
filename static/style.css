@@ -69,6 +69,7 @@ body {
 ::selection { background: var(--accent); color: var(--papir); }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.ligner-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 a:hover { color: var(--blaek); text-decoration-thickness: 2px; }
 
 :focus-visible {
@@ -347,7 +348,7 @@ article h1 {
 .kontekst { margin-top: var(--afsnit); }
 .forside-kontekst h2, .kontekst > h2, .forklaring h2 { margin-top: 0; }
 
-.kontekst-intro { color: var(--blaek-svag); max-width: 38rem; }
+.kontekst-intro { color: var(--blaek-svag); }
 
 .kontekst-knapper {
   display: flex;
@@ -407,7 +408,6 @@ article h1 {
   border-top: 1px solid var(--linje);
   padding-top: 1rem;
   margin-top: 1.5rem;
-  max-width: 40rem;
 }
 
 /* ---------- Årstabel ---------- */
