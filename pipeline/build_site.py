@@ -146,7 +146,9 @@ def main() -> None:
     for fid, e in fonde.items():
         navn = e["navne"][0] if e["navne"] else fid
         if aktuelt_aar in e["aar"] and forrige_aar not in e["aar"]:
-            nye.append((fid, e, navn))
+            # Genoptaget = har været registreret i et år før det forrige.
+            e2 = dict(e, tidligere_aar=any(y < forrige_aar for y in e["aar"]))
+            nye.append((fid, e2, navn))
         elif forrige_aar in e["aar"] and aktuelt_aar not in e["aar"]:
             fjernede.append((fid, e, navn))
     nye.sort(key=lambda t: t[2].lower())
