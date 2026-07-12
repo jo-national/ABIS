@@ -1,38 +1,38 @@
 {% extends "base.html" %}
-{% block title %}Datagrundlag og metode{% endblock %}
+{% block title %}Hvordan virker hjemmesiden?{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/metode.html">{% endblock %}
 {% block content %}
-<h1 class="sr-only">Datagrundlag og metode</h1>
+<h1 class="sr-only">Hvordan virker hjemmesiden?</h1>
 
-<h2>Hvad ABIS-listen dækker</h2>
-<p>ABIS-listen omfatter <strong>investeringsselskaber</strong> (aktieavancebeskatningslovens §19) -
+<h2>Hvad er positivlisten?</h2>
+<p>Positivlisten er også det, man kalder ABIS-listen. Den omfatter <strong>investeringsselskaber</strong> -
 typisk udenlandske ETF'er og visse danske akkumulerende fonde - der over for Skatteforvaltningen har
-meddelt, at de er aktiebaserede (§19B).</p>
+meddelt, at de er aktiebaserede.</p>
 <p>Er et investeringsselskab registreret for et indkomstår, lagerbeskattes gevinst og tab som
 aktieindkomst, og beviset kan som udgangspunkt indgå på en aktiesparekonto.</p>
-<p>Er det ikke registreret, beskattes det som kapitalindkomst (§19C) og kan ikke indgå på
+<p>Er det ikke registreret, beskattes det som kapitalindkomst og kan ikke indgå på
 aktiesparekontoen.</p>
 
-<h2>Hvad ABIS-listen IKKE dækker</h2>
+<h2>Hvad dækker positivlisten ikke?</h2>
 <p><strong>Danske minimumsbeskattede investeringsforeninger</strong> skal ikke stå på ABIS-listen.
 Det gælder fx mange af de udbyttebetalende aktieinvesteringsforeninger, danske banker sælger til private.</p>
-<p>Deres skattestatus følger af andre regler (aktieavancebeskatningslovens §§21-22): er foreningen
-aktiebaseret - dvs. mindst halvdelen af formuen er placeret i aktier - beskattes afkastet som
-aktieindkomst, men efter realisationsprincippet, og foreningen optræder ikke her. At en fond ikke
-findes på denne hjemmeside, betyder derfor <em>ikke</em>, at den ikke er aktiebaseret.</p>
+<p>Deres skattestatus følger andre regler. Er foreningen aktiebaseret, det vil sige, at mindst halvdelen
+af formuen er placeret i aktier, beskattes afkastet som aktieindkomst - men efter realisationsprincippet.
+Derfor kan du ikke finde foreningen her. At en fond ikke findes på denne hjemmeside, betyder derfor
+<em>ikke</em>, at den ikke er aktiebaseret.</p>
 
 <p>Et konkret eksempel på forskellen: ETF'en <a href="{{ base_path }}/fond/IE00B4L5Y983/">iShares Core
-MSCI World UCITS ETF</a> er et irsk investeringsselskab - den står på positivlisten og får svaret JA her.</p>
+MSCI World UCITS ETF</a> der investerer i globale aktier står på positivlisten og får derfor svaret JA.</p>
 <p>En dansk investeringsforening som <strong>Sparindex Globale Aktier</strong> investerer i stort set de
-samme globale aktier, men står <em>ikke</em> på positivlisten, fordi den er en udbyttebetalende,
-minimumsbeskattet investeringsforening - og dens afkast beskattes alligevel som aktieindkomst.</p>
-<p>Søger du sådan en forening her og får svaret "ikke fundet", er det altså ikke et svar på, om den er
-aktiebaseret. Vi kan ikke ud fra en ISIN alene afgøre, om et ukendt papir er et investeringsselskab
-eller en minimumsbeskattet investeringsforening.</p>
+samme globale aktier, men står <em>ikke</em> på positivlisten. Det gør den ikke, fordi den er en
+udbyttebetalende, minimumsbeskattet investeringsforening. Dens afkast beskattes dog alligevel som
+aktieindkomst.</p>
+<p>Søger du efter en investeringsforening og får svaret "ikke fundet", er det altså ikke et endegyldigt
+svar på, om investeringsforeningen er aktiebaseret.</p>
 
-<h2>Sådan læser vi Skattestyrelsens fil</h2>
+<h2>Sådan læses Skattestyrelsens fil</h2>
 <p>Filen har et faneblad pr. indkomstår og en kolonne, "Registrerede år", der for hvert selskab angiver
-præcis hvilke år, det har været registreret som aktiebaseret. Vi bruger den kolonne som kilde til
+præcis hvilke år, det har været registreret som aktiebaseret. Den kolonne bruges som kilde til
 år-for-år-tabellen på hver fondsside og kontrollerer den mod fanebladene. Kolonnen dækker også
 indkomståret 2020, som ikke har sit eget faneblad.</p>
 <p>{{ antal_uden_isin }} selskaber på ABIS-listen er udstedt uden ISIN-kode. De optræder her identificeret
@@ -42,18 +42,17 @@ CVR-nummer.</p>
 <p>Et selskab kan optræde under flere navnevarianter gennem årene. Alle varianter bevares og kan søges frem.
 Et eksempel er <a href="{{ base_path }}/fond/DK0060854313/">Investeringsforeningen Falcon Invest Falcon
 Danske Aktier</a>, der optræder under fire navnevarianter i Skattestyrelsens fil.</p>
-<p>Enkelte celler i Skattestyrelsens fil indeholder tydelige tastefejl. Vi retter dem ikke, men gengiver dem
-som de står, og markerer dem på den pågældende fondsside. Et eksempel er
+<p>Enkelte celler i Skattestyrelsens fil indeholder tydelige tastefejl. De rettes ikke, men gengives som
+de står, og markeres på den pågældende fondsside. Et eksempel er
 <a href="{{ base_path }}/fond/DK0092841672/">Danske Invest AIF-SIKAV Private Equity 2</a>, hvis ISIN-kode
 i Skattestyrelsens fil ikke består kontrolcifferberegningen.</p>
 
 <h2>Sådan opdateres data</h2>
-<p>Et automatisk job kontrollerer hver nat, om Skattestyrelsens Excel-fil er ændret. Ændres filen,
+<p>Et automatisk job kontrollerer hver dag, om Skattestyrelsens Excel-fil er ændret. Ændres filen,
 hentes og behandles den, og hele hjemmesiden genbygges.</p>
-<p>Filens digitale fingeraftryk (SHA-256), filnavn og kontroldato vises i bunden af hver side. Alle
-historiske filversioner arkiveres uændret.</p>
+<p>Filens navn og kontroldato vises i bunden af hver side. Alle historiske filversioner arkiveres uændret.</p>
 <p>Fejler kontrollen, opdateres hjemmesiden ikke, og kontroltidspunktet i toppen opdateres ikke -
-vi viser aldrig gamle data som friske.</p>
+der vises aldrig gamle data som friske.</p>
 
 <h2>Kilde</h2>
 <p>Hjemmesiden benytter lige nu filen:
