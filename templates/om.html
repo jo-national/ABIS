@@ -20,26 +20,33 @@
 
 <h2>Data</h2>
 <p>{{ tekster.om_datagrundlag_tekst }}</p>
-<p>Filen har et faneblad pr. indkomstår og en kolonne, "Registrerede år", der for hvert selskab angiver
-præcis hvilke år, det har været registreret som aktiebaseret. Den kolonne bruges som kilde til
-år-for-år-tabellen på hver fondsside og kontrolleres mod fanebladene. Kolonnen dækker også
-indkomståret 2020, som ikke har sit eget faneblad.</p>
-<p>{{ antal_uden_isin }} selskaber på ABIS-listen er udstedt uden ISIN-kode. De optræder her identificeret
-på CVR-nummer eller navn. De ville ellers mangle, selv om de står på ABIS-listen. Et eksempel er
-<a href="{{ base_path }}/fond/CVR-31181828/">Jackson FamilieInvest A/S</a>, der identificeres på sit
-CVR-nummer.</p>
-<p>Et selskab kan optræde under flere navnevarianter gennem årene. Alle varianter bevares og kan søges frem.
-Et eksempel er <a href="{{ base_path }}/fond/DK0060854313/">Investeringsforeningen Falcon Invest Falcon
-Danske Aktier</a>, der optræder under fire navnevarianter i Skattestyrelsens fil.</p>
-<p>Enkelte celler i Skattestyrelsens fil indeholder tydelige tastefejl. De rettes ikke, men gengives som
-de står, og markeres på den pågældende fondsside. Et eksempel er
-<a href="{{ base_path }}/fond/DK0092841672/">Danske Invest AIF-SIKAV Private Equity 2</a>, hvis ISIN-kode
-i Skattestyrelsens fil ikke består kontrolcifferberegningen.</p>
+
 <p>Et automatisk job kontrollerer hver dag, om Skattestyrelsens Excel-fil er ændret. Ændres filen, hentes
 og behandles den, og hele hjemmesiden genbygges. Filens navn og kontroldato vises i bunden af hver side,
 og alle historiske filversioner arkiveres uændret.</p>
+
 <p>Fejler kontrollen, opdateres hjemmesiden ikke, og kontroltidspunktet i toppen opdateres ikke -
 der vises aldrig gamle data som friske.</p>
+
+<p>Skattestyrelsens fil har et faneblad pr. indkomstår og en kolonne, "Registrerede år", der angiver
+præcis hvilke år hvert selskab har været registreret som aktiebaseret. Den kolonne bruges som kilde til
+år-for-år-tabellen på hver fondsside og kontrolleres mod fanebladene. Kolonnen dækker også
+indkomståret 2020, som ikke har sit eget faneblad.</p>
+
+<p>{{ antal_uden_isin }} selskaber på ABIS-listen er lige nu udstedt uden ISIN-kode. De optræder her
+identificeret på CVR-nummer eller navn. De ville ellers mangle, selv om de står på ABIS-listen. Et eksempel
+er <a href="{{ base_path }}/fond/CVR-31181828/">Jackson FamilieInvest A/S</a>, der identificeres på sit
+CVR-nummer.</p>
+
+<p>Et selskab kan optræde under flere navne gennem årene. Alle varianter bevares og kan søges frem.
+Et eksempel er <a href="{{ base_path }}/fond/DK0060854313/">Investeringsforeningen Falcon Invest Falcon
+Danske Aktier</a>, der optræder under fire navnevarianter i Skattestyrelsens fil.</p>
+
+<p>Enkelte celler i Skattestyrelsens fil indeholder tydelige tastefejl. De rettes ikke, men gengives som
+de står. I det tilfælde er det tydeligt markeret på den pågældende fondsside. Et eksempel er
+<a href="{{ base_path }}/fond/DK0092841672/">Danske Invest AIF-SIKAV Private Equity 2</a>, hvis ISIN-kode
+i Skattestyrelsens fil ikke består kontrolcifferberegningen.</p>
+
 
 <h2>Kilde</h2>
 <p>Hjemmesiden benytter lige nu filen:
