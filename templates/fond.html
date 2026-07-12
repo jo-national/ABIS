@@ -39,16 +39,16 @@
  <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
  Skattestyrelsens liste over aktiebaserede investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
  {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.</p>
- <p>Gevinst og tab lagerbeskattes som aktieindkomst (aktieavancebeskatningslovens §19B).</p>
+ <p>Gevinst og tab lagerbeskattes som aktieindkomst.</p>
  </div>
  {% else %}
  <div class="svar svar-historisk">
  <p class="svar-kort">IKKE PÅ POSITIVLISTEN FOR {{ aktuelt_aar }}</p>
  <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
  {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}.</p>
- <p>Er selskabet fortsat et investeringsselskab (aktieavancebeskatningslovens §19) uden at være
- aktiebaseret, beskattes afkastet som kapitalindkomst (§19C). Fraværet kan dog også skyldes, at selskabet
- er ophørt, omdannet eller overgået til andre regler - verificér hos Skattestyrelsen, før du disponerer.</p>
+ <p>Er selskabet fortsat et investeringsselskab uden at være aktiebaseret, beskattes afkastet som
+ kapitalindkomst. Fraværet kan også skyldes, at selskabet er ophørt, omdannet eller overgået til andre
+ regler - verificér hos Skattestyrelsen, før du disponerer.</p>
  </div>
  {% endif %}
 
@@ -79,28 +79,25 @@
 <div class="kontekst-panel" id="k-frit" role="tabpanel" aria-labelledby="t-frit">
       {% if paa_listen_nu %}
       <p class="dom dom-neutral">Afkastet beskattes som aktieindkomst - om det er en fordel, afhænger af din situation</p>
-      <p>Denne fonds gevinst og tab lagerbeskattes som aktieindkomst med 27%/42%
-      (aktieavancebeskatningslovens §19B).</p>
+      <p>Denne fonds gevinst og tab lagerbeskattes som aktieindkomst med 27% eller 42%.</p>
       <p>Det er typisk en fordel, hvis du allerede udnytter dit personfradrag og ikke har negativ
       kapitalindkomst af betydning. Har du derimod uudnyttet personfradrag eller store renteudgifter,
       kunne et papir uden for positivlisten (kapitalindkomst) være billigere for dig.</p>
       {% else %}
       <p class="dom dom-neutral">Afkastet beskattes som kapitalindkomst - om det er en fordel, afhænger af din situation</p>
       <p>Står fonden ikke på positivlisten, og er den fortsat et investeringsselskab, lagerbeskattes gevinst
-      og tab som kapitalindkomst (aktieavancebeskatningslovens §19C), der indgår i din øvrige indkomst.</p>
+      og tab som kapitalindkomst, der indgår i din øvrige indkomst.</p>
       <p>Det kan være en fordel, hvis du har uudnyttet personfradrag eller negativ kapitalindkomst at
-      modregne i. Har du derimod positiv kapitalindkomst i forvejen, beskattes afkastet typisk hårdere end
-      aktieindkomstens laveste sats på 27%. Husk at verificere fondens status - fraværet fra positivlisten kan også
-      skyldes ophør eller omdannelse.</p>
+      modregne i - det kan f.eks. være et realkreditlån. Har du derimod positiv kapitalindkomst i forvejen,
+      beskattes afkastet typisk hårdere end aktieindkomstens laveste sats på 27%. Husk at verificere
+      fondens status - fraværet fra positivlisten kan også skyldes ophør eller omdannelse.</p>
       {% endif %}
     </div>
 
     <div class="kontekst-panel" id="k-ask" role="tabpanel" aria-labelledby="t-ask">
       {% if paa_listen_nu and fond.type == "isin" %}
       <p class="dom dom-ja">Kan som udgangspunkt ligge på en aktiesparekonto</p>
-      <p>Denne fond står på positivlisten og er dermed omfattet af aktieavancebeskatningslovens §19B.
-      Omsættelige investeringsbeviser af den type er blandt de aktiver, aktiesparekontoloven tillader
-      (§5, stk.1, nr.3).</p>
+      <p>Denne fond står på positivlisten for {{ aktuelt_aar }} og må derfor handles på en aktiesparekonto.</p>
       <p>På kontoen lagerbeskattes afkastet med 17% - positivlistens sondring mellem aktie- og
       kapitalindkomst gælder ikke inde på selve kontoen.</p>
       {% elif paa_listen_nu and fond.type == "uden_isin" %}
@@ -112,9 +109,8 @@
       hvilken type andele selskabet udsteder. Spørg din bank eller Skattestyrelsen.</p>
       {% else %}
       <p class="dom dom-nej">Kan ikke ligge på en aktiesparekonto</p>
-      <p>Denne fond står ikke på positivlisten for {{ aktuelt_aar }}. Papirer omfattet af
-      aktieavancebeskatningslovens §19C er udtrykkeligt undtaget fra de aktiver, aktiesparekontoloven
-      tillader (§5, stk.1, nr.2).</p>
+      <p>Denne fond står ikke på positivlisten for {{ aktuelt_aar }} og må derfor ikke handles på en
+      aktiesparekonto.</p>
       <p>Leder du efter en fond til din aktiesparekonto, skal du finde én, der står på positivlisten.</p>
       {% endif %}
     </div>
@@ -170,6 +166,8 @@
     <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger - ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
  </section>
 
+ <div class="to-spalter">
+ <section>
  <h2>Status pr. indkomstår</h2>
  <table class="aarstabel">
  <thead><tr><th scope="col">Indkomstår</th><th scope="col">Registreret som aktiebaseret</th></tr></thead>
@@ -179,7 +177,9 @@
  {% endfor %}
  </tbody>
  </table>
+ </section>
 
+ <section>
  <h2>Stamdata fra positivlisten</h2>
  <dl class="stamdata">
  {% if fond.type == "isin" %}<dt>ISIN</dt>
@@ -193,6 +193,8 @@
  {% if fond.cvr %}<dt>CVR/SE/TIN</dt><dd>{{ fond.cvr }}</dd>{% endif %}
  {% if fond.hjemsted %}<dt>Skattemæssigt hjemsted</dt><dd>{{ fond.hjemsted }}</dd>{% endif %}
  </dl>
+ </section>
+ </div>
 
  <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
  aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
