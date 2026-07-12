@@ -558,6 +558,7 @@ article h1 {
 }
 
 .fondsliste { list-style: none; margin: 1rem 0 0; padding: 0; }
+.fondsliste li[hidden] { display: none; }
 .fondsliste li {
   display: flex;
   align-items: baseline;
