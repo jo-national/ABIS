@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import yaml
 from pathlib import Path
 
 from datetime import datetime, timezone
@@ -66,6 +67,10 @@ def main() -> None:
         lstrip_blocks=True,
     )
     env.filters["tusind"] = tusind
+
+    # Redigerbare tekster (data/tekster.yml) - rettes direkte på GitHub,
+    # hvorefter workflowet genbygger sitet. Se instruktionen i filen.
+    tekster = yaml.safe_load((ROOT / "data" / "tekster.yml").read_text(encoding="utf-8"))
 
     # Udbyder-genkendelse: oversætter fondsnavne til de brands, folk søger på.
     # Kurateret og konservativ - kun mappinger vi er sikre på. Alt andet -> "Andre".
@@ -172,6 +177,7 @@ def main() -> None:
         "sidst_tjekket": dansk_dato_tid(tjekket_dt),
         "hentet_dansk": dansk_dato_tid(hentet_dt),
         "senest_opdateret": senest_opdateret,
+        "tekster": tekster,
         "opdateret_dato": kilde.get("offentliggjort_tekst") or "se skat.dk",
         "alle_aar": data["alle_aar"],
         "kilde": kilde,
