@@ -2,6 +2,7 @@
 {% block title %}Er {{ navn }} aktiebaseret? ({{ fid }}){% endblock %}
 {% block description %}{{ navn }} ({{ fid }}) {% if paa_listen_nu %}står på{% else %}står ikke på{% endif %} Skattestyrelsens liste over aktiebaserede investeringsselskaber for {{ aktuelt_aar }}. Se hvad det betyder for aktiesparekonto, børnedepot og frit depot.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fond/{{ fid }}/">{% endblock %}
+{% block og_sti %}/fond/{{ fid }}/{% endblock %}
 {% block head %}
 <script type="application/ld+json">
 {

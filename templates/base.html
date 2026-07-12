@@ -14,14 +14,19 @@
 <meta property="og:site_name" content="På positivlisten?">
 <meta property="og:title" content="{{ self.title() }}">
 <meta property="og:description" content="{{ self.description() }}">
+<meta property="og:url" content="{{ base_url }}{% block og_sti %}/{% endblock %}">
 <meta property="og:image" content="{{ base_url }}/static/og-billede.png">
+<meta property="og:image:secure_url" content="{{ base_url }}/static/og-billede.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="På positivlisten? Søg i Skats positivliste over aktiebaserede investeringsselskaber.">
 <meta property="og:locale" content="da_DK">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ self.title() }}">
 <meta name="twitter:description" content="{{ self.description() }}">
 <meta name="twitter:image" content="{{ base_url }}/static/og-billede.png">
+<meta name="twitter:image:alt" content="På positivlisten? Søg i Skats positivliste over aktiebaserede investeringsselskaber.">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
 <link rel="stylesheet" href="{{ base_path }}/static/style.css">

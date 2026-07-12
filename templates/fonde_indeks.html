@@ -9,7 +9,7 @@
 </nav>
 <ul class="fondsliste" data-filtrerbar>
 {% for fid, e, navn in fonde %}
-  <li data-hjemsted="{{ e.hjemsted }}">
+  <li data-udbyder="{{ navn|udbyder }}">
     <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
     <span class="fondsliste-meta">
       {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}

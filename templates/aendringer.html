@@ -18,7 +18,7 @@ faldet af listen og er nu kommet på igen. Mærket <span class="status-ja">ny</s
 har været på listen i noget tidligere år, vi har data for.</p>
 <ul class="fondsliste" data-filtrerbar>
 {% for fid, e, navn in nye %}
-  <li data-hjemsted="{{ e.hjemsted }}">
+  <li data-udbyder="{{ navn|udbyder }}">
     <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
     <span class="fondsliste-meta">
       {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
@@ -35,7 +35,7 @@ det er ikke i sig selv en oplysning om selskabets aktuelle skattestatus. Verific
 før du disponerer.</p>
 <ul class="fondsliste" data-filtrerbar>
 {% for fid, e, navn in fjernede %}
-  <li data-hjemsted="{{ e.hjemsted }}">
+  <li data-udbyder="{{ navn|udbyder }}">
     <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
     <span class="fondsliste-meta">
       {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
