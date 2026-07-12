@@ -1,10 +1,22 @@
-// Klientsøgning i det kompakte indeks. Ingen server, ingen cookies, ingen tracking.
+// Klientsøgning i det kompakte indeks. Ingen server, ingen cookies.
+// Bruges tælles anonymt via GoatCounter (se tael() nedenfor) - selve
+// søgeteksten sendes ALDRIG, kun at søgning blev brugt, og om den gav
+// resultater. Virker uden fejl selvom GoatCounter er blokeret (fx adblock).
 (function () {
   const BASE = window.BASE_PATH || "";
   const input = document.getElementById("q");
   const list = document.getElementById("resultater");
   const notFound = document.getElementById("ikke-fundet");
   if (!input) return;
+
+  function tael(sti) {
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: sti, title: sti, event: true });
+      }
+    } catch (e) { /* sporing må aldrig kunne knække søgningen */ }
+  }
+  let harTaltDenneSoegning = false;
 
   let indeks = null;
   async function hent() {
@@ -22,7 +34,9 @@
     list.innerHTML = "";
     list.classList.remove("vis");
     notFound.hidden = true;
-    if (q.length < 3) return;
+    if (q.length < 3) { harTaltDenneSoegning = false; return; }
+
+    if (!harTaltDenneSoegning) { tael("soegning-brugt"); harTaltDenneSoegning = true; }
 
     const data = await hent();
     const hits = [];
@@ -37,7 +51,7 @@
       }
     }
     if (hits.length === 0) {
-      if (isinForm.test(input.value.trim()) || q.length >= 6) notFound.hidden = false;
+      if (isinForm.test(input.value.trim()) || q.length >= 6) { notFound.hidden = false; tael("soegning-intet-fundet"); }
       return;
     }
     for (const [id, navn, aktiv] of hits) {
