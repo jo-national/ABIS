@@ -9,7 +9,7 @@
 #      inden for ca. 1 minut.
 #
 # Regler:
-#   - Rør ikke ved navnene før kolonet (fx forside_hero_linje1).
+#   - Rør ikke ved navnene før kolonet (f.eks. forside_hero_linje1).
 #   - Teksten skal stå i anførselstegn: "sådan her".
 #   - Skal du bruge et anførselstegn INDE i teksten, så brug »«.
 #
@@ -23,7 +23,7 @@
 forside_hero_linje1: "Er dit værdipapir på positivlisten?"
 forside_hero_linje2: "Søg på navnet eller ISIN-koden, så fortæller vi dig alt, du skal vide."
 forside_kontekst_overskrift: "Hvad skal du bruge positivlisten til?"
-forside_kontekst_intro: "Positivlisten betyder noget forskelligt, alt efter hvordan du investerer. Vælg din situation og se, hvad du skal lede efter - inden du søger."
+forside_kontekst_intro: "Positivlisten skal bruges forskelligt, alt efter hvordan du investerer. Vælg den kontotype du investerer på og se, hvad du skal lede efter."
 
 # ---------- OM HJEMMESIDEN ----------
 om_formaal_overskrift: "Hvad kan jeg bruge hjemmesiden til?"
