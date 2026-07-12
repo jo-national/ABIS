@@ -3,7 +3,7 @@
    Filtrerer lange fondslister i realtid uden server.
    Virker på enhver <ul class="fondsliste" data-filtrerbar>.
    - Fritekst matcher navn + ISIN/CVR.
-   - Dropdown matcher skattemæssigt hjemsted (data-hjemsted på hver <li>).
+   - Dropdown matcher udbyder (data-hjemsted på hver <li>).
    - Live tælling af synlige rækker.
    Uden JS er hele listen synlig som normalt (progressiv forbedring).
    ============================================================ */
@@ -28,21 +28,28 @@
     soeg.setAttribute("aria-label", "Filtrér listen på navn eller ISIN");
 
     // Saml unikke hjemsteder
-    const hjemsteder = Array.from(
-      new Set(rows.map((r) => r.dataset.hjemsted).filter(Boolean))
-    ).sort();
+    const antal = {};
+    rows.forEach((r) => {
+      const u = r.dataset.udbyder;
+      if (u) antal[u] = (antal[u] || 0) + 1;
+    });
+    const hjemsteder = Object.keys(antal).sort((a, b) => {
+      if (a === "Andre") return 1;
+      if (b === "Andre") return -1;
+      return antal[b] - antal[a];
+    });
 
     const vaelg = document.createElement("select");
     vaelg.className = "listefilter-vaelg";
-    vaelg.setAttribute("aria-label", "Filtrér listen på skattemæssigt hjemsted");
+    vaelg.setAttribute("aria-label", "Filtrér listen på udbyder");
     const alle = document.createElement("option");
     alle.value = "";
-    alle.textContent = "Alle hjemsteder";
+    alle.textContent = "Alle udbydere";
     vaelg.append(alle);
     hjemsteder.forEach((h) => {
       const o = document.createElement("option");
       o.value = h;
-      o.textContent = h;
+      o.textContent = h + " (" + antal[h].toLocaleString("da-DK") + ")";
       vaelg.append(o);
     });
 
@@ -63,7 +70,7 @@
       for (const r of rows) {
         const tekst = r.textContent.toLowerCase();
         const okTekst = !q || tekst.includes(q);
-        const okHjem = !h || r.dataset.hjemsted === h;
+        const okHjem = !h || r.dataset.udbyder === h;
         const vis = okTekst && okHjem;
         r.hidden = !vis;
         if (vis) synlige++;
