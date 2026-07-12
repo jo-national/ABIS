@@ -13,6 +13,17 @@
  "isBasedOn": "{{ kilde.side }}"
 }
 </script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Forside", "item": "{{ base_url }}/"},
+  {"@type": "ListItem", "position": 2, "name": "Alle fonde", "item": "{{ base_url }}/fonde/a.html"},
+  {"@type": "ListItem", "position": 3, "name": {{ navn|tojson }}, "item": "{{ base_url }}/fond/{{ fid }}/"}
+ ]
+}
+</script>
 {% endblock %}
 
 {% block content %}

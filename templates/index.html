@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Positivlisten? - er din ETF eller fond aktiebaseret? (Skats ABIS-liste){% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/">{% endblock %}
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "På positivlisten?",
+  "alternateName": ["Positivlisten", "Skats positivliste", "ABIS-listen", "påpositivlisten.dk"],
+  "url": "{{ base_url }}/",
+  "description": "Søg i Skattestyrelsens liste over aktiebaserede investeringsselskaber (positivlisten/ABIS-listen) og se, hvad resultatet betyder for beskatningen.",
+  "inLanguage": "da"
+}
+</script>
+{% endblock %}
 
 {% block toptitel %}
 <h1 class="brand-titel">På positivlisten<span class="accent">?</span></h1>

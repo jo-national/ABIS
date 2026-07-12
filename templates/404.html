@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Siden findes ikke - På positivlisten?{% endblock %}
+{% block content %}
+<section class="hero">
+ <h1>Siden findes ikke</h1>
+ <p class="undertekst">Adressen findes ikke - måske er fonden udgået af positivlisten,
+ eller også er der en tastefejl i linket.</p>
+ <p><a href="{{ base_path }}/">Gå til forsiden og søg på fondens navn eller ISIN</a>
+ eller se <a href="{{ base_path }}/fonde/a.html">alle fonde på positivlisten</a>.</p>
+</section>
+{% endblock %}
