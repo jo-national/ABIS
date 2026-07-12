@@ -11,11 +11,10 @@
 Opgørelsen bygger udelukkende på Skattestyrelsens egne registreringer pr. indkomstår.
 Brug felterne over listen til at filtrere på navn, ISIN eller udbyder.</p>
 
-<h2>Nye på positivlisten for {{ aktuelt_aar }} ({{ nye|length|tusind }})</h2>
-<p>Fonde, der er registreret som aktiebaserede for {{ aktuelt_aar }}, men ikke var det for {{ forrige_aar }}.
-Er en fond mærket <span class="status-nej">genoptaget</span>, har den været registreret i et endnu tidligere år,
-faldet af listen og er nu kommet på igen. Mærket <span class="status-ja">ny</span> betyder, at fonden ikke
-har været på listen i noget tidligere år, vi har data for.</p>
+<h2>Nye på positivlisten for {{ aktuelt_aar }}</h2>
+<p>Mærket <span class="status-ja">ny</span> betyder, at fonden ikke har været på listen i noget tidligere
+år, vi har data for. Er en fond mærket <span class="status-nej">genoptaget</span>, har den været registreret
+i et endnu tidligere år, faldet af listen og er nu kommet på igen.</p>
 <ul class="fondsliste" data-filtrerbar>
 {% for fid, e, navn in nye %}
   <li data-udbyder="{{ navn|udbyder }}">
@@ -28,7 +27,7 @@ har været på listen i noget tidligere år, vi har data for.</p>
 {% endfor %}
 </ul>
 
-<h2>Ikke længere registreret for {{ aktuelt_aar }} ({{ fjernede|length|tusind }})</h2>
+<h2>Ikke længere registreret for {{ aktuelt_aar }}</h2>
 <p>Fonde, der var registreret for {{ forrige_aar }}, men ikke er det for {{ aktuelt_aar }}.
 Bemærk: fraværet kan skyldes, at selskabet er ophørt, omdannet eller overgået til andre regler -
 det er ikke i sig selv en oplysning om selskabets aktuelle skattestatus. Verificér hos Skattestyrelsen,
