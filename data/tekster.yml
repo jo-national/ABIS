@@ -1,0 +1,45 @@
+# ============================================================
+# TEKSTER PÅ HJEMMESIDEN - REDIGÉR HER
+# ============================================================
+# Sådan retter du en tekst:
+#   1. Åbn denne fil på GitHub og tryk på blyanten (Edit).
+#   2. Ret teksten efter kolonet. Behold anførselstegnene.
+#   3. Tryk på den grønne "Commit changes"-knap.
+#   4. Hjemmesiden genbygges automatisk - din ændring er live
+#      inden for ca. 1 minut.
+#
+# Regler:
+#   - Rør ikke ved navnene før kolonet (fx forside_hero_linje1).
+#   - Teksten skal stå i anførselstegn: "sådan her".
+#   - Skal du bruge et anførselstegn INDE i teksten, så brug »«.
+#
+# Bemærk: De skattefaglige tekster (panelerne om aktiedepot,
+# aktiesparekonto osv.) ligger bevidst IKKE her. De er
+# kildeverificerede og rettes via en almindelig opgave, så
+# fagligheden kan kontrolleres, før de går live.
+# ============================================================
+
+# ---------- FORSIDEN ----------
+forside_hero_linje1: "Er dit værdipapir på positivlisten?"
+forside_hero_linje2: "Søg på navnet eller ISIN-koden, så fortæller vi dig alt, du skal vide."
+forside_kontekst_overskrift: "Hvad skal du bruge positivlisten til?"
+forside_kontekst_intro: "Positivlisten betyder noget forskelligt, alt efter hvordan du investerer. Vælg din situation og se, hvad du skal lede efter - inden du søger."
+
+# ---------- OM HJEMMESIDEN ----------
+om_formaal_overskrift: "Hvad kan jeg bruge hjemmesiden til?"
+om_formaal_tekst1: "Hjemmesiden er en hjælp til dig, der er i tvivl om, hvorvidt et bestemt værdipapir står på Skattestyrelsens liste over aktiebaserede investeringsselskaber - mere mundret kaldet positivlisten eller ABIS-listen."
+om_formaal_tekst2: "Hjemmesiden forsøger også at forklare, hvad det betyder for beskatningen - og for den måde, du investerer på."
+
+om_hvem_overskrift: "Hvem står bag?"
+om_hvem_navn: "Jonas Melander Hammer"
+
+om_uafhaengighed_overskrift: "Uafhængighed og finansiering"
+om_uafhaengighed_tekst1: "Hjemmesiden har ingen annoncer, ingen affiliate-links og ingen sponsorater. Der sælges ingen produkter, og der anbefales ingen fonde, banker eller platforme. Hjemmesiden drives for egen regning; den eneste udgift er domænet."
+om_uafhaengighed_tekst2: "Der er ingen cookies, ingen sporing og intet analyseværktøj. Hjemmesiden indsamler ingen personoplysninger, og der er ingen brugerkonti."
+
+om_datagrundlag_overskrift: "Datagrundlag"
+om_datagrundlag_tekst: "Alle data på hjemmesiden kommer udelukkende fra Skattestyrelsens egne offentliggjorte lister på skat.dk. Hjemmesiden tilføjer eller vurderer intet, og der bruges ingen data fra banker eller handelsplatforme."
+
+om_forbehold_overskrift: "Forbehold"
+om_forbehold_tekst1: "Hjemmesiden er ikke skatterådgivning. Optagelse på positivlisten er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status."
+om_forbehold_tekst2: "Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver."
