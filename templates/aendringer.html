@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Ændringer på positivlisten {{ aktuelt_aar }} - nye og udgåede fonde{% endblock %}
+{% block description %}Se hvilke fonde der er nye på Skats positivliste for {{ aktuelt_aar }}, og hvilke der er udgået siden {{ forrige_aar }}. Baseret på Skattestyrelsens officielle ABIS-liste.{% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ base_url }}/aendringer.html">{% endblock %}
+{% block content %}
+<h1>Ændringer på positivlisten {{ aktuelt_aar }}</h1>
+
+<p>Her kan du se, hvad der har ændret sig på positivlisten fra {{ forrige_aar }} til {{ aktuelt_aar }}:
+{{ nye|length|tusind }} fonde er kommet til, og {{ fjernede|length|tusind }} fonde er ikke længere registreret.
+Opgørelsen bygger udelukkende på Skattestyrelsens egne registreringer pr. indkomstår.</p>
+
+<h2>Nye på positivlisten for {{ aktuelt_aar }} ({{ nye|length|tusind }})</h2>
+<p>Fonde, der er registreret som aktiebaserede for {{ aktuelt_aar }}, men ikke var det for {{ forrige_aar }}.
+Enkelte er genoptagelser af selskaber, der har været registreret i tidligere år - de er markeret.</p>
+<ul class="fondsliste">
+{% for fid, e, navn in nye %}
+  <li>
+    <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
+    <span class="fondsliste-meta">
+      {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
+      {% if e.aar|length > 1 %}<span class="status-nej">genoptaget</span>{% else %}<span class="status-ja">ny</span>{% endif %}
+    </span>
+  </li>
+{% endfor %}
+</ul>
+
+<h2>Ikke længere registreret for {{ aktuelt_aar }} ({{ fjernede|length|tusind }})</h2>
+<p>Fonde, der var registreret for {{ forrige_aar }}, men ikke er det for {{ aktuelt_aar }}.
+Bemærk: fraværet kan skyldes, at selskabet er ophørt, omdannet eller overgået til andre regler -
+det er ikke i sig selv en oplysning om selskabets aktuelle skattestatus. Verificér hos Skattestyrelsen,
+før du disponerer.</p>
+<ul class="fondsliste">
+{% for fid, e, navn in fjernede %}
+  <li>
+    <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
+    <span class="fondsliste-meta">
+      {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
+      <span class="status-nej">udgået</span>
+    </span>
+  </li>
+{% endfor %}
+</ul>
+{% endblock %}
