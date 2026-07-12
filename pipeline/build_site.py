@@ -140,6 +140,25 @@ def main() -> None:
         )
         urls.append(f"/{page}.html")
 
+    # Ændringsside: nye og udgåede fonde ift. forrige indkomstår.
+    forrige_aar = aktuelt_aar - 1
+    nye, fjernede = [], []
+    for fid, e in fonde.items():
+        navn = e["navne"][0] if e["navne"] else fid
+        if aktuelt_aar in e["aar"] and forrige_aar not in e["aar"]:
+            nye.append((fid, e, navn))
+        elif forrige_aar in e["aar"] and aktuelt_aar not in e["aar"]:
+            fjernede.append((fid, e, navn))
+    nye.sort(key=lambda t: t[2].lower())
+    fjernede.sort(key=lambda t: t[2].lower())
+    (SITE / "aendringer.html").write_text(
+        env.get_template("aendringer.html").render(
+            nye=nye, fjernede=fjernede, forrige_aar=forrige_aar, **ctx
+        ),
+        encoding="utf-8",
+    )
+    urls.append("/aendringer.html")
+
     # Søgeindeks: [id, primærnavn, på-listen-nu, [øvrige navne]]
     indeks = [
         [fid, (e["navne"][0] if e["navne"] else fid),
@@ -155,6 +174,14 @@ def main() -> None:
     sm += [f"<url><loc>{BASE_URL}{u}</loc></url>" for u in urls]
     sm.append("</urlset>")
     (SITE / "sitemap.xml").write_text("\n".join(sm), encoding="utf-8")
+
+    # 404-side (GitHub Pages viser automatisk /404.html ved døde links).
+    # Bevidst IKKE i sitemap - den skal ikke indekseres.
+    (SITE / "404.html").write_text(
+        env.get_template("404.html").render(**ctx), encoding="utf-8"
+    )
+    # Browsere beder automatisk om /favicon.ico i roden.
+    shutil.copy(STATIC / "favicon.ico", SITE / "favicon.ico")
     (SITE / "CNAME").write_text("www.xn--ppositivlisten-lib.dk\n", encoding="utf-8")   
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8"
