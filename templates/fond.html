@@ -65,19 +65,32 @@
 
         <div class="kontekst-panel-wrap">
 <div class="kontekst-panel" id="k-frit" role="tabpanel" aria-labelledby="t-frit">
-      <p class="dom dom-neutral">Positivlisten afgør indkomsttypen - ingen af delene er entydigt bedst</p>
-      <p>Står værdipapiret på positivlisten, beskattes afkastet som aktieindkomst.
-      Står det ikke på positivlisten, beskattes det som kapitalindkomst.</p>
-      <p>Begge dele opgøres efter lagerprincippet. Hvad der er mest fordelagtigt, afhænger af din øvrige indkomst.</p>
+      {% if paa_listen_nu %}
+      <p class="dom dom-neutral">Afkastet beskattes som aktieindkomst - om det er en fordel, afhænger af din situation</p>
+      <p>Denne fonds gevinst og tab lagerbeskattes som aktieindkomst med 27%/42%
+      (aktieavancebeskatningslovens §19B).</p>
+      <p>Det er typisk en fordel, hvis du allerede udnytter dit personfradrag og ikke har negativ
+      kapitalindkomst af betydning. Har du derimod uudnyttet personfradrag eller store renteudgifter,
+      kunne et papir uden for positivlisten (kapitalindkomst) være billigere for dig.</p>
+      {% else %}
+      <p class="dom dom-neutral">Afkastet beskattes som kapitalindkomst - om det er en fordel, afhænger af din situation</p>
+      <p>Står fonden ikke på positivlisten, og er den fortsat et investeringsselskab, lagerbeskattes gevinst
+      og tab som kapitalindkomst (aktieavancebeskatningslovens §19C), der indgår i din øvrige indkomst.</p>
+      <p>Det kan være en fordel, hvis du har uudnyttet personfradrag eller negativ kapitalindkomst at
+      modregne i. Har du derimod positiv kapitalindkomst i forvejen, beskattes afkastet typisk hårdere end
+      aktieindkomstens laveste sats på 27%. Husk at verificere fondens status - fraværet fra positivlisten kan også
+      skyldes ophør eller omdannelse.</p>
+      {% endif %}
     </div>
 
     <div class="kontekst-panel" id="k-ask" role="tabpanel" aria-labelledby="t-ask">
       {% if paa_listen_nu and fond.type == "isin" %}
-      <p class="dom dom-ja">Du leder efter fonde, der STÅR på positivlisten</p>
-      <p>Aktiesparekontoloven tillader noterede aktier og omsættelige investeringsbeviser omfattet af
-      aktieavancebeskatningslovens §19B (nr.3) - altså værdipapirer udstedt af investeringsselskaber,
-      der står på positivlisten.</p>
-      <p>Er værdipapiret ikke på positivlisten, er det omfattet af §19C og kan ikke ligge på en aktiesparekonto.</p>
+      <p class="dom dom-ja">Kan som udgangspunkt ligge på en aktiesparekonto</p>
+      <p>Denne fond står på positivlisten og er dermed omfattet af aktieavancebeskatningslovens §19B.
+      Omsættelige investeringsbeviser af den type er blandt de aktiver, aktiesparekontoloven tillader
+      (§5, stk.1, nr.3).</p>
+      <p>På kontoen lagerbeskattes afkastet med 17% - positivlistens sondring mellem aktie- og
+      kapitalindkomst gælder ikke inde på selve kontoen.</p>
       {% elif paa_listen_nu and fond.type == "uden_isin" %}
       <p class="dom dom-tvivl">Sandsynligvis ikke - kontrollér</p>
       <p>Selskabet står på positivlisten, men Skattestyrelsen oplyser ingen ISIN-kode, hvilket typisk
@@ -87,43 +100,58 @@
       hvilken type andele selskabet udsteder. Spørg din bank eller Skattestyrelsen.</p>
       {% else %}
       <p class="dom dom-nej">Kan ikke ligge på en aktiesparekonto</p>
-      <p>Værdipapiret står ikke på positivlisten. Et investeringsselskab omfattet af §19C er ikke
-      blandt de værdipapirer, aktiesparekontoloven tillader.</p>
+      <p>Denne fond står ikke på positivlisten for {{ aktuelt_aar }}. Papirer omfattet af
+      aktieavancebeskatningslovens §19C er udtrykkeligt undtaget fra de aktiver, aktiesparekontoloven
+      tillader (§5, stk.1, nr.2).</p>
+      <p>Leder du efter en fond til din aktiesparekonto, skal du finde én, der står på positivlisten.</p>
       {% endif %}
     </div>
 
     <div class="kontekst-panel" id="k-barn" role="tabpanel" aria-labelledby="t-barn">
       {% if paa_listen_nu %}
-      <p class="dom dom-nej">Du leder typisk efter fonde, der IKKE står på positivlisten</p>
-      <p>Barnets personfradrag kan modregnes i kapitalindkomst - ikke i aktieindkomst.
-      Investerer du barnets frie midler for at udnytte personfradraget, er et investeringsselskab uden for
-      positivlisten derfor typisk mere velegnet.</p>
-      <p>Dette værdipapir står på positivlisten og beskattes som aktieindkomst. Bemærk, at løbende afkast
-      af pengegaver fra forældre beskattes hos giveren.</p>
+      <p class="dom dom-nej">Mindre velegnet til at udnytte barnets personfradrag</p>
+      <p>Denne fonds afkast er aktieindkomst, og skatten på 27% er endelig - den kan ikke dækkes af barnets
+      personfradrag.</p>
+      <p>Er formålet at udnytte personfradraget, er et investeringsselskab uden for positivlisten typisk mere
+      velegnet. Husk, at løbende afkast af pengegaver fra forældre beskattes hos giveren, til barnet fylder 18.</p>
       {% else %}
-      <p class="dom dom-ja">Barnets personfradrag kan udnyttes</p>
-      <p>Barnets personfradrag kan modregnes i kapitalindkomst - ikke i aktieindkomst.
-      Dette værdipapir står ikke på positivlisten og beskattes som kapitalindkomst, og er derfor typisk
-      mere velegnet, hvis formålet er at udnytte personfradraget.</p>
-      <p>Bemærk, at løbende afkast af pengegaver fra forældre beskattes hos giveren, og at barnets øvrige
-      indkomst også bruger af fradraget.</p>
+      <p class="dom dom-ja">Typisk velegnet til at udnytte barnets personfradrag</p>
+      <p>Denne fonds afkast er kapitalindkomst, som kan rummes i barnets personfradrag. Er årets afkast
+      inden for fradraget - og er fradraget ikke brugt på anden indkomst, fx et fritidsjob - er skatten reelt nul.</p>
+      <p>Husk, at løbende afkast af pengegaver fra forældre beskattes hos giveren, til barnet fylder 18,
+      og verificér fondens status hos Skattestyrelsen, da fravær fra positivlisten også kan skyldes ophør
+      eller omdannelse.</p>
       {% endif %}
     </div>
 
     <div class="kontekst-panel" id="k-boern" role="tabpanel" aria-labelledby="t-boern">
-      <p class="dom dom-neutral">Uden betydning</p>
-      <p>Afkast på en børneopsparingskonto beskattes ikke i bindingsperioden (pensionsbeskatningslovens
-      §51, stk.4). Om fonden er aktiebaseret eller ej, ændrer intet. Bemærk, at der gælder begrænsninger
-      for, hvilke værdipapirer der må ligge i et børneopsparingsdepot. Det kan du læse mere om
+      {% if paa_listen_nu %}
+      <p class="dom dom-neutral">Fondens plads på positivlisten er uden betydning her</p>
+      <p>At denne fond står på positivlisten, giver hverken fordel eller ulempe i en børneopsparing:
+      afkast på kontoen beskattes ikke i bindingsperioden (pensionsbeskatningslovens §51, stk.4).</p>
+      {% else %}
+      <p class="dom dom-neutral">Fondens fravær fra positivlisten er uden betydning her</p>
+      <p>At denne fond ikke står på positivlisten for {{ aktuelt_aar }}, ændrer intet i en børneopsparing:
+      afkast på kontoen beskattes ikke i bindingsperioden (pensionsbeskatningslovens §51, stk.4).</p>
+      {% endif %}
+      <p>Bemærk dog, at der gælder begrænsninger for, hvilke værdipapirer der overhovedet må ligge i et
+      børneopsparingsdepot. Det kan du læse mere om
       <a href="https://info.skat.dk/data.aspx?oid=2048447" rel="noopener">her</a>.</p>
     </div>
 
     <div class="kontekst-panel" id="k-pension" role="tabpanel" aria-labelledby="t-pension">
-      <p class="dom dom-neutral">Uden betydning</p>
-      <p>På en pensionsordning er positivlisten uden betydning. Afkastet beskattes med 15,3% i årlig
-      PAL-skat efter lagerprincippet, uanset om værdipapiret er aktiebaseret eller ej.</p>
-      <p>Det gælder alle pensionstyper - aldersopsparing, ratepension, livsvarig pension (livrente) eller en
-      kapitalpension, du har flyttet ind. Positivlistens sondring mellem aktieindkomst og kapitalindkomst
+      {% if paa_listen_nu %}
+      <p class="dom dom-neutral">Fondens plads på positivlisten er uden betydning her</p>
+      <p>I en pensionsordning giver det hverken fordel eller ulempe, at denne fond står på positivlisten:
+      afkastet beskattes med 15,3% i årlig PAL-skat efter lagerprincippet
+      (pensionsafkastbeskatningslovens §2).</p>
+      {% else %}
+      <p class="dom dom-neutral">Fondens fravær fra positivlisten er uden betydning her</p>
+      <p>I en pensionsordning ændrer det intet, at denne fond ikke står på positivlisten for
+      {{ aktuelt_aar }}: afkastet beskattes med 15,3% i årlig PAL-skat efter lagerprincippet
+      (pensionsafkastbeskatningslovens §2).</p>
+      {% endif %}
+      <p>Det gælder alle pensionstyper. Positivlistens sondring mellem aktieindkomst og kapitalindkomst
       gælder kun frie midler, ikke pensionsmidler.</p>
     </div>
     </div>
