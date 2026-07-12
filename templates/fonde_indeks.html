@@ -3,12 +3,13 @@
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fonde/{{ bogstav }}.html">{% endblock %}
 {% block content %}
 <h1>Alle fonde - {{ bogstav|upper }}</h1>
+<script src="{{ base_path }}/static/listefilter.js" defer></script>
 <nav class="bogstaver">
 {% for b in alle_bogstaver %}<a href="{{ base_path }}/fonde/{{ b }}.html"{% if b == bogstav %} aria-current="page"{% endif %}>{{ b|upper }}</a> {% endfor %}
 </nav>
-<ul class="fondsliste">
+<ul class="fondsliste" data-filtrerbar>
 {% for fid, e, navn in fonde %}
-  <li>
+  <li data-hjemsted="{{ e.hjemsted }}">
     <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
     <span class="fondsliste-meta">
       {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
