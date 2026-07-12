@@ -411,6 +411,14 @@ article h1 {
 }
 
 /* ---------- Årstabel ---------- */
+.to-spalter {
+  display: grid;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (min-width: 640px) {
+  .to-spalter { grid-template-columns: 1fr 1fr; }
+}
 .aarstabel {
   width: 100%;
   max-width: 28rem;
