@@ -96,10 +96,14 @@
 
     <div class="kontekst-panel" id="k-ask" role="tabpanel" aria-labelledby="t-ask">
       {% if paa_listen_nu and fond.type == "isin" %}
-      <p class="dom dom-ja">Kan som udgangspunkt ligge på en aktiesparekonto</p>
-      <p>Denne fond står på positivlisten for {{ aktuelt_aar }} og må derfor handles på en aktiesparekonto.</p>
-      <p>På kontoen lagerbeskattes afkastet med 17% - positivlistens sondring mellem aktie- og
-      kapitalindkomst gælder ikke inde på selve kontoen.</p>
+      <p class="dom dom-tvivl">Måske - tjek også, at den er børsnoteret</p>
+      <p>Denne fond står på positivlisten, og dermed er den <em>første</em> betingelse for en aktiesparekonto opfyldt.</p>
+      <p>Men der er en betingelse mere: værdipapiret skal også være <strong>børsnoteret</strong> - altså
+      optaget til handel på en børs. Unoterede fonde (hos nogle banker kaldet blot "fonde", til forskel fra
+      børshandlede ETF'er) kan <em>ikke</em> ligge på en aktiesparekonto, selv om de står på positivlisten.
+      Om netop dette papir er noteret, fremgår ikke af Skattestyrelsens liste - tjek det hos din bank.</p>
+      <p>Er begge betingelser opfyldt, lagerbeskattes afkastet på kontoen med 17% - positivlistens sondring
+      mellem aktie- og kapitalindkomst gælder ikke inde på selve kontoen.</p>
       {% elif paa_listen_nu and fond.type == "uden_isin" %}
       <p class="dom dom-tvivl">Sandsynligvis ikke - kontrollér</p>
       <p>Selskabet står på positivlisten, men Skattestyrelsen oplyser ingen ISIN-kode, hvilket typisk
