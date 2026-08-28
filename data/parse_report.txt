@@ -1,16 +1,16 @@
-Parse-rapport — genereret 2026-08-27T15:30:39+00:00
-Kildefil: juni-2026-abis-liste-2021-2026.xlsx (SHA-256 9dff0344742293d1…)
-Hentet fra: https://skat.dk/media/5bdgifbu/juni-2026-abis-liste-2021-2026.xlsx
+Parse-rapport — genereret 2026-08-28T16:55:24+00:00
+Kildefil: august-2026-abis-liste-2021-2026.xlsx (SHA-256 66cf47c4b08075ba…)
+Hentet fra: https://skat.dk/media/euzdrcqh/august-2026-abis-liste-2021-2026.xlsx
 
 Ark 'Forside': ikke et årstal — springes over (forventet).
-Ark '2026': 5368 datarækker læst.
-Ark '2025': 4874 datarækker læst.
+Ark '2026': 5385 datarækker læst.
+Ark '2025': 4896 datarækker læst.
 Ark '2024': 4477 datarækker læst.
 Ark '2023': 3312 datarækker læst.
 Ark '2022': 2615 datarækker læst.
 Ark '2021': 2096 datarækker læst.
 
-Fonde i alt: 6094  (med ISIN: 6053, uden ISIN: 41)
+Fonde i alt: 6114  (med ISIN: 6073, uden ISIN: 41)
 Aktuelt indkomstår (nyeste faneblad): 2026
 
 Registrerede fonde pr. indkomstår (kilde: kolonnen 'Registrerede år'):
@@ -19,24 +19,24 @@ Registrerede fonde pr. indkomstår (kilde: kolonnen 'Registrerede år'):
   2022: 2618
   2023: 3313
   2024: 4474
-  2025: 4837
-  2026: 5303
+  2025: 4858
+  2026: 5322
 
 Kontroller:
-  Tomme rækker sprunget over: 410
+  Tomme rækker sprunget over: 409
   Fonde hvor fanebladets år ikke stod i 'Registrerede år': 1
   Fonde med 2020 i årskolonnen (2020 har intet faneblad): 1316
-  ISIN med forkert kontrolciffer (beholdt, markeret): 1 — ['DK0092841672']
+  ISIN med forkert kontrolciffer (beholdt, markeret): 2 — ['DK0092841672', 'IE0007HM1170']
   ISIN-løse fonde uden både CVR og navn (udeladt): 0
   Advarsler (rækker sprunget over):
     - Ark '2024': ulæselig ISIN-værdi 'LU26632025,202667'
-  Fonde registreret under flere navne: 943
+  Fonde registreret under flere navne: 942
     DK0010273796: ['INVESTERINGSFORENINGEN SEBINVEST AKL Balance Vækst P', 'Investeringsforeningen SEB Invest AKL Balance Vækst P']
     DK0010301167: ['INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 80', 'KAPITALFORENINGEN LÅN & SPAR MIXINVEST Afd. Balance 80', 'Afdeling Balance 80']
     DK0016102361: ['INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 60', 'KAPITALFORENINGEN LÅN & SPAR MIXINVEST Afd Balance 60', 'Afdeling Balance 60']
 
 Eksempler til efterprøvning:
+  DK0065095094: Investeringsforeningen BankInvest, Global AI Plus Akk. — år: [2026]
   CVR-42490229: Grünbaum Value Invest A/S — år: [2023, 2024, 2025, 2026]
   DK0010273796: INVESTERINGSFORENINGEN SEBINVEST AKL Balance Vækst P — år: [2020, 2021, 2023, 2024, 2025, 2026]
-  DK0010301167: INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 80 — år: [2022, 2023, 2024, 2025, 2026]
   CVR-42490229 (uden ISIN): Grünbaum Value Invest A/S — år: [2023, 2024, 2025, 2026]

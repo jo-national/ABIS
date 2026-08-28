@@ -1,12 +1,12 @@
 {
- "genereret_utc": "2026-08-27T15:30:40+00:00",
+ "genereret_utc": "2026-08-28T16:55:25+00:00",
  "kilde": {
   "side": "https://skat.dk/erhverv/ekapital/vaerdipapirer/beviser-og-aktier-i-investeringsforeninger-og-selskaber-ifpa",
-  "fil_url": "https://skat.dk/media/5bdgifbu/juni-2026-abis-liste-2021-2026.xlsx",
-  "filnavn": "juni-2026-abis-liste-2021-2026.xlsx",
-  "sha256": "9dff0344742293d164968b26d8250b3ae8ef9db0ac3e12f8f68cc74ab3fdb510",
-  "offentliggjort_tekst": "29. juni 2026",
-  "hentet_utc": "2026-07-10T13:30:35+00:00"
+  "fil_url": "https://skat.dk/media/euzdrcqh/august-2026-abis-liste-2021-2026.xlsx",
+  "filnavn": "august-2026-abis-liste-2021-2026.xlsx",
+  "sha256": "66cf47c4b08075babedad054b638ee72fd0dec54e3b30126f6ff734d954785c2",
+  "offentliggjort_tekst": "28. august 2026",
+  "hentet_utc": "2026-08-28T16:55:24+00:00"
  },
  "seneste_indkomstaar": 2026,
  "alle_aar": [
@@ -24,8 +24,8 @@
   "2022": 2618,
   "2023": 3313,
   "2024": 4474,
-  "2025": 4837,
-  "2026": 5303
+  "2025": 4858,
+  "2026": 5322
  },
  "antal_uden_isin": 41,
  "fonde": {
@@ -4808,6 +4808,32 @@
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
+  "DK0065095094": {
+   "type": "isin",
+   "navne": [
+    "Investeringsforeningen BankInvest, Global AI Plus Akk."
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6488MW6NNV59B6270C31",
+   "cvr": "13575665",
+   "hjemsted": "Denmark (DK)",
+   "kontrolciffer_fejl": false
+  },
+  "DK0065095417": {
+   "type": "isin",
+   "navne": [
+    "Investeringsforeningen Profil Invest Afdeling Global Index Basic - Global Index Basic, klasse DKK I"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
+   "cvr": "13582017",
+   "hjemsted": "Denmark (DK)",
+   "kontrolciffer_fejl": false
+  },
   "DK0092841672": {
    "type": "isin",
    "navne": [
@@ -8862,6 +8888,19 @@
    "hjemsted": "Finland (FI)",
    "kontrolciffer_fejl": false
   },
+  "FI4000602248": {
+   "type": "isin",
+   "navne": [
+    "I&T Globale Aktier Kvant Placeringsfond UCITS"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900DHMNO2AOEWUB18",
+   "cvr": null,
+   "hjemsted": "Finland (FI)",
+   "kontrolciffer_fejl": false
+  },
   "FI4000602289": {
    "type": "isin",
    "navne": [
@@ -10120,7 +10159,7 @@
     2025,
     2026
    ],
-   "lei": null,
+   "lei": "549300OSZ4JVZUBDJ106",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -10421,6 +10460,19 @@
     2026
    ],
    "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE0004YCLDW1": {
+   "type": "isin",
+   "navne": [
+    "iShares STOXX Europe 600 UCITS ETF - EUR (Distributing)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900YY0CUD4OQI6D11",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -11067,6 +11119,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE0007HM1170": {
+   "type": "isin",
+   "navne": [
+    "Stewart Investors Global Emerging Markets All Cap Fund Class III (Accumulation) USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": true
+  },
   "IE0007I99HX7": {
    "type": "isin",
    "navne": [
@@ -11326,7 +11391,7 @@
   "IE00085WDIZ9": {
    "type": "isin",
    "navne": [
-    "Stewart Investors Global Emerging Markets Sustainability Fund Class III (Accumulation) JPY"
+    "Stewart Investors Global Emerging Markets All Cap Fund Class III (Accumulation) JPY"
    ],
    "aar": [
     2024,
@@ -11540,6 +11605,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE00097WZHZ9": {
+   "type": "isin",
+   "navne": [
+    "iShares FTSE All-World UCITS ETF - USD (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900XAXU8ETZVXFH81",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE00099GAJC6": {
    "type": "isin",
    "navne": [
@@ -11742,6 +11820,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000A9G9R73": {
+   "type": "isin",
+   "navne": [
+    "iShares Space Technologies UCITS ETF - USD (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900K3EXT2NQTVWN33",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000A9QKUV7": {
    "type": "isin",
    "navne": [
@@ -11846,7 +11937,7 @@
   "IE000AQHA357": {
    "type": "isin",
    "navne": [
-    "Stewart Investors Global Emerging Markets Sustainability Fund Class I (Accumulation) USD"
+    "Stewart Investors Global Emerging Markets All Cap Fund Class I (Accumulation) USD"
    ],
    "aar": [
     2024,
@@ -12312,6 +12403,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000CO65C82": {
+   "type": "isin",
+   "navne": [
+    "WisdomTree Global High Dividend UCITS ETF - USD Acc"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000CR424L6": {
    "type": "isin",
    "navne": [
@@ -12549,14 +12653,13 @@
   "IE000DQOKPW0": {
    "type": "isin",
    "navne": [
-    "iShares MSCI USA Islamic UCITS ETF USD (Dist)",
     "iShares MSCI World Islamic UCITS ETF USD (Dist)"
    ],
    "aar": [
     2025,
     2026
    ],
-   "lei": "549300FYPKOC7GES0P34",
+   "lei": "5493000R6P5HVW4ABF25",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -13067,7 +13170,7 @@
     2025,
     2026
    ],
-   "lei": null,
+   "lei": "549300OSZ4JVZUBDJ106",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -13583,6 +13686,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000IR2DEM6": {
+   "type": "isin",
+   "navne": [
+    "iShares U.S. Aerospace & Defence UCITS ETF - USD (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900TLSQ0A3PBT9893",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000ISS8DB2": {
    "type": "isin",
    "navne": [
@@ -13980,7 +14096,7 @@
   "IE000KHX9DX6": {
    "type": "isin",
    "navne": [
-    "WisdomTree Energy Transition Metals and Rare Earth Miners UCITS ETF USD Acc"
+    "WisdomTree Strategic Metals and Rare Earths Miners UCITS ETF - USD Acc"
    ],
    "aar": [
     2024,
@@ -14795,6 +14911,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000O50THD5": {
+   "type": "isin",
+   "navne": [
+    "iShares World Thematic Rotation Active UCITS ETF - Class USD (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900YYGT5YFVXWZ908",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000O5FBC47": {
    "type": "isin",
    "navne": [
@@ -14914,6 +15043,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000OLIUP21": {
+   "type": "isin",
+   "navne": [
+    "iShares Japan Equity Enhanced Active UCITS ETF - Class USD (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900QCY70U6P55SU63",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000OQUSHA0": {
    "type": "isin",
    "navne": [
@@ -15007,6 +15149,19 @@
    "aar": [
     2024,
     2025,
+    2026
+   ],
+   "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000P5M9KF7": {
+   "type": "isin",
+   "navne": [
+    "Stewart Investors Global Emerging Markets All Cap Fund Class I (Accumulation) SGD"
+   ],
+   "aar": [
     2026
    ],
    "lei": null,
@@ -15184,6 +15339,19 @@
     2026
    ],
    "lei": "549300CHQNQSKGUURZ87",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000Q0CAPZ0": {
+   "type": "isin",
+   "navne": [
+    "WisdomTree Global High Dividend UCITS ETF - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -15414,6 +15582,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000QZF7EX2": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI EM Latin America UCITS ETF USD (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493001UV681N6H3E474",
+   "cvr": "6337171K",
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000R3K9FF7": {
    "type": "isin",
    "navne": [
@@ -15437,7 +15618,7 @@
     2025,
     2026
    ],
-   "lei": null,
+   "lei": "5299007TIP5TWHOV4T96",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -16147,7 +16328,7 @@
   "IE000UT9VQY4": {
    "type": "isin",
    "navne": [
-    "Stewart Investors Global Emerging Markets Sustainability Fund Class VI (Accumulation) GBP"
+    "Stewart Investors Global Emerging Markets All Cap Fund Class VI (Accumulation) GBP"
    ],
    "aar": [
     2024,
@@ -17289,6 +17470,19 @@
     2026
    ],
    "lei": "549300NZCAJCKZWK5644",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000ZDDJWZ5": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World ex-USA UCITS ETF - USD (Distributing)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5299007TIP5TWHOV4T96",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -20474,7 +20668,7 @@
   "IE00BF18T884": {
    "type": "isin",
    "navne": [
-    "Stewart Investors Global Emerging Markets Sustainability Fund Class VI (Accumulation) USD"
+    "Stewart Investors Global Emerging Markets All Cap Fund Class VI (Accumulation) USD"
    ],
    "aar": [
     2024,
@@ -21225,7 +21419,7 @@
   "IE00BFY85Q51": {
    "type": "isin",
    "navne": [
-    "Stewart Investors Global Emerging Markets Sustainability Fund Class I (Accumulation) EUR"
+    "Stewart Investors Global Emerging Markets All Cap Fund Class I (Accumulation) EUR"
    ],
    "aar": [
     2024,
@@ -21240,7 +21434,7 @@
   "IE00BFY85R68": {
    "type": "isin",
    "navne": [
-    "Stewart Investors Global Emerging Markets Sustainability Fund VI (Accumulation) EUR"
+    "Stewart Investors Global Emerging Markets All Cap Fund VI (Accumulation) EUR"
    ],
    "aar": [
     2024,
@@ -23895,7 +24089,7 @@
   "IE00BKTB3J34": {
    "type": "isin",
    "navne": [
-    "Stewart Investors Global Emerging Markets Sustainability Fund VI (Distributing) EUR"
+    "Stewart Investors Global Emerging Markets All Cap Fund VI (Distributing) EUR"
    ],
    "aar": [
     2024,
@@ -27019,8 +27213,7 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
    ],
    "lei": "5393003W2LPY6BANN753",
    "cvr": "IE9840218R",
@@ -64113,7 +64306,7 @@
   "LU1786041712": {
    "type": "isin",
    "navne": [
-    "Wellington Management Funds (Luxembourg) - Wellington US Research Equity Fund USD DL Accumulating Unhedged"
+    "Wellington US Research Equity Fund (Wellington Management Funds) - Wellington US Research Equity Fund USD DL Accumulating Unhedged"
    ],
    "aar": [
     2022,
@@ -72251,7 +72444,7 @@
   "LU2079404880": {
    "type": "isin",
    "navne": [
-    "Wellington US Research Equity Fund (LU) - Wellington US Research Equity Fund USD BN Accumulating Unhedged"
+    "Wellington US Research Equity Fund (Wellington Management Funds) - Wellington US Research Equity Fund USD BN Accumulating Unhedged"
    ],
    "aar": [
     2023,
@@ -83627,7 +83820,7 @@
   "LU2385221531": {
    "type": "isin",
    "navne": [
-    "Wellington US Research Equity Fund (LU) - Wellington US Research Equity Fund USD S A1 Distributing Unhedged"
+    "Wellington US Research Equity Fund (Wellington Management Funds) - Wellington US Research Equity Fund USD S A1 Distributing Unhedged"
    ],
    "aar": [
     2023,
@@ -85826,7 +86019,7 @@
   "LU2468519058": {
    "type": "isin",
    "navne": [
-    "Wellington US Research Equity Fund (LU) - Wellington US Research Equity Fund USD T Accumulating Unhedged"
+    "Wellington US Research Equity Fund (Wellington Management Funds) - Wellington US Research Equity Fund USD T Accumulating Unhedged"
    ],
    "aar": [
     2023,
@@ -94730,6 +94923,7 @@
     "Nordea 1 - Empower Europe Fund - BP - EUR"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -94743,6 +94937,7 @@
     "Nordea 1 - Empower Europe Fund - BI - EUR"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -94756,6 +94951,7 @@
     "Nordea 1 - Empower Europe Fund - E - EUR"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -94769,6 +94965,7 @@
     "Nordea 1 - Empower Europe Fund - BC - EUR"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -94782,6 +94979,7 @@
     "Nordea 1 - Empower Europe Fund - BQ - EUR"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -94795,6 +94993,7 @@
     "Nordea 1 - Empower Europe Fund - BQ - SEK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -94808,6 +95007,7 @@
     "Nordea 1 - Empower Europe Fund - BQ - NOK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -94821,6 +95021,7 @@
     "Nordea 1 - Empower Europe Fund - BF - EUR"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -95008,6 +95209,7 @@
     "Nordea 1 - Empower Europe Fund - BF - SEK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -95021,6 +95223,7 @@
     "Nordea 1 - Empower Europe Fund - BI - NOK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -95583,6 +95786,7 @@
     "Nordea 1 - Empower Europe Fund - BP - NOK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -95729,6 +95933,7 @@
     "Nordea 1 - Empower Europe Fund - BI - SEK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -95742,6 +95947,7 @@
     "Nordea 1 - Empower Europe Fund - BP - SEK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -95755,6 +95961,7 @@
     "Nordea 1 - Empower Europe Fund - BQ3 - NOK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -96057,6 +96264,7 @@
     "Nordea 1 - Empower Europe Fund - BF - DKK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -96083,6 +96291,7 @@
     "Nordea 1 - Empower Europe Fund - BI - USD"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -96759,6 +96968,7 @@
     "Nordea 1 - Empower Europe Fund - HB - SGD"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -96772,6 +96982,7 @@
     "Nordea 1 - Empower Europe Fund - HB - USD"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -97000,6 +97211,45 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU3334218446": {
+   "type": "isin",
+   "navne": [
+    "BGF US Flexible Equity Fund Class A10 USD (Distributing)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493000VBLDY9YB8P237",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3334218529": {
+   "type": "isin",
+   "navne": [
+    "BGF US Flexible Equity Fund Class B10 USD (Distributing)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493000VBLDY9YB8P237",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3335691831": {
+   "type": "isin",
+   "navne": [
+    "BGF US Flexible Equity Fund Class B2 USD (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493000VBLDY9YB8P237",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU3340642985": {
    "type": "isin",
    "navne": [
@@ -97022,6 +97272,19 @@
     2026
    ],
    "lei": "549300ZCJ2HQJU88XH69",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3344455699": {
+   "type": "isin",
+   "navne": [
+    "BGF World Healthscience Fund Class D2 GBP Accumulating"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300OHN1ZT4WMEMU83",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
@@ -97123,6 +97386,7 @@
     "Nordea 1 - Empower Europe Fund - AP - EUR"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -97321,6 +97585,7 @@
     "Nordea 1 - Empower Europe Fund - X - NOK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
@@ -97350,6 +97615,19 @@
     2026
    ],
    "lei": "549300ZSC5HTQ0V6KO22",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3373506586": {
+   "type": "isin",
+   "navne": [
+    "BGF World Financials Fund Class A2 Hedged CNH (Accumulating)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493009JGB3XP8H4XV85",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
@@ -97698,6 +97976,7 @@
     "Nordea 1 - Empower Europe Fund - BP - DKK"
    ],
    "aar": [
+    2025,
     2026
    ],
    "lei": "6367001R756TA88E5B57",
