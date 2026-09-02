@@ -193,7 +193,12 @@ def main() -> None:
     SITE.mkdir(parents=True)
     shutil.copytree(STATIC, SITE / "static")
 
-    urls: list[str] = ["/"]
+    # Sitemap-poster: (sti, prioritet). lastmod sættes samlet nedenfor til
+    # den dato sitets data sidst blev bygget (hentedatoen for Skats fil).
+    # Prioritet styrer, hvad Google crawler først, når budgettet er knapt:
+    # forside > aktive fonde > oversigts-/videnssider > udgåede fonde.
+    lastmod_iso = hentet_dt.astimezone(ZoneInfo("Europe/Copenhagen")).date().isoformat()
+    urls: list[tuple[str, str]] = [("/", "1.0")]
     (SITE / "index.html").write_text(env.get_template("index.html").render(**ctx), encoding="utf-8")
 
     tpl_fond = env.get_template("fond.html")
@@ -207,7 +212,9 @@ def main() -> None:
                             paa_listen_nu=aktuelt_aar in e["aar"], **ctx),
             encoding="utf-8",
         )
-        urls.append(f"/fond/{fid}/")
+        # Fonde der er på listen i år prioriteres over historiske/udgåede.
+        prio = "0.8" if aktuelt_aar in e["aar"] else "0.4"
+        urls.append((f"/fond/{fid}/", prio))
         buckets.setdefault(bucket(navn, fid), []).append((fid, e, navn))
 
     tpl_idx = env.get_template("fonde_indeks.html")
@@ -218,13 +225,13 @@ def main() -> None:
         (SITE / "fonde" / f"{k}.html").write_text(
             tpl_idx.render(bogstav=k, alle_bogstaver=keys, fonde=items, **ctx), encoding="utf-8"
         )
-        urls.append(f"/fonde/{k}.html")
+        urls.append((f"/fonde/{k}.html", "0.6"))
 
     for page in ("om", "metode"):
         (SITE / f"{page}.html").write_text(
             env.get_template(f"{page}.html").render(**ctx), encoding="utf-8"
         )
-        urls.append(f"/{page}.html")
+        urls.append((f"/{page}.html", "0.6"))
 
     # Ændringsside: nye og udgåede fonde ift. forrige indkomstår.
     forrige_aar = aktuelt_aar - 1
@@ -245,7 +252,7 @@ def main() -> None:
         ),
         encoding="utf-8",
     )
-    urls.append("/aendringer.html")
+    urls.append(("/aendringer.html", "0.7"))
 
     # Søgeindeks: [id, primærnavn, på-listen-nu, [øvrige navne]]
     indeks = [
@@ -259,7 +266,12 @@ def main() -> None:
 
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    sm += [f"<url><loc>{BASE_URL}{u}</loc></url>" for u in urls]
+    sm += [
+        f"<url><loc>{BASE_URL}{u}</loc>"
+        f"<lastmod>{lastmod_iso}</lastmod>"
+        f"<priority>{prio}</priority></url>"
+        for u, prio in urls
+    ]
     sm.append("</urlset>")
     (SITE / "sitemap.xml").write_text("\n".join(sm), encoding="utf-8")
 
