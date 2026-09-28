@@ -1,12 +1,12 @@
 {
- "genereret_utc": "2026-09-27T10:12:16+00:00",
+ "genereret_utc": "2026-09-28T11:13:48+00:00",
  "kilde": {
   "side": "https://skat.dk/erhverv/ekapital/vaerdipapirer/beviser-og-aktier-i-investeringsforeninger-og-selskaber-ifpa",
-  "fil_url": "https://skat.dk/media/euzdrcqh/august-2026-abis-liste-2021-2026.xlsx",
-  "filnavn": "august-2026-abis-liste-2021-2026.xlsx",
-  "sha256": "66cf47c4b08075babedad054b638ee72fd0dec54e3b30126f6ff734d954785c2",
-  "offentliggjort_tekst": "28. august 2026",
-  "hentet_utc": "2026-08-28T16:55:24+00:00"
+  "fil_url": "https://skat.dk/media/fo5m24x5/september-2026-abis-liste-2021-2026.xlsx",
+  "filnavn": "september-2026-abis-liste-2021-2026.xlsx",
+  "sha256": "8fafcb575c51b8e2b9591b1feb265371e209281d4ba36f9e0f09369ab679a218",
+  "offentliggjort_tekst": "28. september 2026",
+  "hentet_utc": "2026-09-28T11:13:47+00:00"
  },
  "seneste_indkomstaar": 2026,
  "alle_aar": [
@@ -25,7 +25,7 @@
   "2023": 3313,
   "2024": 4474,
   "2025": 4858,
-  "2026": 5322
+  "2026": 5371
  },
  "antal_uden_isin": 41,
  "fonde": {
@@ -1476,6 +1476,7 @@
   "DK0010273796": {
    "type": "isin",
    "navne": [
+    "AKL SEB Balance Vækst P",
     "INVESTERINGSFORENINGEN SEBINVEST AKL Balance Vækst P",
     "Investeringsforeningen SEB Invest AKL Balance Vækst P"
    ],
@@ -1488,7 +1489,7 @@
     2026
    ],
    "lei": null,
-   "cvr": "35455191",
+   "cvr": "46707362",
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
@@ -1553,7 +1554,7 @@
    "type": "isin",
    "navne": [
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende A - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. A",
-    "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global\nAkkumulerende KL - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. A",
+    "Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. A",
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende KL - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. A"
    ],
    "aar": [
@@ -1652,6 +1653,7 @@
   "DK0060561645": {
    "type": "isin",
    "navne": [
+    "Metropolis Globale Aktier",
     "K Invest Globale Aktier"
    ],
    "aar": [
@@ -2148,6 +2150,7 @@
   "DK0060636595": {
    "type": "isin",
    "navne": [
+    "WCM US Small Cap Aktier",
     "K Invest Globale Small Cap Aktier"
    ],
    "aar": [
@@ -2201,6 +2204,7 @@
   "DK0060696573": {
    "type": "isin",
    "navne": [
+    "Baron Globale Aktier",
     "K Invest Globale Aktier II"
    ],
    "aar": [
@@ -2307,7 +2311,7 @@
    "type": "isin",
    "navne": [
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende W - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. W",
-    "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global\nAkkumulerende KL - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. W",
+    "Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. W",
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende KL - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. W"
    ],
    "aar": [
@@ -2325,6 +2329,7 @@
   "DK0060850915": {
    "type": "isin",
    "navne": [
+    "SEB Balance Vækst P AKL",
     "INVESTERINGSFORENINGEN SEBINVEST Balance Vækst AKL",
     "Investeringsforeningen SEB Invest Balance Vækst AKL"
    ],
@@ -2337,7 +2342,7 @@
     2026
    ],
    "lei": "5493007RZ866PHUSRI16",
-   "cvr": "11883427",
+   "cvr": "46707362",
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
@@ -2600,6 +2605,7 @@
   "DK0060991651": {
    "type": "isin",
    "navne": [
+    "Coop Bank Vækst",
     "Investeringsforeningen Coop Opsparing Modig"
    ],
    "aar": [
@@ -2611,13 +2617,14 @@
     2026
    ],
    "lei": "549400QCDYJ10ECRXJ32",
-   "cvr": "35460381",
+   "cvr": "46691474",
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
   "DK0061032513": {
    "type": "isin",
    "navne": [
+    "SGA Globale Aktier",
     "K Invest Globale Aktier IV"
    ],
    "aar": [
@@ -3448,6 +3455,7 @@
   "DK0061682051": {
    "type": "isin",
    "navne": [
+    "INVESTERINGSFORENINGEN MAJ INVEST Net Zero 2050 KL - Maj Invest Net Zero 2050 W",
     "INVESTERINGSFORENINGEN MAJ INVEST Net Zero 2050 KL"
    ],
    "aar": [
@@ -3525,6 +3533,7 @@
   "DK0061806049": {
    "type": "isin",
    "navne": [
+    "Investeringsforeningen Wealth Invest AKL SEB Nordamerika Aktier Akkumulerende",
     "INVESTERINGSFORENINGEN SEBINVEST Nordamerika Aktier SRI Akkumulerende AKL - AKL Nordamerika Aktier SRI Akkumulerende I"
    ],
    "aar": [
@@ -3534,13 +3543,14 @@
     2026
    ],
    "lei": null,
-   "cvr": "43252437/43248383",
+   "cvr": "46702247",
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
   "DK0061806205": {
    "type": "isin",
    "navne": [
+    "AKL SEB Europa Small Cap Akkumulerende",
     "INVESTERINGSFORENINGEN SEBINVEST Europa Small Cap Akkumulerende AKL - AKL Europa Small Cap Akkumulerende I"
    ],
    "aar": [
@@ -3550,7 +3560,7 @@
     2026
    ],
    "lei": null,
-   "cvr": "43252445/43248405",
+   "cvr": "46702190",
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
@@ -4831,6 +4841,32 @@
    ],
    "lei": null,
    "cvr": "13582017",
+   "hjemsted": "Denmark (DK)",
+   "kontrolciffer_fejl": false
+  },
+  "DK0065096811": {
+   "type": "isin",
+   "navne": [
+    "INVESTERINGSFORENINGEN MAJ INVEST UCITS ETF AI-Model Global 100 KL"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
+   "cvr": "46758064",
+   "hjemsted": "Denmark (DK)",
+   "kontrolciffer_fejl": false
+  },
+  "DK0065097116": {
+   "type": "isin",
+   "navne": [
+    "INVESTERINGSFORENINGEN MAJ INVEST UCITS ETF Drone Robot Quantum KL"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
+   "cvr": "46758080",
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
@@ -9693,6 +9729,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE0001KK9B39": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World Industrials Sector Advanced UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300F9K6NCNCVPT352",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE0001R850E1": {
    "type": "isin",
    "navne": [
@@ -10160,7 +10209,7 @@
     2026
    ],
    "lei": "549300OSZ4JVZUBDJ106",
-   "cvr": null,
+   "cvr": "3236530CH",
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -10460,6 +10509,19 @@
     2026
    ],
    "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE0004QLESG4": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World Materials Sector Advanced UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300LI0ULW5G3HXR02",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -12119,6 +12181,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000BMJPF23": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World Consumer Staples Sector Advanced UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493007J7DM45JJ2US82",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000BMZP0I6": {
    "type": "isin",
    "navne": [
@@ -12470,7 +12545,7 @@
     2026
    ],
    "lei": "549300OSZ4JVZUBDJ106",
-   "cvr": null,
+   "cvr": "3236530CH",
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -12777,6 +12852,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000EB0LQO5": {
+   "type": "isin",
+   "navne": [
+    "iShares World Equity High Income Active UCITS ETF - EUR Hedged (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900DLKXPXUN42KW34",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000EBFYWX3": {
    "type": "isin",
    "navne": [
@@ -12897,7 +12985,7 @@
     2026
    ],
    "lei": "549300OSZ4JVZUBDJ106",
-   "cvr": null,
+   "cvr": "3236530CH",
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -13171,7 +13259,7 @@
     2026
    ],
    "lei": "549300OSZ4JVZUBDJ106",
-   "cvr": null,
+   "cvr": "3236530CH",
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -13261,6 +13349,19 @@
     2026
    ],
    "lei": "5493008OEV43ON7WJZ02",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000GLK5WA7": {
+   "type": "isin",
+   "navne": [
+    "VanEck Agribusiness UCITS ETF"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -14052,7 +14153,7 @@
   "IE000KDY10O3": {
    "type": "isin",
    "navne": [
-    "ETC Group Web 3.0 UCITS ETF - Accumulating"
+    "ETC Group Web 3.0 UCITS ETF - Future of US Defence UCITS ETF - Accumulating"
    ],
    "aar": [
     2026
@@ -14758,7 +14859,7 @@
     2026
    ],
    "lei": "549300OSZ4JVZUBDJ106",
-   "cvr": null,
+   "cvr": "3236530CH",
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -14907,7 +15008,7 @@
     2026
    ],
    "lei": "549300OSZ4JVZUBDJ106",
-   "cvr": null,
+   "cvr": "3236530CH",
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -15297,6 +15398,19 @@
     2026
    ],
    "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000PTMIE90": {
+   "type": "isin",
+   "navne": [
+    "iShares Europe Infrastructure Builders UCITS ETF - EUR (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900TLI6NNNQP71H70",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -15831,6 +15945,19 @@
     2026
    ],
    "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000SDZFVP4": {
+   "type": "isin",
+   "navne": [
+    "Seraphim New Space UCITS ETF - Accumulating"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "2549004JAUPII35UZQ88",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -24351,7 +24478,6 @@
   "IE00BL3J3H81": {
    "type": "isin",
    "navne": [
-    "iShares Core MSCI EMU UCITS ETF Aggregate MXN Hedged (Acc)_x000D_",
     "iShares Core MSCI EMU UCITS ETF Aggregate MXN Hedged (Acc)"
    ],
    "aar": [
@@ -33089,7 +33215,6 @@
   "LU0174119429": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund A",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund A"
    ],
    "aar": [
@@ -33109,7 +33234,6 @@
   "LU0174119775": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund I",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund I"
    ],
    "aar": [
@@ -34177,7 +34301,6 @@
   "LU0230817339": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund A",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund A"
    ],
    "aar": [
@@ -34197,7 +34320,6 @@
   "LU0230817925": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund I",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund I"
    ],
    "aar": [
@@ -36070,7 +36192,6 @@
   "LU0266341212": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund A",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund A"
    ],
    "aar": [
@@ -36090,7 +36211,6 @@
   "LU0266341725": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund I",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund I"
    ],
    "aar": [
@@ -36476,7 +36596,6 @@
   "LU0284523734": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund J",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund J"
    ],
    "aar": [
@@ -39509,7 +39628,6 @@
   "LU0382931250": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tEuropean Smaller Companies Equity Fund\t European Smaller Companies Equity Fund A",
     "T. Rowe Price Funds SICAV European Smaller Companies Equity Fund European Smaller Companies Equity Fund A"
    ],
    "aar": [
@@ -39529,7 +39647,6 @@
   "LU0382931334": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tEuropean Smaller Companies Equity Fund\t European Smaller Companies Equity Fund Ad",
     "T. Rowe Price Funds SICAV European Smaller Companies Equity Fund European Smaller Companies Equity Fund Ad"
    ],
    "aar": [
@@ -39549,7 +39666,6 @@
   "LU0382931417": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tEuropean Smaller Companies Equity Fund\t European Smaller Companies Equity Fund I",
     "T. Rowe Price Funds SICAV European Smaller Companies Equity Fund European Smaller Companies Equity Fund I"
    ],
    "aar": [
@@ -39569,7 +39685,6 @@
   "LU0382932902": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund A",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund A"
    ],
    "aar": [
@@ -39589,7 +39704,6 @@
   "LU0382933116": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund I",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund I"
    ],
    "aar": [
@@ -39609,7 +39723,6 @@
   "LU0382933546": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund S",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund S"
    ],
    "aar": [
@@ -40436,7 +40549,6 @@
   "LU0438015033": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund I (GBP)",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund I (GBP)"
    ],
    "aar": [
@@ -49256,7 +49368,6 @@
   "LU0860350064": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund Q",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund Q"
    ],
    "aar": [
@@ -49310,7 +49421,6 @@
   "LU0860350577": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund Q",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund Q"
    ],
    "aar": [
@@ -49502,7 +49612,6 @@
   "LU0867066879": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund Q (GBP)",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund Q (GBP)"
    ],
    "aar": [
@@ -50191,7 +50300,7 @@
   "LU0912194254": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV Julius Baer Julius Baer Global Excellence Equity EUR\nCapitalisation",
+    "Multicooperation SICAV Julius Baer Julius Baer Global Excellence Equity EUR",
     "Multicooperation SICAV Julius Baer Julius Baer Global Excellence Equity EUR Capitalisation"
    ],
    "aar": [
@@ -52027,7 +52136,6 @@
   "LU0980312192": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund Id",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund Id"
    ],
    "aar": [
@@ -53090,7 +53198,6 @@
   "LU1001671582": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tEuropean Smaller Companies Equity Fund\t European Smaller Companies Equity Fund Q",
     "T. Rowe Price Funds SICAV European Smaller Companies Equity Fund European Smaller Companies Equity Fund Q"
    ],
    "aar": [
@@ -53812,7 +53919,6 @@
   "LU1028171848": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund Q (GBP)",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund Q (GBP)"
    ],
    "aar": [
@@ -53832,7 +53938,6 @@
   "LU1028171921": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tEuropean Smaller Companies Equity Fund\t European Smaller Companies Equity Fund Q (GBP)",
     "T. Rowe Price Funds SICAV European Smaller Companies Equity Fund European Smaller Companies Equity Fund Q (GBP)"
    ],
    "aar": [
@@ -54412,7 +54517,6 @@
   "LU1053542236": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund Q (GBP)",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund Q (GBP)"
    ],
    "aar": [
@@ -55402,7 +55506,6 @@
   "LU1127969324": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund Q (EUR)",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund Q (EUR)"
    ],
    "aar": [
@@ -55442,7 +55545,6 @@
   "LU1127970256": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Q",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Q"
    ],
    "aar": [
@@ -55635,7 +55737,6 @@
   "LU1147498189": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund I10",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund I10"
    ],
    "aar": [
@@ -57504,7 +57605,6 @@
   "LU1319833957": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund Ih (EUR)",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund Ih (EUR)"
    ],
    "aar": [
@@ -57987,7 +58087,6 @@
   "LU1360213034": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund I (CAD) 10",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund I (CAD) 10"
    ],
    "aar": [
@@ -58115,7 +58214,6 @@
   "LU1382643945": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund I (EUR)",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund I (EUR)"
    ],
    "aar": [
@@ -58710,7 +58808,6 @@
   "LU1446472380": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund Q (EUR)",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund Q (EUR)"
    ],
    "aar": [
@@ -59692,7 +59789,6 @@
   "LU1569987610": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund I (USD)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund I (USD)"
    ],
    "aar": [
@@ -59928,7 +60024,6 @@
   "LU1582322191": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund I10",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund I10"
    ],
    "aar": [
@@ -60971,7 +61066,6 @@
   "LU1649332456": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tA",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD A"
    ],
    "aar": [
@@ -60991,7 +61085,6 @@
   "LU1649332530": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tCHF\tAh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation CHF Ah"
    ],
    "aar": [
@@ -61011,7 +61104,6 @@
   "LU1649332704": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tEUR\tAh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation EUR Ah"
    ],
    "aar": [
@@ -61031,7 +61123,6 @@
   "LU1649332886": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tB",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD B"
    ],
    "aar": [
@@ -61051,7 +61142,6 @@
   "LU1649332969": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tCHF\tBh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation CHF Bh"
    ],
    "aar": [
@@ -61071,7 +61161,6 @@
   "LU1649333181": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tEUR\tBh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation EUR Bh"
    ],
    "aar": [
@@ -61091,7 +61180,6 @@
   "LU1649333264": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tC",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD C"
    ],
    "aar": [
@@ -61111,7 +61199,6 @@
   "LU1649333348": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tCHF\tCh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation CHF Ch"
    ],
    "aar": [
@@ -61131,7 +61218,6 @@
   "LU1649333777": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tEUR\tCh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation EUR Ch"
    ],
    "aar": [
@@ -61151,7 +61237,6 @@
   "LU1649333934": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tK",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD K"
    ],
    "aar": [
@@ -61171,7 +61256,6 @@
   "LU1649334072": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tCHF\tKh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation CHF Kh"
    ],
    "aar": [
@@ -61191,7 +61275,6 @@
   "LU1649334239": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tEUR\tKh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation EUR Kh"
    ],
    "aar": [
@@ -61211,7 +61294,6 @@
   "LU1649334312": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tKa",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD Ka"
    ],
    "aar": [
@@ -61231,7 +61313,6 @@
   "LU1649334403": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tN",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD N"
    ],
    "aar": [
@@ -61251,7 +61332,6 @@
   "LU1649334668": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tNa",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD Na"
    ],
    "aar": [
@@ -61271,7 +61351,6 @@
   "LU1649334825": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tUSD\tZ",
     "Multicooperation SICAV - Julius Baer Equity Next Generation USD Z"
    ],
    "aar": [
@@ -61818,7 +61897,6 @@
   "LU1683326703": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Ah (EUR)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Ah (EUR)"
    ],
    "aar": [
@@ -61921,7 +61999,6 @@
   "LU1687713559": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tEUR\tKa",
     "Multicooperation SICAV - Julius Baer Equity Next Generation EUR Ka"
    ],
    "aar": [
@@ -61941,7 +62018,6 @@
   "LU1687713633": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tCHF\tKa",
     "Multicooperation SICAV - Julius Baer Equity Next Generation CHF Ka"
    ],
    "aar": [
@@ -62013,7 +62089,6 @@
   "LU1697912878": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Qh (EUR)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Qh (EUR)"
    ],
    "aar": [
@@ -62689,7 +62764,6 @@
   "LU1721361761": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund A (USD)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund A (USD)"
    ],
    "aar": [
@@ -62709,7 +62783,6 @@
   "LU1721361845": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Q1",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Q1"
    ],
    "aar": [
@@ -62729,7 +62802,6 @@
   "LU1721363114": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Q (USD) 1",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Q (USD) 1"
    ],
    "aar": [
@@ -62749,7 +62821,6 @@
   "LU1721363205": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Qd (GBP) 1",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Qd (GBP) 1"
    ],
    "aar": [
@@ -63262,7 +63333,6 @@
   "LU1728555472": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tSGD\tBh",
     "Multicooperation SICAV - Julius Baer Equity Next Generation SGD Bh"
    ],
    "aar": [
@@ -63429,7 +63499,6 @@
   "LU1737525631": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tAsia Ex Japan Equity Fund\t Asian Ex-Japan Equity Fund Q1",
     "T. Rowe Price Funds SICAV Asia Ex Japan Equity Fund Asian Ex-Japan Equity Fund Q1"
    ],
    "aar": [
@@ -63725,7 +63794,6 @@
   "LU1756323520": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund A (JPY)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund A (JPY)"
    ],
    "aar": [
@@ -64123,7 +64191,6 @@
   "LU1777971893": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tUS Large Cap Growth Equity Fund\t US Large Cap Growth Equity Fund A (EUR)",
     "T. Rowe Price Funds SICAV US Large Cap Growth Equity Fund US Large Cap Growth Equity Fund A (EUR)"
    ],
    "aar": [
@@ -64846,7 +64913,6 @@
   "LU1807408643": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Qd (GBP)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Qd (GBP)"
    ],
    "aar": [
@@ -64922,7 +64988,6 @@
   "LU1808916412": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Ih (EUR)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Ih (EUR)"
    ],
    "aar": [
@@ -65374,7 +65439,6 @@
   "LU1823088627": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund I (JPY)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund I (JPY)"
    ],
    "aar": [
@@ -65596,7 +65660,6 @@
   "LU1826489814": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Qd11",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Qd11"
    ],
    "aar": [
@@ -67307,7 +67370,6 @@
   "LU1870219364": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV - Julius Baer Equity Next Generation\tGBP\tKa",
     "Multicooperation SICAV - Julius Baer Equity Next Generation GBP Ka"
    ],
    "aar": [
@@ -67353,7 +67415,6 @@
   "LU1873111105": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Ah (USD)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Ah (USD)"
    ],
    "aar": [
@@ -67684,7 +67745,6 @@
   "LU1892523157": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tGlobal Growth Equity Fund\t Global Growth Equity Fund Q",
     "T. Rowe Price Funds SICAV Global Growth Equity Fund Global Growth Equity Fund Q"
    ],
    "aar": [
@@ -67968,7 +68028,6 @@
   "LU1896777312": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Q (USD)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Q (USD)"
    ],
    "aar": [
@@ -68615,7 +68674,6 @@
   "LU1923401951": {
    "type": "isin",
    "navne": [
-    "T. Rowe Price Funds SICAV\tJapanese Equity Fund\t Japanese Equity Fund Q10 (EUR)",
     "T. Rowe Price Funds SICAV Japanese Equity Fund Japanese Equity Fund Q10 (EUR)"
    ],
    "aar": [
@@ -73507,7 +73565,7 @@
   "LU2118238794": {
    "type": "isin",
    "navne": [
-    "Wellington Management Funds (Luxembourg) - Wellington Emerging Markets Research Equity Fund EUR DL Accumulating Unhedged"
+    "Wellington Emerging Markets Research Equity Fund EUR DL Accumulating Unhedged"
    ],
    "aar": [
     2022,
@@ -76923,7 +76981,6 @@
   "LU2208643671": {
    "type": "isin",
    "navne": [
-    "DWS Invest SDG Global Equities PFC_x000D_",
     "DWS Invest SDG Global Equities PFC"
    ],
    "aar": [
@@ -76974,7 +77031,7 @@
   "LU2208854450": {
    "type": "isin",
    "navne": [
-    "Wellington Management Funds (Luxembourg) - Wellington Emerging Markets Research Equity Fund CAD T Accumulating Unhedged"
+    "Wellington Emerging Markets Research Equity Fund CAD T Accumulating Unhedged"
    ],
    "aar": [
     2022,
@@ -86035,7 +86092,6 @@
   "LU2471069448": {
    "type": "isin",
    "navne": [
-    "DWS Invest SDG Global Equities IC100_x000D_",
     "DWS Invest SDG Global Equities IC100"
    ],
    "aar": [
@@ -90440,7 +90496,6 @@
   "LU2699150053": {
    "type": "isin",
    "navne": [
-    "BGF World Mining Fund Class X2 GBP_x000D_",
     "BGF World Mining Fund Class X2 GBP"
    ],
    "aar": [
@@ -93763,8 +93818,7 @@
   "LU2940470268": {
    "type": "isin",
    "navne": [
-    "BGF World Mining Fund B10 USD",
-    "BGF World Energy Fund - Aggregate - BGF World Mining Fund B10 USD"
+    "BGF World Mining Fund B10 USD"
    ],
    "aar": [
     2025,
@@ -97775,6 +97829,45 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU3397993265": {
+   "type": "isin",
+   "navne": [
+    "BGF AI Innovation Fund - A10 JPY Hedged"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MOGOJJXYJ9XI15",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3397993349": {
+   "type": "isin",
+   "navne": [
+    "BGF AI Innovation Fund - A10 CNH Hedged"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MOGOJJXYJ9XI15",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3397993422": {
+   "type": "isin",
+   "navne": [
+    "BGF AI Innovation Fund - A10 AUD Hedged"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MOGOJJXYJ9XI15",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU3399027120": {
    "type": "isin",
    "navne": [
@@ -97823,6 +97916,19 @@
     2026
    ],
    "lei": "5493008IEMBTOEVKQF84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3406738917": {
+   "type": "isin",
+   "navne": [
+    "BGF Systematic Global Equity High Income Fund - Class I2"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300F475OMFBQMD437",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
@@ -97993,6 +98099,474 @@
     2026
    ],
    "lei": "254900PR07BM2S1GIY77",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3427404051": {
+   "type": "isin",
+   "navne": [
+    "BGF Emerging Markets Equity Income Fund - S2 GBP"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493008B5D1KCJRCE326",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3427404135": {
+   "type": "isin",
+   "navne": [
+    "BGF Emerging Markets Equity Income Fund - S5G GBP"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493008B5D1KCJRCE326",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3434483684": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced North American Sustainable Equity Fund - BI3 - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300CE1UG4IV657J56",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3441761163": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Global AI Innovators Fund - X - NOK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367008RRALQIVF2Y357",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3448644206": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Technology Equity Fund - Y - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900E7DWF6APQ0XH85",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3457466335": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Emerging Markets Sustainable Equity Fund - BI3 - GBP"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493008IEMBTOEVKQF84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3457466418": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced North American Sustainable Equity Fund - HB - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300CE1UG4IV657J56",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3460804001": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Emerging Markets Sustainable Equity Fund - HB - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493008IEMBTOEVKQF84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3460804183": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Emerging Markets Sustainable Equity Fund - HBC - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493008IEMBTOEVKQF84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3460805826": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Emerging Markets Sustainable Equity Fund - HBI - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493008IEMBTOEVKQF84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3460806048": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced North American Sustainable Equity Fund - HBI - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300CE1UG4IV657J56",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3470568125": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Global Small Cap Equity Fund - BP - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300GVTL00XKK6XZ21",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3481585894": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Global Stable Equity Fund - Y - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300OYMIP4UL664L36",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482721282": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BP - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482721365": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BP - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482721449": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BI - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482721522": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - E - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482721795": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - E - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482721878": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BC - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482721951": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BC - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482725432": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - Y - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482725515": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BQ - SEK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482725606": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BQ - NOK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482725788": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BI - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482725861": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BQ3 - NOK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482725945": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BI - NOK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482726083": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BF - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3482726166": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BQ - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3485477122": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Emerging Markets Sustainable Equity Fund - Y - SEK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493008IEMBTOEVKQF84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3485533213": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BQ - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3499930660": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Global Sustainable Small Cap Equity Fund - AP - SEK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "54930005P61E978YSE05",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3515218058": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Edge Emerging Markets Sustainable Equity Fund - BP - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367000Z4AVQV9XWM521",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3515218132": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Edge Emerging Markets Sustainable Equity Fund - BP - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367000Z4AVQV9XWM521",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3515218728": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Edge Emerging Markets Sustainable Equity Fund - BI - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367000Z4AVQV9XWM521",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3515218991": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Edge Emerging Markets Sustainable Equity Fund - BI - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367000Z4AVQV9XWM521",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3515219296": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Edge Emerging Markets Sustainable Equity Fund - X - NOK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367000Z4AVQV9XWM521",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
