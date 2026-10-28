@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Er {{ navn }} aktiebaseret? ({{ fid }}){% endblock %}
-{% block description %}{{ navn }} ({{ fid }}) {% if paa_listen_nu %}står på{% else %}står ikke på{% endif %} Skattestyrelsens liste over aktiebaserede investeringsselskaber for {{ aktuelt_aar }}. Se hvad det betyder for aktiesparekonto, børnedepot og frit depot.{% endblock %}
+{% block title %}{% if fond.type == "isin" %}{{ fid }} · {{ navn|titelnavn }}{% elif fond.cvr %}{{ navn|titelnavn(34) }} (CVR {{ fond.cvr }}){% else %}{{ navn|titelnavn(48) }}{% endif %} - på positivlisten?{% endblock %}
+{% block description %}{{ navn }}{% if fond.type == "isin" %} ({{ fid }}){% elif fond.cvr %} (CVR {{ fond.cvr }}){% endif %} står{% if not paa_listen_nu %} ikke{% endif %} på positivlisten for {{ aktuelt_aar }} - Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS-listen). Se hvad det betyder for aktiesparekonto, børnedepot og frit depot.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fond/{{ fid }}/">{% endblock %}
 {% block og_sti %}/fond/{{ fid }}/{% endblock %}
 {% block head %}
@@ -20,7 +20,7 @@
  "@type": "BreadcrumbList",
  "itemListElement": [
   {"@type": "ListItem", "position": 1, "name": "Forside", "item": "{{ base_url }}/"},
-  {"@type": "ListItem", "position": 2, "name": "Alle fonde", "item": "{{ base_url }}/fonde/a.html"},
+  {"@type": "ListItem", "position": 2, "name": "Alle fonde - {{ bogstav|upper }}", "item": "{{ base_url }}/fonde/{{ bogstav }}.html"},
   {"@type": "ListItem", "position": 3, "name": {{ navn|tojson }}, "item": "{{ base_url }}/fond/{{ fid }}/"}
  ]
 }
@@ -28,7 +28,7 @@
 {% endblock %}
 
 {% block content %}
-<nav class="brødkrumme"><a href="{{ base_path }}/">Forside</a> › <a href="{{ base_path }}/fonde/a.html">Alle fonde</a> › {{ fid }}</nav>
+<nav class="brødkrumme"><a href="{{ base_path }}/">Forside</a> › <a href="{{ base_path }}/fonde/{{ bogstav }}.html">Alle fonde - {{ bogstav|upper }}</a> › {{ fid }}</nav>
 
 <article>
  <h1>Er {{ navn }} aktiebaseret?</h1>
@@ -173,6 +173,7 @@
  <div class="to-spalter">
  <section>
  <h2>Status pr. indkomstår</h2>
+ <p class="historik">{{ historik }}</p>
  <table class="aarstabel">
  <thead><tr><th scope="col">Indkomstår</th><th scope="col">Registreret som aktiebaseret</th></tr></thead>
  <tbody>
@@ -199,6 +200,23 @@
  </dl>
  </section>
  </div>
+
+{% if relaterede %}
+ <section class="relaterede">
+ <h2>{{ relaterede_overskrift }}</h2>
+ <ul class="fondsliste">
+ {% for rid, r, rnavn in relaterede %}
+  <li>
+    <a href="{{ base_path }}/fond/{{ rid }}/">{{ rnavn }}</a>
+    <span class="fondsliste-meta">
+      {% if r.type == "isin" %}<span class="isin">{{ rid }}</span>{% elif r.cvr %}<span class="isin">CVR {{ r.cvr }}</span>{% endif %}
+      {% if aktuelt_aar in r.aar %}<span class="status-ja">på positivlisten</span>{% else %}<span class="status-nej">ikke på positivlisten</span>{% endif %}
+    </span>
+  </li>
+ {% endfor %}
+ </ul>
+ </section>
+ {% endif %}
 
  <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
  aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).

@@ -2,6 +2,7 @@
 {% block title %}Ændringer på positivlisten {{ aktuelt_aar }} - nye og udgåede fonde{% endblock %}
 {% block description %}Se hvilke fonde der er nye på Skats positivliste for {{ aktuelt_aar }}, og hvilke der er udgået siden {{ forrige_aar }}. Baseret på Skattestyrelsens officielle ABIS-liste.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/aendringer.html">{% endblock %}
+{% block og_sti %}/aendringer.html{% endblock %}
 {% block content %}
 <h1>Ændringer på positivlisten {{ aktuelt_aar }}</h1>
 <script src="{{ base_path }}/static/listefilter.js" defer></script>

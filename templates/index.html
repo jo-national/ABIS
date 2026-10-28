@@ -125,6 +125,24 @@
  og kan ikke indgå på aktiesparekontoen.</p>
  <p>Danske investeringsforeninger, der er aktiebaserede og betaler udbytte, beskattes altid som aktieindkomst. Derfor behøver de ikke at stå på positivlisten - <a href="{{ base_path }}/metode.html">se datagrundlaget</a>.</p>
 </section>
+{% if kendte_fonde %}
+<section class="kendte-fonde">
+ <h2>{{ tekster.forside_kendte_overskrift }}</h2>
+ <p>{{ tekster.forside_kendte_intro }}</p>
+ <ul class="fondsliste">
+ {% for fid, e, navn in kendte_fonde %}
+  <li>
+    <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
+    <span class="fondsliste-meta">
+      <span class="isin">{{ fid }}</span>
+      {% if aktuelt_aar in e.aar %}<span class="status-ja">på positivlisten</span>{% else %}<span class="status-nej">ikke på positivlisten</span>{% endif %}
+    </span>
+  </li>
+ {% endfor %}
+ </ul>
+</section>
+{% endif %}
+
 <script>window.BASE_PATH = {{ base_path|tojson }};</script>
 <script src="{{ base_path }}/static/kontekst.js" defer></script>
 <script src="{{ base_path }}/static/search.js" defer></script>

@@ -509,6 +509,9 @@ article h1 {
 }
 
 .forklaring { margin-top: var(--afsnit); }
+.relaterede, .kendte-fonde { margin-top: var(--afsnit); }
+.relaterede h2, .kendte-fonde h2 { margin-top: 0; }
+.historik { max-width: 28rem; }
 
 /* ---------- Indekssider ---------- */
 .listefilter {
