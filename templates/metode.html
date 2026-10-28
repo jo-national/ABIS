@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Hvad er positivlisten (ABIS-listen) - og hvad dækker den ikke?{% endblock %}
-{% block description %}Positivlisten er Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS-listen). Læs hvad den betyder for beskatningen og aktiesparekontoen - og hvad den ikke dækker.{% endblock %}
+{% block description %}Positivlisten er Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS-listen). Læs hvad den betyder for beskatningen og aktiesparekontoen, hvad den ikke dækker - og hvorfor Vanguard og amerikanske ETF'er ikke står på den.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/metode.html">{% endblock %}
 {% block og_sti %}/metode.html{% endblock %}
 {% block content %}
@@ -35,6 +35,41 @@ udbyttebetalende, minimumsbeskattet investeringsforening. Dens afkast beskattes 
 aktieindkomst.</p>
 <p>Søger du efter en investeringsforening og får svaret "ikke fundet", er det altså ikke et endegyldigt
 svar på, om investeringsforeningen er aktiebaseret.</p>
+
+<h2 id="vanguard">Hvorfor står Vanguard ikke på positivlisten?</h2>
+{% if antal_vanguard == 0 %}
+<p>Ingen af Vanguards fonde står på positivlisten for {{ aktuelt_aar }}. Det gælder også Vanguard FTSE
+All-World UCITS ETF (ISIN IE00BK5BQT80 og IE00B3RBWM25), som mange søger efter.</p>
+<p>Det skyldes ikke, at Skattestyrelsen har vurderet fondene og sagt nej. Et investeringsselskab kommer kun
+på positivlisten, hvis selskabet selv eller dets forvaltningsselskab har meddelt Skattestyrelsen, at det er
+aktiebaseret (aktieavancebeskatningslovens § 19 B). Skattestyrelsen sætter ikke fonde på listen af egen
+drift. Vanguard har altså ikke indsendt den meddelelse for sine fonde. Hvorfor, kan positivlisten ikke svare på.</p>
+<p>Meddelelsen skal være indsendt senest den 1. november året før det indkomstår, den skal gælde fra
+(nyoprettede fonde har en særlig frist). Melder Vanguard sine fonde til, kan de derfor tidligst stå på listen
+fra det følgende indkomstår - og så dukker de automatisk op her.</p>
+<h3>Hvad betyder det for dig?</h3>
+<p>Vanguards europæiske ETF'er er investeringsselskaber. Når de ikke står på positivlisten, gælder det samme
+som for andre investeringsselskaber uden for listen: På et almindeligt aktiedepot lagerbeskattes afkastet som
+kapitalindkomst, og fondene kan ikke ligge på en aktiesparekonto. I en pensionsordning gør positivlisten
+ingen forskel.</p>
+<p>Det siger intet om fondenes kvalitet - kun om, hvordan de beskattes. Leder du efter en ETF, der følger
+det samme indeks og står på positivlisten, kan du søge på indeksets navn, f.eks. "FTSE All-World".</p>
+{% else %}
+<p>{{ antal_vanguard|tusind }} af Vanguards fonde står på positivlisten for {{ aktuelt_aar }}. Søg på navnet
+eller ISIN-koden på <a href="{{ base_path }}/">forsiden</a> for at se, om din Vanguard-fond er en af dem.</p>
+{% endif %}
+
+<h2 id="amerikanske-etfer">Hvad med amerikanske ETF'er?</h2>
+{% if antal_us_isin == 0 %}
+<p>Der står ingen fonde med en amerikansk ISIN-kode (den starter med US) på positivlisten for
+{{ aktuelt_aar }}. Det gælder også amerikanske bitcoin-ETF'er som iShares Bitcoin Trust (IBIT).</p>
+{% endif %}
+<p>De fleste private investorer i EU kan i praksis heller ikke købe amerikanske ETF'er. EU's PRIIPs-regler
+kræver et faktaark (KID) for investeringsprodukter, der sælges til private, og det udarbejder amerikanske
+udbydere typisk ikke. Derfor tilbyder mange banker og handelsplatforme dem ikke til private kunder. Har du
+købt dem tidligere, kan du som regel beholde og sælge dem.</p>
+<p>Hvordan en amerikansk ETF beskattes, afhænger af, hvordan den er indrettet. Er du i tvivl, så spørg
+Skattestyrelsen eller en skatterådgiver.</p>
 
 <h2 id="lagerbeskatning">Lagerbeskatning og realisationsbeskatning</h2>
 <p>De to ord beskriver hvornår du beskattes af et afkast - ikke hvor meget.</p>
