@@ -9,6 +9,7 @@ BASE_PATH = "" og BASE_URL til domænet.
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import yaml
 from pathlib import Path
@@ -64,6 +65,42 @@ def titelnavn(navn: str, maks: int = 35) -> str:
         return navn
     kort = navn[:maks].rsplit(" ", 1)[0].rstrip(" -–,.")
     return kort + "…"
+
+
+def dansk_liste(dele: list) -> str:
+    dele = [str(d) for d in dele]
+    return dele[0] if len(dele) == 1 else ", ".join(dele[:-1]) + " og " + dele[-1]
+
+
+def historik_tekst(aar: list[int], aktuelt_aar: int, alle_aar: list[int], subjekt: str) -> str:
+    """Én-to sætninger om fondens registreringshistorik, skrevet ud fra årene.
+    Giver hver fondsside tekst, der er unik for netop den fond."""
+    aar = sorted(aar)
+    foerste_data = min(alle_aar)
+    if aktuelt_aar not in aar:
+        tekst = f"{subjekt} var senest registreret for indkomståret {aar[-1]}"
+        if len(aar) > 1:
+            tekst += f" og har i alt været registreret i {len(aar)} indkomstår ({dansk_liste(aar)})"
+        return tekst + "."
+    # Seneste sammenhængende periode, der slutter i det aktuelle år.
+    start = aktuelt_aar
+    while start - 1 in aar:
+        start -= 1
+    tidligere = [a for a in aar if a < start]
+    if start == foerste_data:
+        return (f"{subjekt} har været registreret i alle {len(alle_aar)} indkomstår, "
+                f"hjemmesiden har data for ({foerste_data}-{aktuelt_aar}).")
+    if start == aktuelt_aar and not tidligere:
+        return (f"{subjekt} er registreret for første gang for indkomståret {aktuelt_aar} "
+                f"og har ikke været registreret i tidligere år, hjemmesiden har data for "
+                f"(fra {foerste_data}).")
+    if start == aktuelt_aar:
+        tekst = f"{subjekt} er registreret igen for indkomståret {aktuelt_aar}"
+    else:
+        tekst = f"{subjekt} har været registreret uafbrudt siden indkomståret {start}"
+    if tidligere:
+        tekst += f" og var også registreret for {dansk_liste(tidligere)}"
+    return tekst + "."
 
 
 def main() -> None:
@@ -218,17 +255,68 @@ def main() -> None:
     # forside > aktive fonde > oversigts-/videnssider > udgåede fonde.
     lastmod_iso = hentet_dt.astimezone(ZoneInfo("Europe/Copenhagen")).date().isoformat()
     urls: list[tuple[str, str]] = [("/", "1.0")]
-    (SITE / "index.html").write_text(env.get_template("index.html").render(**ctx), encoding="utf-8")
+    # Udvalg af kendte ETF'er på forsiden (redigeres i data/tekster.yml).
+    # ISIN-koder, der ikke findes i data, springes stille over.
+    kendte_fonde = [(i, fonde[i], fonde[i]["navne"][0] if fonde[i]["navne"] else i)
+                    for i in tekster.get("forside_kendte_fonde") or [] if i in fonde]
+    (SITE / "index.html").write_text(
+        env.get_template("index.html").render(kendte_fonde=kendte_fonde, **ctx), encoding="utf-8"
+    )
+
+    # Relaterede fonde: samme udbyder (eller samme første ord i navnet, hvis
+    # udbyderen ikke genkendes), rangeret efter hvor meget af navnet de deler -
+    # så andre andelsklasser af samme fond kommer først. Navne, der ligner
+    # hinanden, ligger tæt i alfabetisk orden, så det er nok at se på naboerne.
+    # Giver hver fondsside unikt indhold og Google flere veje ind til siderne.
+    ANTAL_RELATEREDE = 6
+    navn_af = {fid: (e["navne"][0] if e["navne"] else fid) for fid, e in fonde.items()}
+    alfabetisk = sorted(fonde, key=lambda f: navn_af[f].lower())
+    grupper: dict[str, list] = {}
+    for fid in alfabetisk:
+        u = udbyder(navn_af[fid])
+        noegle = u if u != "Andre" else "ord:" + navn_af[fid].split()[0].lower()
+        grupper.setdefault(noegle, []).append(fid)
+    plads = {fid: i for i, fid in enumerate(alfabetisk)}
+    plads_i_gruppe = {fid: i for g in grupper.values() for i, fid in enumerate(g)}
+
+    def naermeste(fid: str, kandidater: list) -> list:
+        i = plads_i_gruppe[fid]
+        vindue = kandidater[max(0, i - 15):i] + kandidater[i + 1:i + 16]
+        n = navn_af[fid].lower()
+        return sorted(
+            vindue,
+            key=lambda f: (-len(os.path.commonprefix([n, navn_af[f].lower()])),
+                           aktuelt_aar not in fonde[f]["aar"], navn_af[f].lower()),
+        )[:ANTAL_RELATEREDE]
+
+    def relaterede(fid: str) -> tuple[str, list]:
+        u = udbyder(navn_af[fid])
+        noegle = u if u != "Andre" else "ord:" + navn_af[fid].split()[0].lower()
+        valgte = naermeste(fid, grupper[noegle])
+        if u != "Andre" and valgte:
+            overskrift = f"Andre fonde fra {u}"
+        else:
+            overskrift = "Fonde med lignende navne"
+            if len(valgte) < ANTAL_RELATEREDE:
+                i = plads[fid]
+                for f in alfabetisk[max(0, i - 3):i] + alfabetisk[i + 1:i + 4]:
+                    if f not in valgte and len(valgte) < ANTAL_RELATEREDE:
+                        valgte.append(f)
+        return overskrift, [(f, fonde[f], navn_af[f]) for f in valgte]
 
     tpl_fond = env.get_template("fond.html")
     buckets: dict[str, list] = {}
     for fid, e in fonde.items():
-        navn = e["navne"][0] if e["navne"] else fid
+        navn = navn_af[fid]
+        rel_overskrift, rel = relaterede(fid)
         d = SITE / "fond" / fid
         d.mkdir(parents=True, exist_ok=True)
         d.joinpath("index.html").write_text(
             tpl_fond.render(fid=fid, fond=e, navn=navn, bogstav=bucket(navn, fid),
-                            paa_listen_nu=aktuelt_aar in e["aar"], **ctx),
+                            paa_listen_nu=aktuelt_aar in e["aar"],
+                            historik=historik_tekst(e["aar"], aktuelt_aar, data["alle_aar"],
+                                                    "Fonden" if e["type"] == "isin" else "Selskabet"),
+                            relaterede_overskrift=rel_overskrift, relaterede=rel, **ctx),
             encoding="utf-8",
         )
         # Fonde der er på listen i år prioriteres over historiske/udgåede.

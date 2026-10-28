@@ -25,6 +25,25 @@ forside_hero_linje2: "Søg på navnet eller ISIN-koden, så fortæller vi dig al
 forside_kontekst_overskrift: "Hvad skal du bruge positivlisten til?"
 forside_kontekst_intro: "Positivlisten skal bruges forskelligt, alt efter hvordan du investerer. Vælg den kontotype du investerer på og se, hvad du skal lede efter."
 
+# Kendte ETF'er nederst på forsiden. Én ISIN-kode pr. linje med "- " foran.
+# En kode, der ikke findes på positivlisten, springes automatisk over.
+# Udvalget er redaktionelt (kendte, brede ETF'er) - ikke en anbefaling.
+forside_kendte_overskrift: "Kendte ETF'er på positivlisten"
+forside_kendte_intro: "Et udvalg af kendte, brede ETF'er, som mange slår op. Udvalget er ikke en anbefaling - søg på din egen fond ovenfor."
+forside_kendte_fonde:
+  - IE00B4L5Y983
+  - IE00BFY0GT14
+  - IE00BJ0KDQ92
+  - IE000BI8OT95
+  - IE00097WZHZ9
+  - IE00B6R52259
+  - IE00B5BMR087
+  - IE00B53SZB19
+  - IE00BKM4GZ66
+  - IE00B4K48X80
+  - IE00BMC38736
+  - IE00B1XNHC34
+
 # ---------- OM HJEMMESIDEN ----------
 om_formaal_overskrift: "Hvad kan jeg bruge hjemmesiden til?"
 om_formaal_tekst1: "Hjemmesiden er en hjælp til dig, der er i tvivl om, hvorvidt et bestemt værdipapir står på Skattestyrelsens liste over aktiebaserede investeringsselskaber - mere mundret kaldet positivlisten eller ABIS-listen."

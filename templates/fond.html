@@ -173,6 +173,7 @@
  <div class="to-spalter">
  <section>
  <h2>Status pr. indkomstår</h2>
+ <p class="historik">{{ historik }}</p>
  <table class="aarstabel">
  <thead><tr><th scope="col">Indkomstår</th><th scope="col">Registreret som aktiebaseret</th></tr></thead>
  <tbody>
@@ -199,6 +200,23 @@
  </dl>
  </section>
  </div>
+
+{% if relaterede %}
+ <section class="relaterede">
+ <h2>{{ relaterede_overskrift }}</h2>
+ <ul class="fondsliste">
+ {% for rid, r, rnavn in relaterede %}
+  <li>
+    <a href="{{ base_path }}/fond/{{ rid }}/">{{ rnavn }}</a>
+    <span class="fondsliste-meta">
+      {% if r.type == "isin" %}<span class="isin">{{ rid }}</span>{% elif r.cvr %}<span class="isin">CVR {{ r.cvr }}</span>{% endif %}
+      {% if aktuelt_aar in r.aar %}<span class="status-ja">på positivlisten</span>{% else %}<span class="status-nej">ikke på positivlisten</span>{% endif %}
+    </span>
+  </li>
+ {% endfor %}
+ </ul>
+ </section>
+ {% endif %}
 
  <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
  aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
