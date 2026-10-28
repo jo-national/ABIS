@@ -240,6 +240,12 @@ def main() -> None:
         "antal_pr_aar": data["antal_pr_aar"],
         "antal_fonde": len(fonde),
         "antal_uden_isin": data["antal_uden_isin"],
+        # Til Viden-siden: teksten om Vanguard og amerikanske ETF'er skifter
+        # automatisk, hvis de en dag kommer på listen.
+        "antal_vanguard": sum(1 for e in fonde.values() if aktuelt_aar in e["aar"]
+                              and any(udbyder(n) == "Vanguard" for n in e["navne"])),
+        "antal_us_isin": sum(1 for fid, e in fonde.items() if aktuelt_aar in e["aar"]
+                             and e["type"] == "isin" and fid.startswith("US")),
         "base_url": BASE_URL,
         "base_path": BASE_PATH,
     }

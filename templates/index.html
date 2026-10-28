@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Positivlisten? - er din ETF eller fond aktiebaseret? (Skats ABIS-liste){% endblock %}
+{% block title %}Skats positivliste (ABIS-listen {{ aktuelt_aar }}): er din fond på listen?{% endblock %}
+{% block description %}Søg i Skats positivliste (ABIS-listen) for {{ aktuelt_aar }}: Se om din ETF eller fond er blandt de {{ antal_pr_aar[aktuelt_aar|string]|tusind }} registrerede aktiebaserede investeringsselskaber - og hvad det betyder for din skat og aktiesparekonto.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/">{% endblock %}
 {% block head %}
 <script type="application/ld+json">
