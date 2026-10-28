@@ -48,6 +48,24 @@ def bucket(navn: str, fid: str) -> str:
     return first if first.isalpha() and first.isascii() else "0-9"
 
 
+# Selskabsformen gentages i mange fondsnavne og fylder i søgeresultatets titel
+# uden at hjælpe nogen med at genkende fonden. Fjernes kun i <title>.
+SELSKABSFORM_PRAEFIKSER = ("investeringsforeningen ", "kapitalforeningen ")
+
+
+def titelnavn(navn: str, maks: int = 35) -> str:
+    """Kort fondsnavn til <title>: Google viser ca. 60-70 tegn, og ISIN og
+    navnets begyndelse er det, folk genkender. Klippes ved et ordskifte."""
+    for p in SELSKABSFORM_PRAEFIKSER:
+        if navn.lower().startswith(p) and len(navn) > len(p):
+            navn = navn[len(p):]
+            break
+    if len(navn) <= maks:
+        return navn
+    kort = navn[:maks].rsplit(" ", 1)[0].rstrip(" -–,.")
+    return kort + "…"
+
+
 def main() -> None:
     data = json.loads(DATA.read_text(encoding="utf-8"))
     fonde: dict = data["fonde"]
@@ -67,6 +85,7 @@ def main() -> None:
         lstrip_blocks=True,
     )
     env.filters["tusind"] = tusind
+    env.filters["titelnavn"] = titelnavn
 
     # Redigerbare tekster (data/tekster.yml) - rettes direkte på GitHub,
     # hvorefter workflowet genbygger sitet. Se instruktionen i filen.
@@ -208,7 +227,7 @@ def main() -> None:
         d = SITE / "fond" / fid
         d.mkdir(parents=True, exist_ok=True)
         d.joinpath("index.html").write_text(
-            tpl_fond.render(fid=fid, fond=e, navn=navn,
+            tpl_fond.render(fid=fid, fond=e, navn=navn, bogstav=bucket(navn, fid),
                             paa_listen_nu=aktuelt_aar in e["aar"], **ctx),
             encoding="utf-8",
         )

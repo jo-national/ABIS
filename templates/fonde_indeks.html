@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Alle fonde på positivlisten - {{ bogstav|upper }}{% endblock %}
+{% block title %}Fonde på positivlisten: {{ bogstav|upper }} - alfabetisk oversigt{% endblock %}
+{% block description %}{{ fonde|length|tusind }} fonde på Skats positivliste (ABIS-listen) med navne, der begynder med {% if bogstav == "0-9" %}et tal{% else %}{{ bogstav|upper }}{% endif %}. Se om de er registreret for {{ aktuelt_aar }}, find ISIN-koden og filtrér på udbyder.{% endblock %}
+{% block og_sti %}/fonde/{{ bogstav }}.html{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fonde/{{ bogstav }}.html">{% endblock %}
 {% block content %}
 <h1>Alle fonde - {{ bogstav|upper }}</h1>
