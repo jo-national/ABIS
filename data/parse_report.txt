@@ -1,16 +1,16 @@
-Parse-rapport — genereret 2026-11-03T12:21:26+00:00
-Kildefil: september-2026-abis-liste-2021-2026.xlsx (SHA-256 8fafcb575c51b8e2…)
-Hentet fra: https://skat.dk/media/fo5m24x5/september-2026-abis-liste-2021-2026.xlsx
+Parse-rapport — genereret 2026-11-04T12:31:52+00:00
+Kildefil: november-2026-abis-liste-2021-2026.xlsx (SHA-256 69333ef3fdbafb63…)
+Hentet fra: https://skat.dk/media/ej3fviwc/november-2026-abis-liste-2021-2026.xlsx
 
 Ark 'Forside': ikke et årstal — springes over (forventet).
-Ark '2026': 5433 datarækker læst.
+Ark '2026': 5500 datarækker læst.
 Ark '2025': 4895 datarækker læst.
 Ark '2024': 4477 datarækker læst.
 Ark '2023': 3312 datarækker læst.
 Ark '2022': 2615 datarækker læst.
 Ark '2021': 2096 datarækker læst.
 
-Fonde i alt: 6163  (med ISIN: 6122, uden ISIN: 41)
+Fonde i alt: 6223  (med ISIN: 6181, uden ISIN: 42)
 Aktuelt indkomstår (nyeste faneblad): 2026
 
 Registrerede fonde pr. indkomstår (kilde: kolonnen 'Registrerede år'):
@@ -20,7 +20,7 @@ Registrerede fonde pr. indkomstår (kilde: kolonnen 'Registrerede år'):
   2023: 3313
   2024: 4474
   2025: 4858
-  2026: 5371
+  2026: 5431
 
 Kontroller:
   Tomme rækker sprunget over: 411
@@ -30,7 +30,7 @@ Kontroller:
   ISIN-løse fonde uden både CVR og navn (udeladt): 0
   Advarsler (rækker sprunget over):
     - Ark '2024': ulæselig ISIN-værdi 'LU26632025,202667'
-  Fonde registreret under flere navne: 877
+  Fonde registreret under flere navne: 888
     DK0010273796: ['AKL SEB Balance Vækst P', 'INVESTERINGSFORENINGEN SEBINVEST AKL Balance Vækst P', 'Investeringsforeningen SEB Invest AKL Balance Vækst P']
     DK0010301167: ['INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 80', 'KAPITALFORENINGEN LÅN & SPAR MIXINVEST Afd. Balance 80', 'Afdeling Balance 80']
     DK0016102361: ['INVESTERINGSFORENINGEN LÅN & SPAR INVEST Afdeling Balance 60', 'KAPITALFORENINGEN LÅN & SPAR MIXINVEST Afd Balance 60', 'Afdeling Balance 60']

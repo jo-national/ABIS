@@ -1,12 +1,12 @@
 {
- "genereret_utc": "2026-11-03T12:21:27+00:00",
+ "genereret_utc": "2026-11-04T12:31:54+00:00",
  "kilde": {
   "side": "https://skat.dk/erhverv/ekapital/vaerdipapirer/beviser-og-aktier-i-investeringsforeninger-og-selskaber-ifpa",
-  "fil_url": "https://skat.dk/media/fo5m24x5/september-2026-abis-liste-2021-2026.xlsx",
-  "filnavn": "september-2026-abis-liste-2021-2026.xlsx",
-  "sha256": "8fafcb575c51b8e2b9591b1feb265371e209281d4ba36f9e0f09369ab679a218",
-  "offentliggjort_tekst": "28. september 2026",
-  "hentet_utc": "2026-09-28T11:13:47+00:00"
+  "fil_url": "https://skat.dk/media/ej3fviwc/november-2026-abis-liste-2021-2026.xlsx",
+  "filnavn": "november-2026-abis-liste-2021-2026.xlsx",
+  "sha256": "69333ef3fdbafb630db24f1931e18f49beaaddb2576a85a708e53509ec122dc9",
+  "offentliggjort_tekst": "3. november 2026",
+  "hentet_utc": "2026-11-04T12:31:52+00:00"
  },
  "seneste_indkomstaar": 2026,
  "alle_aar": [
@@ -25,9 +25,9 @@
   "2023": 3313,
   "2024": 4474,
   "2025": 4858,
-  "2026": 5371
+  "2026": 5431
  },
- "antal_uden_isin": 41,
+ "antal_uden_isin": 42,
  "fonde": {
   "CVR-31181828": {
    "type": "uden_isin",
@@ -566,6 +566,19 @@
    ],
    "lei": null,
    "cvr": "44255529",
+   "hjemsted": "Denmark (DK)",
+   "kontrolciffer_fejl": false
+  },
+  "CVR-46169263/46792971": {
+   "type": "uden_isin",
+   "navne": [
+    "Kapitalforeningen Wealth Invest II Watermill Fund"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367002ENYGZHAA83559",
+   "cvr": "46169263/46792971",
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
@@ -1554,7 +1567,6 @@
    "type": "isin",
    "navne": [
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende A - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. A",
-    "Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. A",
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende KL - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. A"
    ],
    "aar": [
@@ -2311,7 +2323,6 @@
    "type": "isin",
    "navne": [
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende W - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. W",
-    "Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. W",
     "INVESTERINGSFORENINGEN VALUEINVEST DANMARK ValueInvest Global Akkumulerende KL - Investeringsforeningen ValueInvest Danmark, ValueInvest Global Akk. W"
    ],
    "aar": [
@@ -4818,6 +4829,19 @@
    "hjemsted": "Denmark (DK)",
    "kontrolciffer_fejl": false
   },
+  "DK0064981757": {
+   "type": "isin",
+   "navne": [
+    "Investeringsforeningen Danske Invest Index Sweden Restricted - Accumulating KL - Sweden Restricted, klass SEK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300EEEOUNMDLEN392",
+   "cvr": "34189072",
+   "hjemsted": "Denmark (DK)",
+   "kontrolciffer_fejl": false
+  },
   "DK0065095094": {
    "type": "isin",
    "navne": [
@@ -5099,6 +5123,7 @@
   "FI0008801485": {
    "type": "isin",
    "navne": [
+    "Nordea Pro Finland I distribution",
     "Nordea Pro Finland Fund - Nordea Pro Finland I distribution"
    ],
    "aar": [
@@ -5189,6 +5214,7 @@
   "FI0008801709": {
    "type": "isin",
    "navne": [
+    "Nordea Japan Fund A Dist EUR",
     "Nordea Japan Fund A Distrib",
     "Nordea Japan Fund Distrib."
    ],
@@ -5699,6 +5725,7 @@
   "FI0008813522": {
    "type": "isin",
    "navne": [
+    "Nordea Finnish Index Select Fund - Nordea Finnish Passive Fund I distribution",
     "Nordea Finnish Passive Fund I distribution"
    ],
    "aar": [
@@ -5718,6 +5745,7 @@
   "FI0008813530": {
    "type": "isin",
    "navne": [
+    "Nordea European Index Select Fund - Nordea European Passive Fund I distribution",
     "Nordea European Passive Fund I distribution"
    ],
    "aar": [
@@ -5757,6 +5785,7 @@
   "FI4000010541": {
    "type": "isin",
    "navne": [
+    "Nordea Finnish Index Select Fund - Nordea Finnish Passive Fund B distribution",
     "Nordea Finnish Passive Fund B distribution"
    ],
    "aar": [
@@ -5796,6 +5825,7 @@
   "FI4000010566": {
    "type": "isin",
    "navne": [
+    "Nordea European Index Select Fund - Nordea European Passive Fund B distribution",
     "Nordea European Passive Fund B distribution"
    ],
    "aar": [
@@ -5964,6 +5994,7 @@
   "FI4000046651": {
    "type": "isin",
    "navne": [
+    "Nordea Global Index Select Fund - Nordea Global Passive Fund I distribution",
     "Nordea Global Passive Fund I distribution"
    ],
    "aar": [
@@ -6003,6 +6034,7 @@
   "FI4000046677": {
    "type": "isin",
    "navne": [
+    "Nordea Global Index Select Fund - Nordea Global Passive Fund B distribution",
     "Nordea Global Passive Fund B distribution"
    ],
    "aar": [
@@ -6062,7 +6094,7 @@
   "FI4000046990": {
    "type": "isin",
    "navne": [
-    "Non-UCITS Nordea Private Banking Norsk Aksje Portefølje B Acc NOK",
+    "Nordea Global Index Select Fund - Non-UCITS Nordea Private Banking Norsk Aksje Portefølje B Acc NOK",
     "Non-UCITS Nordea Private Banking Norsk Aksje Portefølje - Nordea PB Norsk Aksje Portefølje B Growth",
     "Non-UCITS Nordea Private Banking Norsk Aksje Portefølje - Nordea PB Norsk Aksje Portefolje B Growth",
     "Nordea Private Banking Norsk Aksje Portefolje - Nordea PB Norsk Aksje Portefolje B Growth"
@@ -6159,6 +6191,7 @@
   "FI4000052154": {
    "type": "isin",
    "navne": [
+    "Nordea Pro Finland B Growth",
     "Nordea Pro Finland Fund - Nordea Pro Finland B Growth"
    ],
    "aar": [
@@ -6617,6 +6650,7 @@
   "FI4000122841": {
    "type": "isin",
    "navne": [
+    "Nordea Global Index Select Fund - Nordea Global Passive Fund A distribution SEK",
     "Nordea Global Passive Fund A distribution SEK"
    ],
    "aar": [
@@ -7130,6 +7164,7 @@
   "FI4000288493": {
    "type": "isin",
    "navne": [
+    "Nordea European Index Select Fund - Nordea European Passive Fund C distribution",
     "Nordea European Passive Fund C distribution"
    ],
    "aar": [
@@ -7449,6 +7484,7 @@
   "FI4000288790": {
    "type": "isin",
    "navne": [
+    "Nordea Finnish Index Select Fund - Nordea Finnish Passive Fund C distribution",
     "Nordea Finnish Passive Fund C distribution"
    ],
    "aar": [
@@ -8476,6 +8512,7 @@
   "FI4000523469": {
    "type": "isin",
    "navne": [
+    "Nordea World Index Select Fund - Nordea World Passive Fund A distribution SEK",
     "Nordea World Passive Fund A distribution SEK"
    ],
    "aar": [
@@ -8963,6 +9000,45 @@
    "hjemsted": "Finland (FI)",
    "kontrolciffer_fejl": false
   },
+  "FI4000602461": {
+   "type": "isin",
+   "navne": [
+    "Nordea Nordic Index Select Fund A Dist EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700WTONY7FWZPNB75",
+   "cvr": null,
+   "hjemsted": "Finland (FI)",
+   "kontrolciffer_fejl": false
+  },
+  "FI4000602479": {
+   "type": "isin",
+   "navne": [
+    "Nordea Nordic Index Select Fund A Acc SEK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700WTONY7FWZPNB75",
+   "cvr": null,
+   "hjemsted": "Finland (FI)",
+   "kontrolciffer_fejl": false
+  },
+  "FI4000602487": {
+   "type": "isin",
+   "navne": [
+    "Nordea Nordic Index Select Fund A Dist SEK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700WTONY7FWZPNB75",
+   "cvr": null,
+   "hjemsted": "Finland (FI)",
+   "kontrolciffer_fejl": false
+  },
   "FR0007052782": {
    "type": "isin",
    "navne": [
@@ -9418,6 +9494,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE00008UMP12": {
+   "type": "isin",
+   "navne": [
+    "iShares U.S. Equity High Income Active UCITS ETF - EUR Hedged (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5299008DW2F6VTFUDN69",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE0000902GT6": {
    "type": "isin",
    "navne": [
@@ -9649,6 +9738,19 @@
     2026
    ],
    "lei": "529900IVDIBXLKEVKM46",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE0001AT4HU1": {
+   "type": "isin",
+   "navne": [
+    "PGIM Jennison Carbon Solutions Equity Fund - USD W Accumulation"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493000CLSAMU9ZPC361",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -10213,6 +10315,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE0003FI3HY1": {
+   "type": "isin",
+   "navne": [
+    "JPMorgan ETFs (Ireland) ICAV - US Research Enhanced Index Equity Active UCITS ETF - JPM US Research Enhanced Index Equity Active UCITS ETF - GBP Hedged (dist)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300NSUZYEVW9Y4O71",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE0003JSNHV9": {
    "type": "isin",
    "navne": [
@@ -10721,6 +10836,19 @@
     2026
    ],
    "lei": "549300JALMZKC24S0R89",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE0005PO8S74": {
+   "type": "isin",
+   "navne": [
+    "iShares Asia Pacific AC ex-Japan Domestic Focus UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900WGM4EZJ64HVP43",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -11538,6 +11666,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE0008IQ0DI1": {
+   "type": "isin",
+   "navne": [
+    "HAN Nasdaq 100 Daily Covered Call UCITS ETF - Distributing"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900L6BVRN83IYH022",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE0008N6QKT8": {
    "type": "isin",
    "navne": [
@@ -11670,7 +11811,7 @@
   "IE00097WZHZ9": {
    "type": "isin",
    "navne": [
-    "iShares FTSE All-World UCITS ETF - USD (Accumulating)"
+    "iShares FTSE All World UCITS ETF - USD (Accumulating)"
    ],
    "aar": [
     2026
@@ -11721,6 +11862,19 @@
     2026
    ],
    "lei": null,
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE0009D15VO0": {
+   "type": "isin",
+   "navne": [
+    "Sprott Rare Earths ex-China UCITS ETF - Accumulating"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900GFL1B59AL0II50",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -11865,6 +12019,19 @@
     2026
    ],
    "lei": "5493008OEV43ON7WJZ02",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000A4VTN36": {
+   "type": "isin",
+   "navne": [
+    "iShares Asia Pacific AC ex-Japan Foreign Focus UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5299002FWS29PGF9XG43",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -12694,6 +12861,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000DLMCNF2": {
+   "type": "isin",
+   "navne": [
+    "PGIM Jennison U.S. Growth Fund - EUR V Accumulation"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300VGNN4TKHRO7O52",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000DN1Y032": {
    "type": "isin",
    "navne": [
@@ -12989,6 +13169,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000EY5U730": {
+   "type": "isin",
+   "navne": [
+    "JPMorgan ETFs (Ireland) ICAV - US Research Enhanced Index Equity SRI Paris Aligned UCITS ETF - JPM US Research Enhanced Index Equity SRI Paris Aligned Active UCITS ETF - GBP Hedged (dist)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300FZ7YUTJ13G1V05",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000EZQ5DP5": {
    "type": "isin",
    "navne": [
@@ -13189,6 +13382,19 @@
    ],
    "lei": null,
    "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000FQYTH79": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World Financials Sector Advanced UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300ICH4Q6PMUB0C35",
+   "cvr": "9744562W",
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -13643,6 +13849,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000I50V6C7": {
+   "type": "isin",
+   "navne": [
+    "Weekly World Equity Income UCITS ETF - Distributing"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900QP24OBCCQQC187",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000I5MBLC4": {
    "type": "isin",
    "navne": [
@@ -13938,6 +14157,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000JEU61P1": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World Consumer Discretionary Sector Advanced UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300LHK1V1SPORV885",
+   "cvr": "9744562W",
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000JEZ2VB3": {
    "type": "isin",
    "navne": [
@@ -13947,6 +14179,19 @@
     2026
    ],
    "lei": "549300EB0GSLQG6E2Q53",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000JJLNIG0": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World Communication Services Sector Advanced UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300H3DWI19PLTML22",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -14033,6 +14278,19 @@
     2026
    ],
    "lei": "635400KERB5AKKG7RN24",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000JY1X8B3": {
+   "type": "isin",
+   "navne": [
+    "Boreas VettaFi Dividend Winners in Natural Resources UCITS ETF - Class USD (Dist)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": null,
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -14395,6 +14653,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000LO4MAC0": {
+   "type": "isin",
+   "navne": [
+    "iShares MSCI World Information Technology Sector Advanced UCITS ETF - USD (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300V75MT600HKXI79",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000LOSV2D0": {
    "type": "isin",
    "navne": [
@@ -14745,6 +15016,19 @@
     2026
    ],
    "lei": "549300KOXOTGUZPWBD38",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000N40JO74": {
+   "type": "isin",
+   "navne": [
+    "iShares Europe Equity Enhanced Active UCITS ETF - EUR (Dist)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MN239N5MUKQG52",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -15141,6 +15425,19 @@
    ],
    "lei": "549300RNNN3JCUBG1X39",
    "cvr": "9732276F",
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000OL3XN92": {
+   "type": "isin",
+   "navne": [
+    "iShares FTSE All World UCITS ETF - USD (Dist)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900XAXU8ETZVXFH81",
+   "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
@@ -15991,6 +16288,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000SKTEI24": {
+   "type": "isin",
+   "navne": [
+    "Infrastructure Capital S&P 500 Option Income UCITS ETF - Distributing"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900DMMDIOSD1J9T61",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000SNWS0L0": {
    "type": "isin",
    "navne": [
@@ -16686,6 +16996,19 @@
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
   },
+  "IE000W1S2PT6": {
+   "type": "isin",
+   "navne": [
+    "Defiance Photonics UCITS ETF - Accumulating"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900QI04VCWKE3TX43",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
   "IE000W6L2AI3": {
    "type": "isin",
    "navne": [
@@ -17150,6 +17473,19 @@
     2026
    ],
    "lei": "5493000CLSAMU9ZPC361",
+   "cvr": null,
+   "hjemsted": "Ireland (IE)",
+   "kontrolciffer_fejl": false
+  },
+  "IE000XSFZL82": {
+   "type": "isin",
+   "navne": [
+    "iShares STOXX Europe 600 UCITS ETF - EUR (Acc)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900YY0CUD4OQI6D11",
    "cvr": null,
    "hjemsted": "Ireland (IE)",
    "kontrolciffer_fejl": false
@@ -38902,6 +39238,19 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU0353117939": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - S"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU0359201026": {
    "type": "isin",
    "navne": [
@@ -50297,10 +50646,22 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU0912192399": {
+   "type": "isin",
+   "navne": [
+    "Multicooperation SICAV - Julius Baer Global Excellence Equity Class Bh EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300U71NPUORWI6U91",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU0912194254": {
    "type": "isin",
    "navne": [
-    "Multicooperation SICAV Julius Baer Julius Baer Global Excellence Equity EUR",
     "Multicooperation SICAV Julius Baer Julius Baer Global Excellence Equity EUR Capitalisation"
    ],
    "aar": [
@@ -50308,6 +50669,19 @@
     2023,
     2024,
     2025,
+    2026
+   ],
+   "lei": "549300U71NPUORWI6U91",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU0912194841": {
+   "type": "isin",
+   "navne": [
+    "Multicooperation SICAV - Julius Baer Global Excellence Equity Class K USD"
+   ],
+   "aar": [
     2026
    ],
    "lei": "549300U71NPUORWI6U91",
@@ -54775,7 +55149,20 @@
     2025,
     2026
    ],
-   "lei": null,
+   "lei": "549300D4FBYWX1H1BM32",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU1069837125": {
+   "type": "isin",
+   "navne": [
+    "MultiCooperation SICAV - JULIUS BAER EQUITY FUND SPECIAL VALUE Class Kp USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300D4FBYWX1H1BM32",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
@@ -59760,6 +60147,19 @@
    "aar": [
     2024,
     2025,
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU1562330727": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - Qd (GBP) 10"
+   ],
+   "aar": [
     2026
    ],
    "lei": "HALN10DS32B5ME2WY214",
@@ -69508,6 +69908,19 @@
    ],
    "lei": "549300QBQ3523WUDHH63",
    "cvr": "1989 45 00 886",
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU1945287107": {
+   "type": "isin",
+   "navne": [
+    "Multicooperation SICAV - Julius Baer Global Excellence Equity Class K EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300U71NPUORWI6U91",
+   "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
@@ -90223,6 +90636,45 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU2668076867": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - Idq 1"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU2668076941": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - I (GBP) 1"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU2668077089": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - Idqn (GBP) 1"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU2671703127": {
    "type": "isin",
    "navne": [
@@ -92219,6 +92671,19 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU2781071837": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - A (EUR)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU2785473294": {
    "type": "isin",
    "navne": [
@@ -93379,6 +93844,19 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU2907985746": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - E"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU2908646743": {
    "type": "isin",
    "navne": [
@@ -93784,6 +94262,19 @@
     2026
    ],
    "lei": "549300SGPKI5DLJ77I30",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU2933580446": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - E (GBP)"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
@@ -96951,6 +97442,19 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU3271070891": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - C"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU3272236400": {
    "type": "isin",
    "navne": [
@@ -98076,6 +98580,71 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU3424463530": {
+   "type": "isin",
+   "navne": [
+    "BGF World Islamic Gold Fund - Class A2 USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MT68F9TH64W238",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3424463613": {
+   "type": "isin",
+   "navne": [
+    "BGF World Islamic Gold Fund - Class A2 USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MT68F9TH64W238",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3424463704": {
+   "type": "isin",
+   "navne": [
+    "BGF World Islamic Gold Fund - Class I2 USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MT68F9TH64W238",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3424463886": {
+   "type": "isin",
+   "navne": [
+    "BGF World Islamic Gold Fund - Class X2 USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MT68F9TH64W238",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3424463969": {
+   "type": "isin",
+   "navne": [
+    "BGF World Islamic Gold Fund - Class Z2 USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "529900MT68F9TH64W238",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU3427381333": {
    "type": "isin",
    "navne": [
@@ -98164,6 +98733,32 @@
     2026
    ],
    "lei": "254900E7DWF6APQ0XH85",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3457408642": {
+   "type": "isin",
+   "navne": [
+    "BGF Systematic Global Equity High Income Fund - Class S4G Hedged CHF Distributing"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300F475OMFBQMD437",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3457408998": {
+   "type": "isin",
+   "navne": [
+    "BGF Systematic Global Equity High Income Fund - Class S4G USD Distributing"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300F475OMFBQMD437",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
@@ -98506,6 +99101,84 @@
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
   },
+  "LU3506855538": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Global Sustainable Equity Fund - BI3 - GBP"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300W1JV4Z4T54GM32",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3506855611": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Japanese Sustainable Equity Fund - BI3 - GBP"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300SGPKI5DLJ77I30",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3506855702": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced North American Sustainable Equity Fund - BI3 - GBP"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300CE1UG4IV657J56",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3507569732": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced European Sustainable Equity Fund - BC - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300ZCJ2HQJU88XH69",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3507650938": {
+   "type": "isin",
+   "navne": [
+    "US Large Cap Value Equity Fund - Sdq (GBP) 11"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "HALN10DS32B5ME2WY214",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3510938627": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Global Developed Equity Fund - BI2 - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493005RFEPPIBGGFX39",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
   "LU3515218058": {
    "type": "isin",
    "navne": [
@@ -98567,6 +99240,123 @@
     2026
    ],
    "lei": "6367000Z4AVQV9XWM521",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3523071655": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Empower Longer Life Fund - BP - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "636700MJALYNUT3C9646",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3523071739": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Global AI Innovators Fund - BP - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "6367008RRALQIVF2Y357",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3523071812": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Global Opportunity Fund - BP - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493007ZLSPI26CQLO03",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3523071903": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Global Opportunity Fund - BF - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493007ZLSPI26CQLO03",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3523072117": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Global Sustainable Listed Real Assets Fund - BP - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493004Z6MZQXNQSWI84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3523072208": {
+   "type": "isin",
+   "navne": [
+    "Nordea 1 - Global Sustainable Listed Real Assets Fund - BF - DKK"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "5493004Z6MZQXNQSWI84",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3533780238": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Global Sustainable Equity Fund - HBI - CHF"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300W1JV4Z4T54GM32",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3535872264": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Japanese Sustainable Equity Fund - HAI2 - EUR"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "549300SGPKI5DLJ77I30",
+   "cvr": null,
+   "hjemsted": "Luxembourg (LU)",
+   "kontrolciffer_fejl": false
+  },
+  "LU3544798187": {
+   "type": "isin",
+   "navne": [
+    "Nordea 2 - BetaPlus Enhanced Global Developed Sustainable Equity Fund - AI - USD"
+   ],
+   "aar": [
+    2026
+   ],
+   "lei": "254900JDPZF3RH20W842",
    "cvr": null,
    "hjemsted": "Luxembourg (LU)",
    "kontrolciffer_fejl": false
