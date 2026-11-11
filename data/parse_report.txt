@@ -1,4 +1,4 @@
-Parse-rapport — genereret 2026-11-10T12:58:56+00:00
+Parse-rapport — genereret 2026-11-11T12:09:42+00:00
 Kildefil: november-2026-abis-liste-2021-2026.xlsx (SHA-256 69333ef3fdbafb63…)
 Hentet fra: https://skat.dk/media/ej3fviwc/november-2026-abis-liste-2021-2026.xlsx
 
