@@ -49,6 +49,7 @@
 
 <div class="statuslinje" role="note">
  Positivlisten er senest opdateret den {{ opdateret_dato }} og gælder for indkomståret {{ aktuelt_aar }}.
+ {% if overgang_aar %}Listen for {{ overgang_aar }} gælder fortsat resten af {{ overgang_aar }}.{% endif %}
  Hjemmesiden har senest tjekket skat.dk for ændringer den {{ sidst_tjekket }}.
 </div>
 

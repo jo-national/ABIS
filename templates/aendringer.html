@@ -8,9 +8,51 @@
 <script src="{{ base_path }}/static/listefilter.js" defer></script>
 
 <p>Her kan du se, hvad der har ændret sig på positivlisten fra {{ forrige_aar }} til {{ aktuelt_aar }}:
-{{ nye|length|tusind }} fonde er kommet til, og {{ fjernede|length|tusind }} fonde er ikke længere registreret.
+{{ nye|length|tusind }} {{ "fond er" if nye|length == 1 else "fonde er" }} kommet til, og {{ fjernede|length|tusind }} {{ "fond er" if fjernede|length == 1 else "fonde er" }} ikke længere registreret.
 Opgørelsen bygger udelukkende på Skattestyrelsens egne registreringer pr. indkomstår.
 Brug felterne over listen til at filtrere på navn, ISIN eller udbyder.</p>
+
+{% if aendring and not aendring.nyt_indkomstaar %}
+<section id="seneste-version">
+<h2>Nyt i seneste listeversion</h2>
+<p>Skattestyrelsens liste offentliggjort {{ senest_opdateret }} sammenlignet med den forrige
+version ({{ aendring.forrige_navn }}):
+{% if aendring.tilfoejet or aendring.fjernet %}
+{{ aendring.tilfoejet|length|tusind }} {{ "fond er" if aendring.tilfoejet|length == 1 else "fonde er" }} kommet til for {{ aktuelt_aar }},
+og {{ aendring.fjernet|length|tusind }} er fjernet.</p>
+{% else %}
+ingen fonde er kommet til eller fjernet for {{ aktuelt_aar }}. Den nye version ændrer andre oplysninger på listen.</p>
+{% endif %}
+{% if aendring.tilfoejet %}
+<h3>Kommet til</h3>
+<ul class="fondsliste">
+{% for fid, e, navn in aendring.tilfoejet %}
+  <li data-udbyder="{{ navn|udbyder }}">
+    <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
+    <span class="fondsliste-meta">
+      {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
+      <span class="status-ja">tilføjet</span>
+    </span>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if aendring.fjernet %}
+<h3>Fjernet</h3>
+<ul class="fondsliste">
+{% for fid, e, navn in aendring.fjernet %}
+  <li>
+    {% if e %}<a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>{% else %}<span>{{ navn }}</span>{% endif %}
+    <span class="fondsliste-meta">
+      <span class="isin">{{ fid }}</span>
+      <span class="status-nej">fjernet</span>
+    </span>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
+</section>
+{% endif %}
 
 <h2>Nye på positivlisten for {{ aktuelt_aar }}</h2>
 <p>Mærket <span class="status-ja">ny</span> betyder, at fonden ikke har været på listen i noget tidligere

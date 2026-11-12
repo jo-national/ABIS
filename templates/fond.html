@@ -52,6 +52,14 @@
  </div>
  {% endif %}
 
+ {# Fra listen for næste år udkommer til nytår gælder to lister samtidig. #}
+ {% if overgang_aar and overgang_aar in fond.aar and not paa_listen_nu %}
+ <p class="note"><strong>Bemærk:</strong> Fonden står stadig på positivlisten for indkomståret {{ overgang_aar }}.
+ Den er ikke registreret for {{ aktuelt_aar }}.</p>
+ {% elif overgang_aar and paa_listen_nu and overgang_aar not in fond.aar %}
+ <p class="note"><strong>Bemærk:</strong> Fonden står på positivlisten fra indkomståret {{ aktuelt_aar }},
+ men ikke for {{ overgang_aar }}.</p>
+ {% endif %}
  {% if fond.type == "uden_isin" %}
  <p class="note"><strong>Bemærk:</strong> Skattestyrelsen oplyser ingen ISIN-kode for dette selskab
  (feltet står som "Udstedt uden"). Det identificeres derfor på {% if fond.cvr %}CVR-nummer{% else %}navn{% endif %}.
