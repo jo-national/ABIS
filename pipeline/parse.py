@@ -138,21 +138,10 @@ def slug(s: str) -> str:
     return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", s)).strip("-")[:60]
 
 
-def main(verify_only: bool = False) -> None:
-    if not STATE_FILE.exists():
-        sys.exit("FEJL: data/state.json findes ikke. Kør fetch.py først.")
-    state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    xlsx_path = RAW / state["archived_as"]
-    if not xlsx_path.exists():
-        sys.exit(f"FEJL: arkiveret fil mangler: {xlsx_path}")
-
-    rap: list[str] = [
-        f"Parse-rapport — genereret {datetime.now(timezone.utc).isoformat(timespec='seconds')}",
-        f"Kildefil: {state['original_filename']} (SHA-256 {state['sha256'][:16]}…)",
-        f"Hentet fra: {state['file_url']}",
-        "",
-    ]
-
+def læs(xlsx_path: Path) -> dict:
+    """Læser én af Skattestyrelsens filer. Bruges både på den aktuelle fil og
+    på den forrige version, så ændringerne mellem dem kan beregnes."""
+    rap: list[str] = []
     wb = load_workbook(xlsx_path, read_only=True, data_only=True)
 
     fonde: dict[str, dict] = {}
@@ -234,6 +223,64 @@ def main(verify_only: bool = False) -> None:
 
         rap.append(f"Ark '{sheet.title}': {antal} datarækker læst.")
 
+    return {"fonde": fonde, "ark_år": ark_år, "tomme_rækker": tomme_rækker,
+            "ugyldige_isin": ugyldige_isin, "uden_cvr": uden_cvr,
+            "problemer": problemer, "rapport": rap}
+
+
+def forrige_version(state: dict) -> Path | None:
+    """Den senest arkiverede fil før den aktuelle. fetch.py arkiverer kun ved
+    ændring og sætter datoen forrest i navnet, så alfabetisk orden er
+    tidsorden."""
+    tidligere = sorted(p for p in RAW.glob("*.xlsx") if p.name < state["archived_as"])
+    return tidligere[-1] if tidligere else None
+
+
+def versionsaendring(nu: dict, aktuelt: int, forrige_sti: Path | None) -> dict | None:
+    """Fonde, der er kommet til eller fjernet for det aktuelle indkomstår siden
+    forrige listeversion. Har den forrige version ikke det aktuelle år som
+    nyeste faneblad (årsskifte), giver en sammenligning ikke mening."""
+    if forrige_sti is None:
+        return None
+    forrige = læs(forrige_sti)
+    if not forrige["ark_år"] or max(forrige["ark_år"]) != aktuelt:
+        return {"forrige_fil": forrige_sti.name.split("_", 1)[1], "nyt_indkomstaar": True,
+                "tilfoejet": [], "fjernet": []}
+    fn, ff = nu["fonde"], forrige["fonde"]
+    paa_nu = {fid for fid, e in fn.items() if aktuelt in e["aar"]}
+    paa_foer = {fid for fid, e in ff.items() if aktuelt in e["aar"]}
+    return {
+        "forrige_fil": forrige_sti.name.split("_", 1)[1],
+        "nyt_indkomstaar": False,
+        "tilfoejet": sorted(paa_nu - paa_foer),
+        # Fjernede fonde kan mangle helt i den nye fil; gem navnet herfra.
+        "fjernet": sorted(paa_foer - paa_nu),
+        "fjernet_navne": {fid: (ff[fid]["navne"][0] if ff[fid]["navne"] else fid)
+                          for fid in paa_foer - paa_nu},
+    }
+
+
+def main(verify_only: bool = False) -> None:
+    if not STATE_FILE.exists():
+        sys.exit("FEJL: data/state.json findes ikke. Kør fetch.py først.")
+    state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    xlsx_path = RAW / state["archived_as"]
+    if not xlsx_path.exists():
+        sys.exit(f"FEJL: arkiveret fil mangler: {xlsx_path}")
+
+    rap: list[str] = [
+        f"Parse-rapport — genereret {datetime.now(timezone.utc).isoformat(timespec='seconds')}",
+        f"Kildefil: {state['original_filename']} (SHA-256 {state['sha256'][:16]}…)",
+        f"Hentet fra: {state['file_url']}",
+        "",
+    ]
+
+    nu = læs(xlsx_path)
+    fonde, ark_år = nu["fonde"], nu["ark_år"]
+    tomme_rækker, ugyldige_isin = nu["tomme_rækker"], nu["ugyldige_isin"]
+    uden_cvr, problemer = nu["uden_cvr"], nu["problemer"]
+    rap += nu["rapport"]
+
     if problemer and not fonde:
         rap.append("")
         rap.append("KRITISKE PROBLEMER:")
@@ -295,6 +342,24 @@ def main(verify_only: bool = False) -> None:
             rap.append(f"  {fid} (uden ISIN): {e['navne'][0]} — år: {sorted(e['aar'])}")
             break
 
+    # Ændringer siden forrige listeversion. En fejl her må aldrig stoppe
+    # opdateringen af selve listen - så vises afsnittet bare ikke.
+    forrige_sti = forrige_version(state)
+    try:
+        ændring = versionsaendring(nu, aktuelt, forrige_sti)
+    except Exception as e:  # noqa: BLE001
+        ændring = None
+        rap.append(f"\nADVARSEL: kunne ikke sammenligne med forrige version ({forrige_sti}): {e}")
+    rap.append("")
+    if ændring is None:
+        rap.append("Ændringer siden forrige listeversion: ingen forrige version arkiveret.")
+    elif ændring["nyt_indkomstaar"]:
+        rap.append(f"Ændringer siden forrige listeversion ({ændring['forrige_fil']}): "
+                   f"første liste for indkomståret {aktuelt} - ingen sammenligning.")
+    else:
+        rap.append(f"Ændringer for {aktuelt} siden forrige listeversion ({ændring['forrige_fil']}): "
+                   f"{len(ændring['tilfoejet'])} tilføjet, {len(ændring['fjernet'])} fjernet.")
+
     REPORT_FILE.write_text("\n".join(rap), encoding="utf-8")
     print("\n".join(rap))
 
@@ -316,6 +381,7 @@ def main(verify_only: bool = False) -> None:
         "alle_aar": alle_år,
         "antal_pr_aar": {str(y): n for y, n in antal_pr_år.items()},
         "antal_uden_isin": uden_isin,
+        "seneste_aendring": ændring,
         "fonde": {
             fid: {**e, "aar": sorted(e["aar"])}
             for fid, e in sorted(fonde.items())

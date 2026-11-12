@@ -41,7 +41,11 @@
  <p>Vi kan ikke ud fra en ISIN alene afgøre, hvilken kategori et ukendt papir tilhører.
  <a href="{{ base_path }}/metode.html">Læs hvad positivlisten dækker - og ikke dækker</a>.</p>
  </div>
- <p class="undertekst-tal">{{ antal_pr_aar[aktuelt_aar|string]|tusind }} fonde er registreret for {{ aktuelt_aar }}.</p>
+ <p class="undertekst-tal">{{ antal_pr_aar[aktuelt_aar|string]|tusind }} fonde er registreret for {{ aktuelt_aar }}.
+ {% if aendring and not aendring.nyt_indkomstaar and (aendring.tilfoejet or aendring.fjernet) %}
+ Seneste listeversion: {{ aendring.tilfoejet|length|tusind }} kommet til og {{ aendring.fjernet|length|tusind }} fjernet
+ siden {{ aendring.forrige_navn }} - <a href="{{ base_path }}/aendringer.html#seneste-version">se ændringerne</a>.
+ {% endif %}</p>
  </div>
 </section>
 

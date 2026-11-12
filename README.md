@@ -25,7 +25,9 @@ Skattestyrelsen offentliggør en ny liste.
   (`static/listefilter.js`).
 - **Ændringer** (`/aendringer.html`) - nye og udgåede fonde ift. forrige
   indkomstår, samme filtrering som Alle fonde. "Genoptaget" vs. "ny"
-  beregnes ud fra hele historikken, ikke kun de seneste to år.
+  beregnes ud fra hele historikken, ikke kun de seneste to år. Øverst:
+  "Nyt i seneste listeversion" - hvad der er kommet til og fjernet siden
+  Skattestyrelsens forrige fil (sammenlignes med forrige fil i `data/raw/`).
 - **Viden** (`/metode.html`) - hvad hjemmesiden bruges til, hvad positivlisten
   er, og hvad den ikke dækker (med konkrete eksempler på fondssider).
 - **Hvem står bag?** (`/om.html`) - afsender, uafhængighedserklæring,
@@ -123,6 +125,10 @@ registrator, og indsend `https://<dit-domæne>/sitemap.xml` under Sitemaps.
 
 - **Ny listeversion:** sker automatisk. Committen "Data opdateret [dato]" i
   historikken viser hvornår; `data/parse_report.txt` viser hvad der blev læst.
+- **Nyt indkomstår (typisk december):** sker også automatisk. Et nyt faneblad
+  (fx "2027") bliver aktuelt år overalt. Indtil nytår viser sitet, at listen for
+  det indeværende år stadig gælder (statuslinjen og en note på de fondssider,
+  hvis status skifter). Det forsvinder af sig selv ved første kørsel i januar.
 - **Fejl:** når en kørsel fejler, får den et rødt kryds under fanen Actions i
   stedet for et grønt hak. Kig i loggen for det trin, der fejlede; de tre
   sandsynlige årsager er (1) skat.dk var nede (løser sig selv næste dag),

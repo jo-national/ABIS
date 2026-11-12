@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import yaml
 from pathlib import Path
@@ -248,7 +249,28 @@ def main() -> None:
                              and e["type"] == "isin" and fid.startswith("US")),
         "base_url": BASE_URL,
         "base_path": BASE_PATH,
+        # Listen for næste indkomstår udkommer typisk i december. Indtil nytår
+        # gælder det indeværende års liste stadig, og det skal siderne sige.
+        # Sitet bygges dagligt, så det forsvinder af sig selv 1. januar.
+        "overgang_aar": (aktuelt_aar - 1
+                         if datetime.now(DK).year < aktuelt_aar else None),
     }
+
+    # Ændringer siden forrige listeversion (beregnes i parse.py).
+    ae = data.get("seneste_aendring")
+    if ae:
+        m = re.match(r"([a-zæøå]+)-(\d{4})", ae["forrige_fil"])
+        ctx["aendring"] = {
+            "nyt_indkomstaar": ae["nyt_indkomstaar"],
+            "forrige_navn": f"{m.group(1)} {m.group(2)}-listen" if m else ae["forrige_fil"],
+            "tilfoejet": sorted(
+                ((f, fonde[f], fonde[f]["navne"][0] if fonde[f]["navne"] else f)
+                 for f in ae["tilfoejet"] if f in fonde), key=lambda t: t[2].lower()),
+            # En fjernet fond kan mangle helt i den nye fil - så har den ingen side.
+            "fjernet": sorted(
+                ((f, fonde.get(f), ae["fjernet_navne"].get(f, f)) for f in ae["fjernet"]),
+                key=lambda t: t[2].lower()),
+        }
 
     if SITE.exists():
         shutil.rmtree(SITE)
