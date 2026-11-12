@@ -1,4 +1,4 @@
-Parse-rapport — genereret 2026-11-11T12:09:42+00:00
+Parse-rapport — genereret 2026-11-12T05:59:56+00:00
 Kildefil: november-2026-abis-liste-2021-2026.xlsx (SHA-256 69333ef3fdbafb63…)
 Hentet fra: https://skat.dk/media/ej3fviwc/november-2026-abis-liste-2021-2026.xlsx
 
@@ -40,3 +40,5 @@ Eksempler til efterprøvning:
   CVR-42490229: Grünbaum Value Invest A/S — år: [2023, 2024, 2025, 2026]
   DK0010273796: AKL SEB Balance Vækst P — år: [2020, 2021, 2023, 2024, 2025, 2026]
   CVR-42490229 (uden ISIN): Grünbaum Value Invest A/S — år: [2023, 2024, 2025, 2026]
+
+Ændringer for 2026 siden forrige listeversion (september-2026-abis-liste-2021-2026.xlsx): 60 tilføjet, 0 fjernet.
