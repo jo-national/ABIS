@@ -607,8 +607,12 @@ main p { margin: 0.75rem 0; text-wrap: pretty; }
 }
 
 .forklaring { margin-top: var(--afsnit); }
-.relaterede, .kendte-fonde { margin-top: var(--afsnit); }
-.relaterede h2, .kendte-fonde h2 { margin-top: 0; }
+.relaterede, .kendte-fonde, .forside-udbydere, .udbyder-fonde, .andre-udbydere { margin-top: var(--afsnit); }
+.relaterede h2, .kendte-fonde h2, .forside-udbydere h2, .udbyder-fonde h2, .andre-udbydere h2 { margin-top: 0; }
+.forside-udbydere .paa-siden, .andre-udbydere .paa-siden { margin: 1rem 0 0; }
+.udbyder-link { margin-top: 1rem; font-weight: 600; }
+/* Udbydersidens svar: et antal, ikke et rent ja */
+.svar-ja .svar-tal { font-size: clamp(2.25rem, 8vw, 4rem); }
 .historik { max-width: 28rem; }
 
 /* ---------- Indekssider ---------- */

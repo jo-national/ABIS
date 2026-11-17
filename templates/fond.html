@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}{% if fond.type == "isin" %}{{ fid }} · {{ navn|titelnavn }}{% elif fond.cvr %}{{ navn|titelnavn(34) }} (CVR {{ fond.cvr }}){% else %}{{ navn|titelnavn(48) }}{% endif %} - på positivlisten?{% endblock %}
-{% block description %}{{ navn }}{% if fond.type == "isin" %} ({{ fid }}){% elif fond.cvr %} (CVR {{ fond.cvr }}){% endif %} står{% if not paa_listen_nu %} ikke{% endif %} på positivlisten for {{ aktuelt_aar }} - Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS-listen). Se hvad det betyder for aktiesparekonto, børnedepot og frit depot.{% endblock %}
+{% block title %}{% if fond.type == "isin" %}{{ navn|titelnavn(34) }} ({{ fid }}){% elif fond.cvr %}{{ navn|titelnavn(30) }} (CVR {{ fond.cvr }}){% else %}{{ navn|titelnavn(46) }}{% endif %} på Skats positivliste?{% endblock %}
+{% block description %}{{ "Ja" if paa_listen_nu else "Nej" }}, {{ navn }}{% if fond.type == "isin" %} ({{ fid }}){% elif fond.cvr %} (CVR {{ fond.cvr }}){% endif %} står{% if not paa_listen_nu %} ikke{% endif %} på Skats positivliste for {{ aktuelt_aar }} - Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS-listen). Se hvad det betyder for aktiesparekonto, børnedepot og frit depot.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fond/{{ fid }}/">{% endblock %}
 {% block og_sti %}/fond/{{ fid }}/{% endblock %}
 {% block head %}
@@ -44,14 +44,14 @@
  <div class="svar svar-ja">
  <p class="svar-kort">JA</p>
  <p><strong>{{ omtale }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
- Skattestyrelsens liste over aktiebaserede investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
+ Skats positivliste - Skattestyrelsens liste over aktiebaserede investeringsselskaber - for indkomståret <strong>{{ aktuelt_aar }}</strong>
  {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.</p>
  <p>Gevinst og tab lagerbeskattes som aktieindkomst.</p>
  </div>
  {% else %}
  <div class="svar svar-historisk">
  <p class="svar-kort">IKKE PÅ POSITIVLISTEN FOR {{ aktuelt_aar }}</p>
- <p><strong>{{ omtale }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
+ <p><strong>{{ omtale }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret på Skats positivliste for
  {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}.</p>
  <p>Er selskabet fortsat et investeringsselskab uden at være aktiebaseret, beskattes afkastet som
  kapitalindkomst. Fraværet kan også skyldes, at selskabet er ophørt, omdannet eller overgået til andre
@@ -236,6 +236,9 @@
   </li>
  {% endfor %}
  </ul>
+ {% if udbyder_side %}
+ <p class="udbyder-link"><a href="{{ base_path }}/udbyder/{{ udbyder_side.slug }}/">Se alle fonde fra {{ udbyder_side.navn }} på Skats positivliste</a></p>
+ {% endif %}
  </section>
  {% endif %}
 

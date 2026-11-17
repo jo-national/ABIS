@@ -27,6 +27,11 @@ Skattestyrelsen offentliggør en ny liste.
   `UDBYDER_REGLER` i `build_site.py`). Søger man på noget, der ikke findes
   under det viste bogstav, slås der automatisk op i hele positivlisten
   (`static/listefilter.js`).
+- **Udbydere** (`/udbydere.html` og `/udbyder/<navn>/`) - én side pr. udbyder i
+  `UDBYDER_REGLER`, der svarer på "Er [udbyder] på Skats positivliste?" med
+  antal fonde og hele listen. Udbydere helt uden fonde på listen (fx Vanguard)
+  får også en side. Forsidens udvalg redigeres i `data/tekster.yml`
+  (`forside_udbydere`).
 - **Ændringer** (`/aendringer.html`) - nye og udgåede fonde ift. forrige
   indkomstår, samme filtrering som Alle fonde. "Genoptaget" vs. "ny"
   beregnes ud fra hele historikken, ikke kun de seneste to år. Øverst:

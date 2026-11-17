@@ -74,6 +74,18 @@ def titelnavn(navn: str, maks: int = 35) -> str:
     return kort + "…"
 
 
+def fonde_tal(n: int) -> str:
+    """1 -> "1 fond", 138 -> "138 fonde", 1441 -> "1.441 fonde"."""
+    return f"{n:,}".replace(",", ".") + (" fond" if n == 1 else " fonde")
+
+
+def udbyder_slug(navn: str) -> str:
+    s = navn.lower()
+    for a, b in [("æ", "ae"), ("ø", "oe"), ("å", "aa"), ("ü", "u"), ("é", "e")]:
+        s = s.replace(a, b)
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
 def dansk_liste(dele: list) -> str:
     dele = [str(d) for d in dele]
     return dele[0] if len(dele) == 1 else ", ".join(dele[:-1]) + " og " + dele[-1]
@@ -214,6 +226,49 @@ def main() -> None:
         return "Andre"
 
     env.filters["udbyder"] = udbyder
+    env.filters["fonde_tal"] = fonde_tal
+
+    # Udbydersider ("Er Amundi på Skats positivliste?"). Én side pr. udbyder i
+    # UDBYDER_REGLER. Navnet, folk søger på, kan afvige fra reglens etiket.
+    UDBYDER_VISNING = {
+        "State Street": "SPDR (State Street)",
+        "Sparinvest": "Sparindex og Sparinvest",
+        "BlackRock": "BlackRock (BGF og BSF)",
+        "UBP": "UBP (UBAM)",
+    }
+    # Afsnit på Viden-siden, der forklarer netop denne udbyders fravær.
+    UDBYDER_VIDEN = {"Vanguard": "vanguard"}
+    regel_tokens = dict(UDBYDER_REGLER)
+    pr_udbyder: dict[str, list] = {label: [] for label, _ in UDBYDER_REGLER}
+    for fid, e in fonde.items():
+        u = udbyder(e["navne"][0] if e["navne"] else fid)
+        if u != "Andre":
+            pr_udbyder[u].append(fid)
+
+    def navn_findes(label: str) -> bool:
+        """Står udbyderens navn i NOGET registreret navn (også tidligere navne)?"""
+        return any(t in " " + n.upper() + " "
+                   for e in fonde.values() for n in e["navne"] for t in regel_tokens[label])
+
+    udbydere = []
+    for label, tokens in UDBYDER_REGLER:
+        fids = pr_udbyder[label]
+        # Ingen fonde under udbyderen, men navnet optræder et andet sted (fx som
+        # tidligere navn eller under en mere specifik regel): så kan vi ikke
+        # ærligt skrive "ingen fonde" - siden udelades.
+        if not fids and navn_findes(label):
+            continue
+        udbydere.append({
+            "label": label,
+            "navn": UDBYDER_VISNING.get(label, label),
+            "slug": udbyder_slug(label),
+            "tokens": [t.strip() for t in tokens],
+            "paa": sum(1 for f in fids if aktuelt_aar in fonde[f]["aar"]),
+            "ialt": len(fids),
+            "viden": UDBYDER_VIDEN.get(label),
+        })
+    udbydere.sort(key=lambda u: (-u["paa"], -u["ialt"], u["navn"].lower()))
+    udbyder_af = {u["label"]: u for u in udbydere}
     kilde = data["kilde"]
 
     # Tidsstempler til statuslinje og metodeside.
@@ -256,6 +311,9 @@ def main() -> None:
                              and e["type"] == "isin" and fid.startswith("US")),
         "base_url": BASE_URL,
         "base_path": BASE_PATH,
+        "udbydere": udbydere,
+        "forside_udbydere": [udbyder_af[l] for l in tekster.get("forside_udbydere") or []
+                             if l in udbyder_af],
         # Listen for næste indkomstår udkommer typisk i december. Indtil nytår
         # gælder det indeværende års liste stadig, og det skal siderne sige.
         # Sitet bygges dagligt, så det forsvinder af sig selv 1. januar.
@@ -351,7 +409,8 @@ def main() -> None:
                             paa_listen_nu=aktuelt_aar in e["aar"],
                             historik=historik_tekst(e["aar"], aktuelt_aar, data["alle_aar"],
                                                     "Fonden" if e["type"] == "isin" else "Selskabet"),
-                            relaterede_overskrift=rel_overskrift, relaterede=rel, **ctx),
+                            relaterede_overskrift=rel_overskrift, relaterede=rel,
+                            udbyder_side=udbyder_af.get(udbyder(navn)), **ctx),
             encoding="utf-8",
         )
         # Fonde der er på listen i år prioriteres over historiske/udgåede.
@@ -368,6 +427,26 @@ def main() -> None:
             tpl_idx.render(bogstav=k, alle_bogstaver=keys, fonde=items, **ctx), encoding="utf-8"
         )
         urls.append((f"/fonde/{k}.html", "0.6"))
+
+    # Udbydersider og oversigten over dem.
+    tpl_udb = env.get_template("udbyder.html")
+    for u in udbydere:
+        fids = sorted(pr_udbyder[u["label"]], key=lambda f: navn_af[f].lower())
+        d = SITE / "udbyder" / u["slug"]
+        d.mkdir(parents=True, exist_ok=True)
+        d.joinpath("index.html").write_text(
+            tpl_udb.render(
+                u=u,
+                paa_listen=[(f, fonde[f], navn_af[f]) for f in fids if aktuelt_aar in fonde[f]["aar"]],
+                tidligere=[(f, fonde[f], navn_af[f]) for f in fids if aktuelt_aar not in fonde[f]["aar"]],
+                **ctx),
+            encoding="utf-8",
+        )
+        urls.append((f"/udbyder/{u['slug']}/", "0.7"))
+    (SITE / "udbydere.html").write_text(
+        env.get_template("udbydere.html").render(**ctx), encoding="utf-8"
+    )
+    urls.append(("/udbydere.html", "0.7"))
 
     for page in ("om", "metode"):
         (SITE / f"{page}.html").write_text(
