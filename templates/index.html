@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% set forside = true %}
 {% block title %}Skats positivliste (ABIS-listen {{ aktuelt_aar }}): er din fond på listen?{% endblock %}
 {% block description %}Søg i Skats positivliste (ABIS-listen) for {{ aktuelt_aar }}: Se om din ETF eller fond er blandt de {{ antal_pr_aar[aktuelt_aar|string]|tusind }} registrerede aktiebaserede investeringsselskaber - og hvad det betyder for din skat og aktiesparekonto.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/">{% endblock %}
@@ -17,10 +16,14 @@
 </script>
 {% endblock %}
 
+{% block body_klasse %}forside{% endblock %}
+{% block toptitel %}
+<h1 class="brand-titel">På positivlisten<span class="accent">?</span></h1>
+{% endblock %}
 {% block content %}
-<section class="opslag">
- <h2>{{ tekster.forside_hero_linje1 }}</h2>
- <p class="indledning">{{ tekster.forside_hero_linje2 }}</p>
+<section class="hero">
+ <p class="undertekst">{{ tekster.forside_hero_linje1 }}<br>
+ {{ tekster.forside_hero_linje2 }}</p>
 
  <div class="soegning">
  {% set autofokus = true %}

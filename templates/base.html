@@ -9,7 +9,7 @@
 <link rel="icon" href="{{ base_path }}/static/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="{{ base_path }}/static/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="{{ base_path }}/static/apple-touch-icon.png">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#F7EDE2">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="På positivlisten?">
 <meta property="og:title" content="{{ self.title() }}">
@@ -27,49 +27,31 @@
 <meta name="twitter:description" content="{{ self.description() }}">
 <meta name="twitter:image" content="{{ base_url }}/static/og-billede.png">
 <meta name="twitter:image:alt" content="På positivlisten? Søg i Skats positivliste over aktiebaserede investeringsselskaber.">
-<link rel="preload" href="{{ base_path }}/static/fonts/libre-franklin-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ base_path }}/static/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
 <link rel="stylesheet" href="{{ base_path }}/static/style.css">
 <script data-goatcounter="https://jo-national.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
+<script src="{{ base_path }}/static/motion.js" defer></script>
 {% block head %}{% endblock %}
 </head>
-<body{% if forside|default(false) %} class="forside"{% endif %}>
+<body class="{% block body_klasse %}{% endblock %}">
 <a class="spring" href="#indhold">Spring til indhold</a>
-{# Stempelsværte: ujævn dækning og let urolige kanter, som et rigtigt gummistempel #}
-<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
- <filter id="svaerte" x="-5%" y="-10%" width="110%" height="120%">
-  <feTurbulence type="fractalNoise" baseFrequency="0.035 0.06" numOctaves="3" seed="11" result="grov"/>
-  <feColorMatrix in="grov" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3.4 2.9" result="maske"/>
-  <feComposite in="SourceGraphic" in2="maske" operator="in" result="slidt"/>
-  <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="1" seed="4" result="fin"/>
-  <feDisplacementMap in="slidt" in2="fin" scale="1.5"/>
- </filter>
-</svg>
-<header class="hoved">
- <div class="hoved-indre">
- <div class="hoved-titel">
- {% if forside|default(false) %}<h1 class="logo">På positivlisten?</h1>
- {% else %}<p class="logo"><a href="{{ base_path }}/">På positivlisten?</a></p>{% endif %}
- <p class="hoved-under">Opslag i Skattestyrelsens liste over aktiebaserede investeringsselskaber. Uafhængig hjemmeside.</p>
- </div>
- <div class="statuslinje" role="note">
- <dl>
- <div><dt>Indkomstår</dt><dd>{{ aktuelt_aar }}</dd></div>
- <div><dt>Listen opdateret</dt><dd>{{ opdateret_dato }}</dd></div>
- <div><dt>Tjekket på skat.dk</dt><dd>{{ sidst_tjekket_kort }}</dd></div>
- </dl>
- {% if overgang_aar %}<p>Listen for {{ overgang_aar }} gælder fortsat resten af {{ overgang_aar }}.</p>{% endif %}
- </div>
- </div>
- <nav class="menu" aria-label="Hovedmenu">
- <div class="menu-indre">
+<div class="statuslinje" role="note">
+ <span>Positivlisten {{ aktuelt_aar }} · opdateret {{ opdateret_dato }}{% if overgang_aar %} · listen for {{ overgang_aar }} gælder resten af {{ overgang_aar }}{% endif %}</span>
+ <span>Tjekket på skat.dk {{ sidst_tjekket_kort }}</span>
+</div>
+{% block toptitel %}{% endblock %}
+<header class="top">
+ <div class="top-indre">
+ <a class="logo" href="{{ base_path }}/">På positivlisten<span class="accent">?</span></a>
+ <nav aria-label="Hovedmenu">
  <a href="{{ base_path }}/fonde/a.html"{% if menu|default("") == "fonde" %} aria-current="page"{% endif %}>Alle fonde</a>
  <a href="{{ base_path }}/aendringer.html"{% if menu|default("") == "aendringer" %} aria-current="page"{% endif %}>Ændringer</a>
  <a href="{{ base_path }}/metode.html"{% if menu|default("") == "viden" %} aria-current="page"{% endif %}>Viden</a>
  <a href="{{ base_path }}/om.html"{% if menu|default("") == "om" %} aria-current="page"{% endif %}>Hvem står bag?</a>
- </div>
  </nav>
+ </div>
 </header>
 
 <main id="indhold">
@@ -77,7 +59,6 @@
 </main>
 
 <footer>
- <div class="fod-indre">
  <nav class="bundmenu" aria-label="Sider">
  <a href="{{ base_path }}/">Forside og søgning</a>
  <a href="{{ base_path }}/fonde/a.html">Alle fonde</a>
@@ -89,10 +70,9 @@
  Verificér altid hos Skattestyrelsen, før du træffer beslutninger:
  <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens officielle liste (skat.dk)</a>.</p>
  <p class="kolofon">Hjemmesiden bygger udelukkende på Skattestyrelsens offentliggjorte lister.
- Lige nu benytter hjemmesiden filen <a href="{{ base_path }}/kilde/{{ kilde.filnavn }}">{{ kilde.filnavn }}</a>,
+ Lige nu benytter hjemmesiden filen <a href="{{ base_path }}/kilde/{{ kilde.filnavn }}"><strong>{{ kilde.filnavn }}</strong></a>,
  offentliggjort af Skattestyrelsen {{ senest_opdateret }} ·
  <a href="{{ base_path }}/metode.html">Sådan behandles data</a></p>
- </div>
 </footer>
 </body>
 </html>

@@ -33,35 +33,29 @@
 <article>
  {% set omtale = navn if navn|length <= 55 else ("Fonden" if fond.type == "isin" else "Selskabet") %}
  <h1{% if navn|length > 110 %} class="meget-lang"{% elif navn|length > 55 %} class="lang"{% endif %}>Er {{ navn }} aktiebaseret?</h1>
- <dl class="felter felter-id">
- {% if fond.type == "isin" %}<div class="celle"><dt>ISIN</dt>
- <dd><span class="isin-vaerdi">{{ fid }}</span> <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button></dd></div>
- {% elif fond.cvr %}<div class="celle"><dt>CVR</dt><dd>{{ fond.cvr }}</dd></div>{% endif %}
- {% if fond.hjemsted %}<div class="celle"><dt>Hjemsted</dt><dd>{{ fond.hjemsted }}</dd></div>{% endif %}
- </dl>
+ <p class="fond-meta">
+ {% if fond.type == "isin" %}<span>ISIN <span class="isin-vaerdi">{{ fid }}</span></span>
+ <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button>
+ {% elif fond.cvr %}<span>CVR {{ fond.cvr }}</span>{% endif %}
+ {% if fond.hjemsted %}<span>{{ fond.hjemsted }}</span>{% endif %}
+ </p>
 
  {% if paa_listen_nu %}
  <div class="svar svar-ja">
- <p class="svar-spoergsmaal">Står på positivlisten for {{ aktuelt_aar }}?</p>
- <p class="svar-kort stempel"><span class="stempel-stort">Ja</span> <span class="stempel-lille">På positivlisten {{ aktuelt_aar }}</span></p>
- <div class="svar-tekst">
+ <p class="svar-kort">JA</p>
  <p><strong>{{ omtale }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
  Skattestyrelsens liste over aktiebaserede investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
  {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.</p>
  <p>Gevinst og tab lagerbeskattes som aktieindkomst.</p>
  </div>
- </div>
  {% else %}
  <div class="svar svar-historisk">
- <p class="svar-spoergsmaal">Står på positivlisten for {{ aktuelt_aar }}?</p>
- <p class="svar-kort stempel"><span class="stempel-stort">Ikke på positivlisten</span> <span class="stempel-lille">for {{ aktuelt_aar }}</span></p>
- <div class="svar-tekst">
+ <p class="svar-kort">IKKE PÅ POSITIVLISTEN FOR {{ aktuelt_aar }}</p>
  <p><strong>{{ omtale }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
  {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}.</p>
  <p>Er selskabet fortsat et investeringsselskab uden at være aktiebaseret, beskattes afkastet som
  kapitalindkomst. Fraværet kan også skyldes, at selskabet er ophørt, omdannet eller overgået til andre
  regler - verificér hos Skattestyrelsen, før du disponerer.</p>
- </div>
  </div>
  {% endif %}
 
@@ -191,29 +185,35 @@
     <p class="kontekst-forbehold">Dette er en objektiv gengivelse af, hvad reglerne siger - ikke rådgivning om din konkrete situation. Reglerne kan rumme undtagelser, som denne hjemmeside ikke tager højde for. Er du i tvivl, bør du derfor spørge Skattestyrelsen eller en skatterådgiver.</p>
  </section>
 
- <section class="status-aar">
+ <div class="to-spalter">
+ <section>
  <h2>Status pr. indkomstår</h2>
  <p class="historik">{{ historik }}</p>
- <ol class="aar-raekke" aria-label="Registreret som aktiebaseret pr. indkomstår">
- {% for aar in alle_aar %}
- <li class="{{ "ja" if aar in fond.aar else "nej" }}"><span class="aar">{{ aar }}</span> <span class="aar-svar">{{ "Ja" if aar in fond.aar else "Nej" }}</span></li>
+ <table class="aarstabel">
+ <thead><tr><th scope="col">Indkomstår</th><th scope="col">Registreret som aktiebaseret</th></tr></thead>
+ <tbody>
+ {% for aar in alle_aar|reverse %}
+ <tr><td>{{ aar }}</td><td>{% if aar in fond.aar %}Ja{% else %}Nej{% endif %}</td></tr>
  {% endfor %}
- </ol>
+ </tbody>
+ </table>
  </section>
 
- <section class="stamdata">
+ <section>
  <h2>Stamdata fra positivlisten</h2>
- <dl class="felter">
- <div class="celle bred"><dt>Navn</dt><dd>{{ navn }}</dd></div>
+ <dl class="stamdata">
+ {% if fond.type == "isin" %}<dt>ISIN</dt>
+ <dd><span class="isin-vaerdi">{{ fid }}</span></dd>{% endif %}
+ <dt>Navn</dt><dd>{{ navn }}</dd>
  {% if fond.navne|length > 1 %}
- <div class="celle bred"><dt>Også registreret som</dt><dd>{{ fond.navne[1:] | join("; ") }}</dd></div>
+ <dt>Også registreret som</dt><dd>{{ fond.navne[1:] | join("; ") }}</dd>
  {% endif %}
- {% if fond.type == "isin" %}<div class="celle"><dt>ISIN</dt><dd><span class="isin-vaerdi">{{ fid }}</span></dd></div>{% endif %}
- {% if fond.cvr %}<div class="celle"><dt>CVR/SE/TIN</dt><dd>{{ fond.cvr }}</dd></div>{% endif %}
- {% if fond.hjemsted %}<div class="celle"><dt>Skattemæssigt hjemsted</dt><dd>{{ fond.hjemsted }}</dd></div>{% endif %}
- {% if fond.lei %}<div class="celle"><dt>LEI</dt><dd>{{ fond.lei }}</dd></div>{% endif %}
+ {% if fond.lei %}<dt>LEI</dt><dd>{{ fond.lei }}</dd>{% endif %}
+ {% if fond.cvr %}<dt>CVR/SE/TIN</dt><dd>{{ fond.cvr }}</dd>{% endif %}
+ {% if fond.hjemsted %}<dt>Skattemæssigt hjemsted</dt><dd>{{ fond.hjemsted }}</dd>{% endif %}
  </dl>
  </section>
+ </div>
 
  <section class="soeg-igen">
  <h2>Slå en anden fond op</h2>
