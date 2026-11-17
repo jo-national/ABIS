@@ -1,7 +1,9 @@
 {# Søgefelt med resultater og "ikke fundet"-svar. Bruges på forsiden og på
    fondssider. Kræver static/search.js og window.BASE_PATH på siden. #}
- <label for="q" class="sr-only">Søg på fondsnavn eller ISIN</label>
- <input id="q" type="search" placeholder="F.eks. iShares Core MSCI World eller IE00B4L5Y983" autocomplete="off"{% if autofokus %} autofocus{% endif %}>
+ <div class="felt">
+ <label for="q">Fondsnavn eller ISIN-kode</label>
+ <input id="q" type="search" placeholder="F.eks. iShares Core MSCI World eller IE00B4L5Y983" autocomplete="off" spellcheck="false"{% if autofokus %} autofocus{% endif %}>
+ </div>
  <ol id="resultater" aria-live="polite"></ol>
  <div id="ikke-fundet" hidden>
  <h2>Ikke fundet</h2>
