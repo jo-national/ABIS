@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% set menu = "fonde" %}
+{% set udgaaet = tidligere|length %}
+{% block title %}Er {{ u.navn }} på Skats positivliste? {% if u.paa %}{{ u.paa|fonde_tal }} for {{ aktuelt_aar }}{% else %}Ingen fonde for {{ aktuelt_aar }}{% endif %}{% endblock %}
+{% block description %}{% if u.paa %}Ja, {{ u.paa|fonde_tal }} fra {{ u.navn }} står på Skats positivliste (ABIS-listen) for {{ aktuelt_aar }}{% if tidligere %}, og {{ tidligere|length|fonde_tal }} har stået der tidligere{% endif %}. Se alle fonde med ISIN-kode og status.{% else %}Nej, vi finder ingen fonde fra {{ u.navn }} på Skats positivliste (ABIS-listen) for {{ aktuelt_aar }}{% if tidligere %}, men {{ tidligere|length|fonde_tal }} har stået der tidligere{% endif %}. Se hvad det betyder for beskatning og aktiesparekonto.{% endif %}{% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ base_url }}/udbyder/{{ u.slug }}/">{% endblock %}
+{% block og_sti %}/udbyder/{{ u.slug }}/{% endblock %}
+{% block head %}
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Forside", "item": "{{ base_url }}/"},
+  {"@type": "ListItem", "position": 2, "name": "Udbydere", "item": "{{ base_url }}/udbydere.html"},
+  {"@type": "ListItem", "position": 3, "name": {{ u.navn|tojson }}, "item": "{{ base_url }}/udbyder/{{ u.slug }}/"}
+ ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<nav class="brødkrumme"><a href="{{ base_path }}/">Forside</a> › <a href="{{ base_path }}/udbydere.html">Udbydere</a> › {{ u.navn }}</nav>
+
+<article>
+ <h1>Er {{ u.navn }} på Skats positivliste?</h1>
+
+ {% if u.paa %}
+ <div class="svar svar-ja">
+ <p class="svar-kort svar-tal">{{ u.paa|fonde_tal }}</p>
+ <p><strong>{{ u.paa|fonde_tal }} fra {{ u.navn }}</strong> står på Skats positivliste for indkomståret
+ <strong>{{ aktuelt_aar }}</strong>{% if kilde.offentliggjort_tekst %} (listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.</p>
+ <p>Positivlisten gælder den enkelte fond og ikke udbyderen som helhed. Slå derfor altid den konkrete
+ fond op på navn eller ISIN-kode, før du handler.</p>
+ {% if tidligere %}<p>{{ tidligere|length|fonde_tal }} fra {{ u.navn }} har tidligere stået på positivlisten,
+ men er ikke registreret for {{ aktuelt_aar }}. De står nederst på siden.</p>{% endif %}
+ </div>
+ {% else %}
+ <div class="svar svar-historisk">
+ <p class="svar-kort">INGEN FONDE PÅ POSITIVLISTEN FOR {{ aktuelt_aar }}</p>
+ <p>Vi finder <strong>ingen fonde fra {{ u.navn }}</strong> på Skats positivliste for indkomståret
+ {{ aktuelt_aar }}{% if kilde.offentliggjort_tekst %} (listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.</p>
+ {% if tidligere %}<p>{{ tidligere|length|fonde_tal }} har tidligere stået på positivlisten. De står nederst på siden.</p>{% endif %}
+ <p>Et investeringsselskab kommer kun på positivlisten, hvis selskabet selv eller dets forvaltningsselskab
+ har meddelt Skattestyrelsen, at det er aktiebaseret. Danske udbyttebetalende investeringsforeninger skal
+ slet ikke stå på listen.
+ <a href="{{ base_path }}/metode.html#{{ u.viden or "daekker-ikke" }}">Læs mere på Viden-siden</a>.</p>
+ </div>
+ {% endif %}
+
+ <p class="note">Udbyderen er genkendt automatisk ud fra fondsnavnet i Skattestyrelsens fil
+ (navne med {% for t in u.tokens %}"{{ t }}"{% if not loop.last %}{{ " eller " if loop.revindex == 2 else ", " }}{% endif %}{% endfor %}).
+ Enkelte fonde kan derfor mangle eller stå under en anden udbyder. Er du i tvivl, så
+ <a href="{{ base_path }}/">søg på fondens ISIN-kode</a>.</p>
+
+ {% if paa_listen %}
+ <section class="udbyder-fonde">
+ <h2>Fonde fra {{ u.navn }} på positivlisten for {{ aktuelt_aar }}</h2>
+ <script src="{{ base_path }}/static/listefilter.js" defer></script>
+ <ul class="fondsliste" data-filtrerbar>
+ {% for fid, e, navn in paa_listen %}
+  <li>
+    <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
+    <span class="fondsliste-meta">
+      {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
+      <span class="status-ja">på positivlisten</span>
+    </span>
+  </li>
+ {% endfor %}
+ </ul>
+ </section>
+ {% endif %}
+
+ <section class="forklaring">
+ <h2>Hvad betyder det?</h2>
+ <p>Investeringsselskaber på positivlisten lagerbeskattes som aktieindkomst,
+ og beviserne kan som udgangspunkt indgå på en aktiesparekonto.</p>
+ <p>Investeringsselskaber, der ikke står på positivlisten, beskattes som kapitalindkomst
+ og kan ikke indgå på aktiesparekontoen.</p>
+ <p>Hvad det betyder for dig, afhænger af kontotypen.
+ <a href="{{ base_path }}/#hvem-er-du">Se forskellen på aktiedepot, aktiesparekonto, børneopsparing og pension</a>.</p>
+ </section>
+
+ {% if tidligere %}
+ <section class="udbyder-fonde">
+ <h2>Tidligere på positivlisten</h2>
+ <p>Fonde fra {{ u.navn }}, der har været registreret i et tidligere indkomstår, men ikke er det for
+ {{ aktuelt_aar }}. Fraværet kan skyldes, at fonden er ophørt, omdannet eller overgået til andre regler.</p>
+ <ul class="fondsliste">
+ {% for fid, e, navn in tidligere %}
+  <li>
+    <a href="{{ base_path }}/fond/{{ fid }}/">{{ navn }}</a>
+    <span class="fondsliste-meta">
+      {% if e.type == "isin" %}<span class="isin">{{ fid }}</span>{% elif e.cvr %}<span class="isin">CVR {{ e.cvr }}</span>{% endif %}
+      <span class="status-nej">ikke på positivlisten</span>
+    </span>
+  </li>
+ {% endfor %}
+ </ul>
+ </section>
+ {% endif %}
+
+ <section class="andre-udbydere">
+ <h2>Andre udbydere</h2>
+ <nav class="paa-siden" aria-label="Andre udbydere">
+ {% for a in udbydere if a.slug != u.slug and a.paa %}
+ <a href="{{ base_path }}/udbyder/{{ a.slug }}/">{{ a.navn }}</a>
+ {% endfor %}
+ <a href="{{ base_path }}/udbydere.html">Se alle udbydere</a>
+ </nav>
+ </section>
+
+ <p class="kilde">Kilde: <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens liste over
+ aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
+ Optagelse på positivlisten er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status.</p>
+</article>
+{% endblock %}

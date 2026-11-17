@@ -44,6 +44,28 @@ forside_kendte_fonde:
   - IE00BMC38736
   - IE00B1XNHC34
 
+# Populære udbydere nederst på forsiden. Skriv navnet præcis som i
+# UDBYDER_REGLER i pipeline/build_site.py. Ukendte navne springes over.
+forside_udbydere_overskrift: "Er din udbyder på Skats positivliste?"
+forside_udbydere_intro: "Vælg en udbyder og se alle dens fonde med ISIN-kode og status. Positivlisten gælder den enkelte fond, så slå altid den konkrete fond op."
+forside_udbydere:
+  - iShares
+  - Xtrackers
+  - Amundi
+  - Vanguard
+  - State Street
+  - VanEck
+  - WisdomTree
+  - Global X
+  - Invesco
+  - JPMorgan
+  - BlackRock
+  - Nordea
+  - Danske Invest
+  - BankInvest
+  - Maj Invest
+  - Sparinvest
+
 # ---------- OM HJEMMESIDEN ----------
 om_formaal_overskrift: "Hvad kan jeg bruge hjemmesiden til?"
 om_formaal_tekst1: "Hjemmesiden er en hjælp til dig, der er i tvivl om, hvorvidt et bestemt værdipapir står på Skattestyrelsens liste over aktiebaserede investeringsselskaber - mere mundret kaldet positivlisten eller ABIS-listen."

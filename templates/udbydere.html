@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set menu = "fonde" %}
+{% block title %}Udbydere på Skats positivliste {{ aktuelt_aar }}: iShares, Xtrackers, Amundi m.fl.{% endblock %}
+{% block description %}Se hvor mange fonde hver udbyder har på Skats positivliste (ABIS-listen) for {{ aktuelt_aar }} - iShares, Xtrackers, Amundi, Nordea, Danske Invest og {{ udbydere|length - 5 }} andre. Og hvilke udbydere der slet ikke står på listen.{% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ base_url }}/udbydere.html">{% endblock %}
+{% block og_sti %}/udbydere.html{% endblock %}
+{% block content %}
+<h1>Udbydere på Skats positivliste</h1>
+<p>Her kan du se, hvor mange fonde hver udbyder har på positivlisten for {{ aktuelt_aar }}. Vælg en udbyder
+for at se alle dens fonde med ISIN-kode og status. Positivlisten gælder den enkelte fond, så slå altid den
+konkrete fond op, før du handler.</p>
+<p>Udbyderne er genkendt automatisk ud fra fondsnavnene i Skattestyrelsens fil. Fonde fra udbydere, der
+ikke er med her, finder du under <a href="{{ base_path }}/fonde/a.html">Alle fonde</a> eller ved at
+<a href="{{ base_path }}/">søge på navn eller ISIN</a>.</p>
+
+<ul class="fondsliste">
+{% for u in udbydere %}
+  <li>
+    <a href="{{ base_path }}/udbyder/{{ u.slug }}/">{{ u.navn }}</a>
+    <span class="fondsliste-meta">
+      {% if u.paa %}<span class="status-ja">{{ u.paa|fonde_tal }} på positivlisten</span>
+      {% else %}<span class="status-nej">ingen for {{ aktuelt_aar }}</span>{% endif %}
+    </span>
+  </li>
+{% endfor %}
+</ul>
+{% endblock %}

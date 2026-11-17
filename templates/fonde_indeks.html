@@ -6,6 +6,7 @@
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/fonde/{{ bogstav }}.html">{% endblock %}
 {% block content %}
 <h1>Alle fonde - {{ bogstav|upper }}</h1>
+<p>Leder du efter en bestemt udbyder? <a href="{{ base_path }}/udbydere.html">Se fondene pr. udbyder</a>.</p>
 <script src="{{ base_path }}/static/listefilter.js" defer></script>
 <nav class="bogstaver">
 {% for b in alle_bogstaver %}<a href="{{ base_path }}/fonde/{{ b }}.html"{% if b == bogstav %} aria-current="page"{% endif %}>{{ b|upper }}</a> {% endfor %}
