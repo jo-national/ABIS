@@ -1,12 +1,12 @@
 {% extends "base.html" %}
+{% set menu = "om" %}
 {% block title %}Hvem står bag På positivlisten?{% endblock %}
 {% block description %}Hvem står bag påpositivlisten.dk, hvordan data hentes fra Skattestyrelsen og holdes opdateret, og hvilke forbehold der gælder for hjemmesiden.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/om.html">{% endblock %}
 {% block og_sti %}/om.html{% endblock %}
 {% block content %}
-<h1 class="sr-only">Hvem står bag?</h1>
-
-<h2>{{ tekster.om_hvem_overskrift }}</h2>
+<div class="prosa">
+<h1>{{ tekster.om_hvem_overskrift }}</h1>
 <p>{{ tekster.om_hvem_navn }}. Kontakt:
 <a href="mailto:jonasmelanderhammer@gmail.com">jonasmelanderhammer@gmail.com</a>.</p>
 
@@ -58,4 +58,5 @@ i Skattestyrelsens fil ikke består kontrolcifferberegningen.</p>
 <p>Kilden er <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsen: Beviser og aktier i
 investeringsforeninger og selskaber (IFPA)</a> - afsnittet "Liste over aktiebaserede
 investeringsselskaber".</p>
+</div>
 {% endblock %}

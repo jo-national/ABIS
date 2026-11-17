@@ -98,17 +98,14 @@
       const n = document.createElement("span");
       n.textContent = navn || id;
       const meta = document.createElement("span");
-      meta.className = "isin";
-      meta.textContent = id;
+      meta.className = "resultat-meta";
+      const kode = document.createElement("span");
+      kode.className = "isin";
+      kode.textContent = id.startsWith("NAVN-") ? "" : id.replace("CVR-", "CVR ");
       const tag = document.createElement("span");
-      if (aktiv) {
-        tag.className = "status-ja";
-        tag.textContent = " · på positivlisten";
-      } else {
-        tag.className = "status-nej";
-        tag.textContent = " · ikke på positivlisten";
-      }
-      meta.append(tag);
+      tag.className = aktiv ? "status-ja" : "status-nej";
+      tag.textContent = aktiv ? "på positivlisten" : "ikke på positivlisten";
+      meta.append(kode, tag);
       a.append(n, meta);
       li.append(a);
       list.append(li);

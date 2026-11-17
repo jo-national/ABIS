@@ -1,16 +1,26 @@
 {% extends "base.html" %}
+{% set menu = "viden" %}
 {% block title %}Hvad er positivlisten (ABIS-listen) - og hvad dækker den ikke?{% endblock %}
 {% block description %}Positivlisten er Skattestyrelsens liste over aktiebaserede investeringsselskaber (ABIS-listen). Læs hvad den betyder for beskatningen og aktiesparekontoen, hvad den ikke dækker - og hvorfor Vanguard og amerikanske ETF'er ikke står på den.{% endblock %}
 {% block canonical %}<link rel="canonical" href="{{ base_url }}/metode.html">{% endblock %}
 {% block og_sti %}/metode.html{% endblock %}
 {% block content %}
-<h1 class="sr-only">Viden om positivlisten</h1>
+<div class="prosa">
+<h1>Viden om positivlisten</h1>
+<nav class="paa-siden" aria-label="På denne side">
+ <a href="#hvad-er">Hvad er positivlisten?</a>
+ <a href="#daekker-ikke">Hvad dækker den ikke?</a>
+ <a href="#vanguard">Vanguard</a>
+ <a href="#amerikanske-etfer">Amerikanske ETF'er</a>
+ <a href="#lagerbeskatning">Lager og realisation</a>
+ <a href="#indkomsttyper">Aktie- og kapitalindkomst</a>
+</nav>
 
 <h2>{{ tekster.om_formaal_overskrift }}</h2>
 <p>{{ tekster.om_formaal_tekst1 }}</p>
 <p>{{ tekster.om_formaal_tekst2 }}</p>
 
-<h2>Hvad er positivlisten?</h2>
+<h2 id="hvad-er">Hvad er positivlisten?</h2>
 <p>Positivlisten er også det, man kalder ABIS-listen. Den omfatter investeringsselskaber -
 typisk udenlandske ETF'er og visse danske akkumulerende fonde - der over for Skatteforvaltningen har
 meddelt, at de er aktiebaserede.</p>
@@ -19,7 +29,7 @@ aktieindkomst, og beviset kan som udgangspunkt indgå på en aktiesparekonto.</p
 <p>Er det ikke registreret, beskattes det som kapitalindkomst og kan ikke indgå på
 aktiesparekontoen.</p>
 
-<h2>Hvad dækker positivlisten ikke?</h2>
+<h2 id="daekker-ikke">Hvad dækker positivlisten ikke?</h2>
 <p>Danske minimumsbeskattede investeringsforeninger skal ikke stå på ABIS-listen.
 Det gælder f.eks. mange af de udbyttebetalende aktieinvesteringsforeninger, danske banker sælger til private.</p>
 <p>Deres skattestatus følger andre regler. Er foreningen aktiebaseret, det vil sige, at mindst halvdelen
@@ -88,7 +98,7 @@ Ved realisationsbeskatning betaler du først skat, når de sælger med gevinst. 
 potentielt kan stige mere i værdi, da du ikke skal betale skat løbende. Til gengæld risikerer du at stå med en
 meget stor skatteregning til sidst - og det kan betyde, at du ender med en beskatning på 42%.</p>
 
-<h2>Aktieindkomst og kapitalindkomst</h2>
+<h2 id="indkomsttyper">Aktieindkomst og kapitalindkomst</h2>
 <p>De to ord beskriver, i hvilken 'kasse' et afkast beskattes - og det afgør satsen. Det er netop den
 kasse, positivlisten er med til at bestemme for investeringsselskaber.</p>
 <p><strong>Aktieindkomst</strong> dækker gevinster og udbytter fra aktier og fra investeringsselskaber på
@@ -101,4 +111,5 @@ bliver altså udregnet ud fra din samlede indkomst, hvorfor det er svært at sæ
 <p>Derfor er hverken det ene eller det andet entydigt bedst: for én person er aktieindkomst billigst, for
 en anden med store renteudgifter kan kapitalindkomst være det. På en aktiesparekonto er spørgsmålet
 irrelevant - dér er satsen 17% uanset hvad.</p>
+</div>
 {% endblock %}

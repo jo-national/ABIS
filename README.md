@@ -14,8 +14,12 @@ Skattestyrelsen offentliggør en ny liste.
 - **Forside** (`/`) - søgefelt (navn eller ISIN) og fem kontekst-faner
   (Aktiedepot, Aktiesparekonto, Depot for mindreårige, Børneopsparing,
   Pension), der forklarer, hvad man skal lede efter alt efter kontotype.
+- **Fælles top på alle sider** - et smalt statusbånd (listens år, dato for
+  seneste opdatering og seneste kontrol), logo, der fører til forsiden, og
+  menuen. Forsiden bruger den store titel som logo.
 - **Fondssider** (`/fond/<ISIN eller CVR>/`) - én side pr. registrering,
-  6.000+ i alt. JA/IKKE PÅ LISTEN-svar øverst, samme fem kontekst-faner
+  6.000+ i alt. Har eget søgefelt ("Slå en anden fond op"; samme blok som
+  forsidens, `templates/_soeg.html`). JA/IKKE PÅ LISTEN-svar øverst, samme fem kontekst-faner
   tilpasset den konkrete fond, år-for-år-tabel og stamdata side om side,
   kildehenvisning nederst.
 - **Alle fonde** (`/fonde/<bogstav>.html`) - alfabetisk indeks. Filtrerbart

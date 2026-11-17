@@ -35,29 +35,37 @@
 <script src="{{ base_path }}/static/motion.js" defer></script>
 {% block head %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_klasse %}{% endblock %}">
+<a class="spring" href="#indhold">Spring til indhold</a>
+<div class="statuslinje" role="note">
+ <span>Positivlisten {{ aktuelt_aar }} · opdateret {{ opdateret_dato }}{% if overgang_aar %} · listen for {{ overgang_aar }} gælder resten af {{ overgang_aar }}{% endif %}</span>
+ <span>Tjekket på skat.dk {{ sidst_tjekket_kort }}</span>
+</div>
 {% block toptitel %}{% endblock %}
 <header class="top">
- <nav>
- <a href="{{ base_path }}/">Forside</a>
+ <div class="top-indre">
+ <a class="logo" href="{{ base_path }}/">På positivlisten<span class="accent">?</span></a>
+ <nav aria-label="Hovedmenu">
+ <a href="{{ base_path }}/fonde/a.html"{% if menu|default("") == "fonde" %} aria-current="page"{% endif %}>Alle fonde</a>
+ <a href="{{ base_path }}/aendringer.html"{% if menu|default("") == "aendringer" %} aria-current="page"{% endif %}>Ændringer</a>
+ <a href="{{ base_path }}/metode.html"{% if menu|default("") == "viden" %} aria-current="page"{% endif %}>Viden</a>
+ <a href="{{ base_path }}/om.html"{% if menu|default("") == "om" %} aria-current="page"{% endif %}>Hvem står bag?</a>
+ </nav>
+ </div>
+</header>
+
+<main id="indhold">
+{% block content %}{% endblock %}
+</main>
+
+<footer>
+ <nav class="bundmenu" aria-label="Sider">
+ <a href="{{ base_path }}/">Forside og søgning</a>
  <a href="{{ base_path }}/fonde/a.html">Alle fonde</a>
  <a href="{{ base_path }}/aendringer.html">Ændringer</a>
  <a href="{{ base_path }}/metode.html">Viden</a>
  <a href="{{ base_path }}/om.html">Hvem står bag?</a>
  </nav>
-</header>
-
-<div class="statuslinje" role="note">
- Positivlisten er senest opdateret den {{ opdateret_dato }} og gælder for indkomståret {{ aktuelt_aar }}.
- {% if overgang_aar %}Listen for {{ overgang_aar }} gælder fortsat resten af {{ overgang_aar }}.{% endif %}
- Hjemmesiden har senest tjekket skat.dk for ændringer den {{ sidst_tjekket }}.
-</div>
-
-<main>
-{% block content %}{% endblock %}
-</main>
-
-<footer>
  <p class="disclaimer"><strong>Denne hjemmeside er ren oplysning - ikke skatterådgivning.</strong>
  Verificér altid hos Skattestyrelsen, før du træffer beslutninger:
  <a href="{{ kilde.side }}" rel="noopener">Skattestyrelsens officielle liste (skat.dk)</a>.</p>
