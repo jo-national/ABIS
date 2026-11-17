@@ -31,12 +31,19 @@
 <nav class="brødkrumme"><a href="{{ base_path }}/">Forside</a> › <a href="{{ base_path }}/fonde/{{ bogstav }}.html">Alle fonde - {{ bogstav|upper }}</a> › {{ fid }}</nav>
 
 <article>
- <h1>Er {{ navn }} aktiebaseret?</h1>
+ {% set omtale = navn if navn|length <= 55 else ("Fonden" if fond.type == "isin" else "Selskabet") %}
+ <h1{% if navn|length > 110 %} class="meget-lang"{% elif navn|length > 55 %} class="lang"{% endif %}>Er {{ navn }} aktiebaseret?</h1>
+ <p class="fond-meta">
+ {% if fond.type == "isin" %}<span>ISIN <span class="isin-vaerdi">{{ fid }}</span></span>
+ <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button>
+ {% elif fond.cvr %}<span>CVR {{ fond.cvr }}</span>{% endif %}
+ {% if fond.hjemsted %}<span>{{ fond.hjemsted }}</span>{% endif %}
+ </p>
 
  {% if paa_listen_nu %}
  <div class="svar svar-ja">
  <p class="svar-kort">JA</p>
- <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
+ <p><strong>{{ omtale }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} er registreret på
  Skattestyrelsens liste over aktiebaserede investeringsselskaber for indkomståret <strong>{{ aktuelt_aar }}</strong>
  {% if kilde.offentliggjort_tekst %}(listeversion offentliggjort den {{ kilde.offentliggjort_tekst }}){% endif %}.</p>
  <p>Gevinst og tab lagerbeskattes som aktieindkomst.</p>
@@ -44,7 +51,7 @@
  {% else %}
  <div class="svar svar-historisk">
  <p class="svar-kort">IKKE PÅ POSITIVLISTEN FOR {{ aktuelt_aar }}</p>
- <p><strong>{{ navn }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
+ <p><strong>{{ omtale }}</strong>{% if fond.type == "isin" %} ({{ fid }}){% endif %} var registreret for
  {{ fond.aar | join(", ") }}, men er ikke registreret for {{ aktuelt_aar }}.</p>
  <p>Er selskabet fortsat et investeringsselskab uden at være aktiebaseret, beskattes afkastet som
  kapitalindkomst. Fraværet kan også skyldes, at selskabet er ophørt, omdannet eller overgået til andre
@@ -196,8 +203,7 @@
  <h2>Stamdata fra positivlisten</h2>
  <dl class="stamdata">
  {% if fond.type == "isin" %}<dt>ISIN</dt>
- <dd><span class="isin-vaerdi">{{ fid }}</span>
- <button type="button" class="kopier" data-kopier="{{ fid }}">Kopiér</button></dd>{% endif %}
+ <dd><span class="isin-vaerdi">{{ fid }}</span></dd>{% endif %}
  <dt>Navn</dt><dd>{{ navn }}</dd>
  {% if fond.navne|length > 1 %}
  <dt>Også registreret som</dt><dd>{{ fond.navne[1:] | join("; ") }}</dd>
@@ -208,6 +214,13 @@
  </dl>
  </section>
  </div>
+
+ <section class="soeg-igen">
+ <h2>Slå en anden fond op</h2>
+ <div class="soegning">
+ {% include "_soeg.html" %}
+ </div>
+ </section>
 
 {% if relaterede %}
  <section class="relaterede">
@@ -230,5 +243,7 @@
  aktiebaserede investeringsselskaber</a> (fil: {{ kilde.filnavn }}, kontrolleret {{ kilde.hentet_utc[:10] }}).
  Optagelse på positivlisten er ikke en afgørelse fra Skattestyrelsen om et selskabs skattemæssige status.</p>
 </article>
+<script>window.BASE_PATH = {{ base_path|tojson }};</script>
 <script src="{{ base_path }}/static/kontekst.js" defer></script>
+<script src="{{ base_path }}/static/search.js" defer></script>
 {% endblock %}

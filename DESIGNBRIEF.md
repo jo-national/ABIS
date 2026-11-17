@@ -34,8 +34,8 @@ form/tekst sammen med farve):
   fejlmeddelelse.
 
 ## Statuslinjen
-En tynd, gennemgående linje på alle sider: "Datagrundlag: … offentliggjort
-den …, gældende for indkomståret …. Senest kontrolleret: …". Den er sitets
+En tynd, gennemgående linje øverst på alle sider: "Positivlisten [år] ·
+opdateret [dato] · Tjekket på skat.dk [dato og klokkeslæt]". Den er sitets
 troværdighedssignatur og må gerne være det ene genkendelige designelement.
 
 ## Tabeller med mange rækker (indeks-siderne, 5.000+ fonde fordelt på bogstaver)

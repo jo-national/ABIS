@@ -31,6 +31,12 @@ def dansk_dato(dt: datetime) -> str:
     return f"{dt.day}. {MDR[dt.month - 1]} {dt.year}"
 
 
+def dansk_dato_tid_kort(dt: datetime) -> str:
+    """Uden "(dansk tid)" - til det smalle statusbånd øverst."""
+    dt = dt.astimezone(DK)
+    return f"{dt.day}. {MDR[dt.month - 1]} {dt.year} kl. {dt:%H.%M}"
+
+
 def dansk_dato_tid(dt: datetime) -> str:
     dt = dt.astimezone(DK)
     return f"{dt.day}. {MDR[dt.month - 1]} {dt.year} kl. {dt:%H.%M} (dansk tid)"
@@ -232,6 +238,7 @@ def main() -> None:
     ctx = {
         "aktuelt_aar": aktuelt_aar,
         "sidst_tjekket": dansk_dato_tid(tjekket_dt),
+        "sidst_tjekket_kort": dansk_dato_tid_kort(tjekket_dt),
         "hentet_dansk": dansk_dato_tid(hentet_dt),
         "senest_opdateret": senest_opdateret,
         "tekster": tekster,
